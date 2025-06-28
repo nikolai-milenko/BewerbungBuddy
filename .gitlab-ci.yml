@@ -1,16 +1,37 @@
 stages:
   - build
+  - test
 
+variables:
+  DOCKER_DRIVER: overlay2
+
+# Backend Build & Test
 build-backend:
   stage: build
+  image: maven:3.9.5-eclipse-temurin-21-alpine
+  services:
+    - name: postgres:16
+      alias: db
+  variables:
+    POSTGRES_DB: bewerbungsbuddy
+    POSTGRES_USER: user
+    POSTGRES_PASSWORD: password
+    SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/bewerbungsbuddy
+    SPRING_DATASOURCE_USERNAME: user
+    SPRING_DATASOURCE_PASSWORD: password
+  before_script:
+    - cd backend
   script:
-    - echo "Building backend..."
-    - cd backend || exit 0
-    - ./mvnw clean install || echo "No backend yet"
+    - ./mvnw clean install
+  artifacts:
+    paths:
+      - backend/target/*.jar
 
+# Frontend Placeholder
 build-frontend:
   stage: build
+  image: alpine
+  before_script:
+    - cd frontend || echo "frontend folder not found"
   script:
-    - echo "Building frontend..."
-    - cd frontend || exit 0
     - echo "No real frontend yet"
