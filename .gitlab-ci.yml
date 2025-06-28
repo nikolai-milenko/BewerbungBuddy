@@ -1,0 +1,16 @@
+stages:
+  - build
+
+build-backend:
+  stage: build
+  script:
+    - echo "Building backend..."
+    - cd backend || exit 0
+    - ./mvnw clean install || echo "No backend yet"
+
+build-frontend:
+  stage: build
+  script:
+    - echo "Building frontend..."
+    - cd frontend || exit 0
+    - echo "No real frontend yet"

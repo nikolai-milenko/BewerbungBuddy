@@ -1,0 +1,26 @@
+# IDEs
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+
+# System
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Backend (Maven)
+backend/target/
+backend/*.class
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
+frontend/build/
+
+# Env files
+.env
+.env.local
