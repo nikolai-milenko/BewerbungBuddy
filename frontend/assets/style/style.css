@@ -1,0 +1,113 @@
+/* ========== Global ========== */
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background: linear-gradient(to bottom, #cce8ff, #ffffff);
+}
+
+/* ========== Navbar ========== */
+
+.navbar {
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.navbar-nav .nav-link {
+  font-weight: 500;
+  padding: 0.75rem 1rem;
+  color: #333;
+}
+
+.navbar-nav .nav-link:hover {
+  color: #007bff;
+  text-decoration: underline;
+}
+
+/* ========== Hero Section ========== */
+
+header {
+  padding: 4rem 1rem;
+  text-align: center;
+}
+
+header h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #222;
+}
+
+header p.lead {
+  font-size: 1.25rem;
+  color: #444;
+}
+
+/* ========== Buttons ========== */
+
+#cvButton,
+#motivationButton {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 0.5rem;
+  transition: all 0.2s ease-in-out;
+}
+
+#cvButton {
+  background-color: #007bff;
+  border: none;
+  color: white;
+}
+
+#cvButton:hover {
+  background-color: #0056b3;
+}
+
+#motivationButton {
+  background-color: white;
+  border: 2px solid #007bff;
+  color: #007bff;
+}
+
+#motivationButton:hover {
+  background-color: #e6f0ff;
+}
+
+/* ========== Sections ========== */
+
+section {
+  margin: 2rem auto;
+  padding: 2rem;
+}
+
+section h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+/* ========== Utilities ========== */
+
+.bg-white {
+  background-color: #fff;
+}
+
+.rounded {
+  border-radius: 0.5rem;
+}
+
+.shadow-sm {
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+/* ========== Footer ========== */
+
+footer {
+  font-size: 0.95rem;
+  text-align: center;
+  color: #666;
+  background: #fff;
+  border-top: 1px solid #e5e5e5;
+  padding: 1rem;
+  margin-top: 2rem;
+}
