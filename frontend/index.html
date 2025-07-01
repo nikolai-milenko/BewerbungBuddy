@@ -2,77 +2,72 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>BewerbungsBuddy</title>
-
-  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="css/style.css" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
-
-  <!-- Google Font: Inter -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
-
-  <!-- Custom Styles -->
-  <style>
-    body {
-      background: linear-gradient(to bottom, #e4f0ff, #ffffff);
-      font-family: 'Inter', sans-serif;
-      color: #111;
-      margin: 0;
-      padding: 0;
-    }
-
-    .container {
-      background: white;
-      padding: 40px;
-      border-radius: 20px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-      text-align: center;
-      max-width: 500px;
-      width: 90%;
-    }
-
-    h1 {
-      font-weight: 600;
-      font-size: 2.5rem;
-      margin-bottom: 30px;
-    }
-
-    .lead {
-    font-size: 1.2rem;
-    color: #555;
-    }
-
-    .btn {
-      border-radius: 999px;
-      padding: 14px 28px;
-      font-size: 1.1rem;
-    }
-
-    .btn-primary {
-      background-color: #1877f2;
-      border: none;
-    }
-
-    .btn-outline-secondary {
-      border: 2px solid #ccc;
-      color: #333;
-    }
-
-    @media (max-width: 576px) {
-      h1 {
-        font-size: 2rem;
-      }
-    }
-  </style>
 </head>
-<body class="d-flex align-items-center justify-content-center vh-100">
-  <div class="container">
-    <h1>Willkommen bei BewerbungsBuddy</h1>
-    <p class="lead mb-4">Individuelle Bewerbungshilfe. Genau auf dich und deinen Lebenslauf abgestimmt.</p>
-    <div class="d-grid gap-3">
-      <a href="/cv-analysis" class="btn btn-primary">CV-Analyse starten</a>
-      <a href="/letter-generation" class="btn btn-outline-secondary">Motivationsschreiben generieren</a>
+<body class="d-flex flex-column min-vh-100 gradient-bg">
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light px-4">
+    <a class="navbar-brand fw-bold" href="#">BewerbungsBuddy</a>
+    <div class="ms-auto">
+      <button class="btn btn-outline-primary me-2">Login</button>
+      <button class="btn btn-primary">Registrieren</button>
     </div>
-  </div>
+  </nav>
+
+  <!-- Hero-Bereich -->
+  <header class="text-center py-5">
+    <h1>Individuelle Bewerbungen für dich</h1>
+    <p class="lead">Abgestimmt auf deinen Lebenslauf und deine Traumstelle</p>
+    <div class="my-4">
+      <button id="cvButton" class="btn btn-primary me-2">CV-Analyse starten</button>
+      <button id="motivationButton" class="btn btn-outline-secondary">Motivationsschreiben generieren</button>
+    </div>
+  </header>
+
+  <!-- Über das Projekt -->
+  <section class="container py-5 rounded shadow-sm">
+    <h2 class="text-center mb-4">Über das Projekt</h2>
+    <p class="lead text-center">
+      Bewerbungsbuddy ist ein Projekt zur Unterstützung bei Bewerbungen.
+      Nutzer:innen können ihren Lebenslauf und eine Stellenanzeige hochladen.
+      Anschließend erhalten sie eine Auswertung mit Übereinstimmungsgrad und Optimierungstipps.
+      Alternativ kann automatisch ein individuelles Motivationsschreiben erstellt werden – KI-gestützt, präzise und passend zur Bewerbung.
+    </p>
+  </section>
+
+  <!-- Schritte -->
+  <section class="container py-5">
+    <h2 class="text-center mb-5">So funktioniert's</h2>
+    <div class="row text-center">
+      <div class="col-md-4">
+        <h4>Schritt 1: Dokumente auswählen</h4>
+        <p>Lade deinen Lebenslauf und die Stellenanzeige hoch oder wähle die gewünschte Funktion aus.</p>
+      </div>
+      <div class="col-md-4">
+        <h4>Schritt 2: Analyse starten</h4>
+        <p>Starte die Analyse oder die Generierung des Motivationsschreibens mit nur einem Klick.</p>
+      </div>
+      <div class="col-md-4">
+        <h4>Schritt 3: Ergebnisse erhalten</h4>
+        <p>Erhalte sofort Optimierungstipps oder dein individuelles Anschreiben – alles bleibt auf deinem Gerät.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Erklärung -->
+  <section class="container py-5 rounded shadow-sm">
+    <h2 class="text-center mb-4">Wie funktioniert das?</h2>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">📁 Deine Dokumente bleiben da, wo sie hingehören: <strong>auf deinem Gerät!</strong></li>
+      <li class="list-group-item">🤖 Analyse & Anschreiben powered by smarter <strong>KI</strong> – schnell, clever, individuell.</li>
+      <li class="list-group-item">🌍 Open Source, volle Transparenz & faire Preise – <strong>für Studis besonders günstig!</strong></li>
+    </ul>
+  </section>
+
+  <script src="js/script.js"></script>
 </body>
 </html>

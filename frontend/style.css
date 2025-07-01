@@ -1,0 +1,9 @@
+.gradient-bg {
+  background: linear-gradient(to bottom, #4da9ff, #ffffff);
+}
+
+/* Optional: etwas Abstand zwischen Abschnitten */
+section {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
