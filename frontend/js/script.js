@@ -1,4 +1,3 @@
-<script src="js/script.js"></script>
 function analyzeCV(cvText) {
   if (!cvText || cvText.trim() === "") {
     return "Bitte gib einen Lebenslauf-Text ein.";
