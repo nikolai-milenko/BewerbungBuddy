@@ -28,7 +28,8 @@ public class CVDocument {
     private String filename;
 
     @Column(
-            name = "uploaded_at"
+            name = "uploaded_at",
+            updatable = false
     )
     private LocalDateTime uploadedAt;
 
