@@ -37,6 +37,20 @@
       <button id="motivationButton" class="btn btn-outline-secondary">Motivationsschreiben generieren</button>
     </div>
   </header>
+  <div class="container mb-5">
+  <div class="mb-3">
+    <label for="cvInput" class="form-label">Lebenslauf (Text)</label>
+    <textarea id="cvInput" class="form-control" rows="4"></textarea>
+  </div>
+  <div class="mb-3">
+    <label for="jobInput" class="form-label">Stellenanzeige (Text)</label>
+    <textarea id="jobInput" class="form-control" rows="4"></textarea>
+  </div>
+  <div>
+    <button id="generateLetterBtn" class="btn btn-success">Motivationsschreiben generieren</button>
+  </div>
+  <div id="letterOutput" class="mt-4 p-3 bg-light border rounded" style="white-space: pre-wrap;"></div>
+</div>
 <!-- Lebenslauf-Textarea -->
 <div class="container my-4">
   <label for="cvInput" class="form-label">Füge deinen Lebenslauf hier ein:</label>
@@ -77,5 +91,6 @@
   </div>
 </footer>
 <script src="js/script.js"></script>
+<script type="module" src="js/script.js"></script>
 </body>
 </html>

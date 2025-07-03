@@ -1,41 +1,27 @@
-// script.js
-function analyzeCV(cvText) {
-  if (!cvText || cvText.trim() === "") {
-    return "Bitte gib einen Lebenslauf-Text ein.";
-  }
+// frontend/js/script.js
 
-  if (cvText.toLowerCase().includes("teamarbeit")) {
-    return "Top Soft Skills: Teamarbeit";
-  }
+// Logik importieren (nur im Browser eingebunden, nicht in Jest)
+import('./logic.js').then(({ analyzeCV, generateMotivationsschreiben }) => {
+  document.addEventListener("DOMContentLoaded", () => {
+    const cvButton = document.getElementById("cvButton");
+    const letterButton = document.getElementById("generateLetterBtn");
 
-  return "Keine bekannten Soft Skills gefunden.";
-}
+    if (cvButton) {
+      cvButton.addEventListener("click", () => {
+        const input = document.getElementById("cvInput").value;
+        const result = analyzeCV(input);
+        document.getElementById("cvResult").textContent = result;
+      });
+    }
 
-// Für Unit-Tests exportieren
-module.exports = { analyzeCV };
-
-// CV-Analyse Funktion
-function analyzeCV(cvText) {
-  if (!cvText || cvText.trim() === "") {
-    return "Bitte gib einen Lebenslauf-Text ein.";
-  }
-
-  if (cvText.toLowerCase().includes("teamarbeit")) {
-    return "✅ Erkanntes Soft Skill: Teamarbeit";
-  }
-
-  return "⚠️ Kein Hinweis auf Teamarbeit gefunden.";
-}
-
-// Klick-Event für den Button
-document.addEventListener("DOMContentLoaded", () => {
-  const cvButton = document.getElementById("cvButton");
-
-  if (cvButton) {
-    cvButton.addEventListener("click", () => {
-      const input = document.getElementById("cvInput").value;
-      const result = analyzeCV(input);
-      document.getElementById("cvResult").textContent = result;
-    });
-  }
+    if (letterButton) {
+      letterButton.addEventListener("click", () => {
+        const cvText = document.getElementById("cvInput").value;
+        const jobText = document.getElementById("jobInput").value;
+        const result = generateMotivationsschreiben(cvText, jobText);
+        document.getElementById("letterOutput").textContent = result;
+      });
+    }
+  });
 });
+
