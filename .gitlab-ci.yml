@@ -24,8 +24,12 @@ build-backend:
   script:
     - ./mvnw clean install
   artifacts:
+    when: on_success
     paths:
       - backend/target/*.jar
+    expire_in: 1 week
+  only:
+    - main
 
 # Frontend Placeholder
 build-frontend:
