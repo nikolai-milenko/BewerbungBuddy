@@ -14,19 +14,26 @@
 <body>
 
   <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container">
-      <a class="navbar-brand" href="index.html">BewerbungsBuddy</a>
-      <div class="collapse navbar-collapse">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="pages/cv-analysis.html">CV Analyse</a></li>
-          <li class="nav-item"><a class="nav-link" href="pages/letter-generation.html">Motivationsschreiben</a></li>
-          <li class="nav-item"><a class="nav-link" href="pages/pricing.html">Preise</a></li>
-          <li class="nav-item"><a class="nav-link" href="pages/team.html">Unser Team</a></li>
-        </ul>
-      </div>
+<nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+  <div class="container">
+    <a href="index.html" class="navbar-brand fw-bold text-decoration-none text-dark">
+      BewerbungsBuddy
+    </a>
+    
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="pages/cv-analysis.html">CV Analyse</a></li>
+        <li class="nav-item"><a class="nav-link" href="pages/letter-generation.html">Motivationsschreiben</a></li>
+        <li class="nav-item"><a class="nav-link" href="pages/pricing.html">Preise</a></li>
+        <li class="nav-item"><a class="nav-link" href="pages/team.html">Unser Team</a></li>
+      </ul>
     </div>
-  </nav>
+  </div>
+</nav>
+
 
   <!-- Hero Section -->
   <header class="container text-center mt-5">
@@ -38,6 +45,38 @@
       <a href="pages/letter-generation.html" class="btn btn-outline-primary">Motivationsschreiben generieren</a>
     </div>
   </header>
+  <!-- Lebenslauf-Textarea -->
+<div class="container my-4">
+  <label for="cvInput" class="form-label">Füge deinen Lebenslauf hier ein:</label>
+  <textarea id="cvInput" class="form-control" rows="6" placeholder="Hier deinen Lebenslauf eingeben..."></textarea>
+  <div id="cvResult" class="mt-3 fw-bold text-success"></div>
+</div>
+<!-- About Section -->
+<section class="container py-5 rounded shadow-sm mb-4 bg-white">
+  <h2 class="text-center mb-4">Über das Projekt</h2>
+  <p class="text-center">
+    BewerbungsBuddy unterstützt Sie dabei, Ihre Bewerbungsunterlagen zu optimieren und individuelle Anschreiben zu erstellen. 
+    Ihre Daten bleiben stets auf Ihrem Gerät – für maximale Sicherheit und Datenschutz.
+  </p>
+</section>
+<!-- How it works Section -->
+<section class="container py-5">
+  <h2 class="text-center mb-5">So funktioniert's</h2>
+  <div class="row text-center">
+    <div class="col-md-4 mb-3">
+      <h5>1. Dokumente auswählen</h5>
+      <p>Laden Sie Ihren Lebenslauf und die Stellenanzeige hoch.</p>
+    </div>
+    <div class="col-md-4 mb-3">
+      <h5>2. Analyse starten</h5>
+      <p>Starten Sie die Analyse oder lassen Sie ein Anschreiben generieren.</p>
+    </div>
+    <div class="col-md-4 mb-3">
+      <h5>3. Ergebnis erhalten</h5>
+      <p>Erhalten Sie direkt Optimierungstipps oder Ihr individuelles Anschreiben.</p>
+    </div>
+  </div>
+</section>
 
   <!-- Footer -->
   <footer class="text-center py-4 mt-5">
