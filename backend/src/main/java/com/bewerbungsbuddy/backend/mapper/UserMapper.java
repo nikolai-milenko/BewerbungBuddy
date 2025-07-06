@@ -10,7 +10,7 @@ import org.mapstruct.Mapping;
 public interface UserMapper {
 
     @Mapping(target = "id", ignore = true)
-    @Mapping(target = "registeredAt", ignore = true)
+    @Mapping(target = "createdAt", ignore = true)
     User toEntity(UserRequestDto dto);
 
     UserResponseDto toResponseDto(User user);

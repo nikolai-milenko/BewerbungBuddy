@@ -10,6 +10,5 @@ public interface CoverLetterMapper {
 
     CoverLetter toEntity(CoverLetterRequestDto dto);
 
-    // Из сущности в DTO
     CoverLetterResponseDto toResponseDto(CoverLetter coverLetter);
 }

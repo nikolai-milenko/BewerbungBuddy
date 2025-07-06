@@ -33,7 +33,7 @@ public class CoverLetter {
     private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private CvDocument cvDocument;
+    private CVDocument cvDocument;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private JobAdvertisement jobAdvertisement;
