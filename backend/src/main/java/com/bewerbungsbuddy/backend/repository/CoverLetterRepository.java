@@ -7,11 +7,8 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface  CoverLetterRepository extends JpaRepository<CoverLetter, Long> {
-
+public interface CoverLetterRepository extends JpaRepository<CoverLetter, Long> {
     List<CoverLetter> findByUserId(Long userId);
-
     List<CoverLetter> findByCvDocumentId(Long cvDocumentId);
-
     List<CoverLetter> findByJobAdvertisementId(Long jobAdvertisementId);
 }
