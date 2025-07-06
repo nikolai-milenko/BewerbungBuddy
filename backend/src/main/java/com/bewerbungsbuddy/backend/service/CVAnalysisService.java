@@ -39,13 +39,11 @@ public class CVAnalysisService {
                 jobAdvertisement.getParsedText()
         );
 
-        CVAnalysis analysis = CVAnalysis.builder()
-                .matchScore(analysisResult.matchScore())
-                .strengths(analysisResult.strengths())
-                .weaknesses(analysisResult.weaknesses())
-                .cvDocument(cvDocument)
-                .jobAdvertisement(jobAdvertisement)
-                .build();
+        CVAnalysis analysis = cvAnalysisMapper.toEntity(requestDto, cvDocument, jobAdvertisement);
+
+        analysis.setMatchScore(analysisResult.matchScore());
+        analysis.setStrengths(analysisResult.strengths());
+        analysis.setWeaknesses(analysisResult.weaknesses());
 
         CVAnalysis saved = cvAnalysisRepository.save(analysis);
         */
