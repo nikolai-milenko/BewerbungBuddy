@@ -3,6 +3,8 @@ package com.bewerbungsbuddy.backend.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Getter
 @Setter
 @ToString
@@ -35,4 +37,7 @@ public class JobAdvertisement {
             length = 100
     )
     private String companyName;
+
+    @OneToMany(mappedBy = "jobAdvertisement", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    private List<CVAnalysis> analyses;
 }
