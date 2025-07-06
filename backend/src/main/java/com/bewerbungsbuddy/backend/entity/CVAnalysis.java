@@ -60,8 +60,7 @@ public class CVAnalysis {
     @JoinColumn(name = "job_advertisement_id", nullable = false)
     private JobAdvertisement jobAdvertisement;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "cv_analysis_id", nullable = false)
+    @OneToMany(mappedBy = "cvAnalysis", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     private List<Recommendation> recommendations;
 
     @PrePersist
