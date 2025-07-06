@@ -2,7 +2,6 @@ package com.bewerbungsbuddy.backend.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import com.bewerbungsbuddy.backend.entity.SubscriptionType;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -31,8 +30,14 @@ public class User {
     @Column(name = "full_name", nullable = false)
     private String fullName;
 
-    @Column(name = "registered_at",nullable = false, updatable = false)
-    private LocalDateTime registeredAt;
+    @Column(name = "created_at",nullable = false, updatable = false)
+    private LocalDateTime createdAt;
+
+    @Column(
+            name = "uploaded_at"
+    )
+    private LocalDateTime uploadedAt;
+
 
     @Column(name = "subscription_plan")
     @Enumerated(EnumType.STRING)
@@ -40,8 +45,14 @@ public class User {
 
     @PrePersist
     public void onCreate() {
-        this.registeredAt = LocalDateTime.now();
+        this.createdAt = LocalDateTime.now();
     }
+
+    @PrePersist
+    public void prePersist() {
+        this.uploadedAt = LocalDateTime.now();
+    }
+
 
     // TODO: entity CVDocument
     // @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
