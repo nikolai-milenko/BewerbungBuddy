@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @Setter
@@ -39,6 +40,9 @@ public class CVDocument {
             updatable = false
     )
     private String parsedText;
+
+    @OneToMany(mappedBy = "cvDocument", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<CVAnalysis> analyses;
 
     @PrePersist
     public void prePersist() {
