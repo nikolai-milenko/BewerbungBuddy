@@ -60,6 +60,10 @@ public class CVAnalysis {
     @JoinColumn(name = "job_advertisement_id", nullable = false)
     private JobAdvertisement jobAdvertisement;
 
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "cv_analysis_id", nullable = false)
+    private List<Recommendation> recommendations;
+
     @PrePersist
     public void prePersist() {
         this.analysedAt = LocalDateTime.now();

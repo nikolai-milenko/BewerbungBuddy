@@ -9,6 +9,7 @@ import java.util.List;
 @Repository
 public interface CVAnalysisRepository extends JpaRepository<CVAnalysis, Long> {
     List<CVAnalysis> findAllByCvDocument_Id(Long cvDocumentId);
-
     List<CVAnalysis> findAllByJobAdvertisement_Id(Long jobAdvertisementId);
+    List<CVAnalysis> findAllByCvDocument_IdAndJobAdvertisement_Id(Long cvDocumentId, Long jobAdvertisementId);
+    List<CVAnalysis> findAllByMatchScoreGreaterThanEqual(Double score);
 }
