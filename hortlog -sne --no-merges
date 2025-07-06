@@ -1,0 +1,47 @@
+[33mcommit 7e68f95568051805a2c6cc640fb46d529a5c3773[m[33m ([m[1;36mHEAD[m[33m)[m
+Author: [1;31mTalita Joriska[m <talita-nathalie-davina.joriska1@informatik.hs-fulda.de>
+Date:   Tue Jul 1 10:30:45 2025 +0200
+
+    Delete .gitkeep
+
+[33mcommit deeb92a318cbf35633697e52d083377f5730eae9[m
+Author: [1;31mTalita Joriska[m <talita-nathalie-davina.joriska1@informatik.hs-fulda.degit config --global user.name Talita>
+Date:   Tue Jul 1 11:17:10 2025 +0200
+
+    feat: added navigation and footer to landing page
+
+[33mcommit 472790d09a8646284ab7cfa6e9da5e01f233ea2c[m
+Author: [1;31mTalita Joriska[m <talita-nathalie-davina.joriska1@informatik.hs-fulda.degit config --global user.name Talita>
+Date:   Tue Jul 1 11:09:16 2025 +0200
+
+    feat: added top navigation bar with links and responsive layout
+
+[33mcommit 709342fab1fd52d25f48177a9cd41c50b6b95ee9[m
+Author: [1;31mTalita Joriska[m <talita-nathalie-davina.joriska1@informatik.hs-fulda.degit config --global user.name Talita>
+Date:   Tue Jul 1 07:08:44 2025 +0200
+
+    chore: moved style.css into css/ folder and updated path in index.html
+
+[33mcommit b477150d3ff872b8a28036b37dad9530be312522[m
+Author: [1;31mTalita Joriska[m <talita-nathalie-davina.joriska1@informatik.hs-fulda.degit config --global user.name Talita>
+Date:   Tue Jul 1 06:09:03 2025 +0200
+
+    feat: created basic landing page structure
+
+[33mcommit a9dbe4f322e91b246edea1d915608e00f5a73413[m
+Author: [1;31mTalita Joriska[m <talita-nathalie-davina.joriska1@informatik.hs-fulda.degit config --global user.name Talita>
+Date:   Mon Jun 30 11:57:04 2025 +0200
+
+    Added Inter font and updated landing page style
+
+[33mcommit 0c455ab1ffce1e00490249a8ae789561171fac81[m
+Author: [1;31mTalita Joriska[m <talita-nathalie-davina.joriska1@informatik.hs-fulda.degit config --global user.name Talita>
+Date:   Mon Jun 30 07:40:53 2025 +0200
+
+    Add landing page content
+
+[33mcommit 8a13e1ce079fc87fe0eb3eb8e54b9aebea864e67[m
+Author: [1;31mTalita Joriska[m <talita-nathalie-davina.joriska1@informatik.hs-fulda.degit config --global user.name Talita>
+Date:   Mon Jun 30 07:16:32 2025 +0200
+
+    Add landing page with Bootstrap layout

@@ -1,27 +1,27 @@
-// frontend/js/script.js
+function analyzeCV(cvText) {
+  if (!cvText || cvText.trim() === "") {
+    return "Bitte gib einen Lebenslauf-Text ein.";
+  }
 
-// Logik importieren (nur im Browser eingebunden, nicht in Jest)
-import('./logic.js').then(({ analyzeCV, generateMotivationsschreiben }) => {
-  document.addEventListener("DOMContentLoaded", () => {
-    const cvButton = document.getElementById("cvButton");
-    const letterButton = document.getElementById("generateLetterBtn");
+  const softSkills = [
+    "Teamarbeit",
+    "Kommunikationsfähigkeit",
+    "Eigeninitiative",
+    "Belastbarkeit",
+    "Problemlösungsfähigkeit",
+    "Zuverlässigkeit"
+  ];
 
-    if (cvButton) {
-      cvButton.addEventListener("click", () => {
-        const input = document.getElementById("cvInput").value;
-        const result = analyzeCV(input);
-        document.getElementById("cvResult").textContent = result;
-      });
-    }
+  const foundSkills = softSkills.filter(skill =>
+    cvText.toLowerCase().includes(skill.toLowerCase())
+  );
 
-    if (letterButton) {
-      letterButton.addEventListener("click", () => {
-        const cvText = document.getElementById("cvInput").value;
-        const jobText = document.getElementById("jobInput").value;
-        const result = generateMotivationsschreiben(cvText, jobText);
-        document.getElementById("letterOutput").textContent = result;
-      });
-    }
-  });
-});
+  if (foundSkills.length > 0) {
+    return `✅ Erkannte Soft Skills: ${foundSkills.join(", ")}`;
+  } else {
+    return "⚠️ Keine bekannten Soft Skills gefunden.";
+  }
+}
 
+// Für Unit-Tests exportieren
+module.exports = { analyzeCV };
