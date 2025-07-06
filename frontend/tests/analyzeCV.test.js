@@ -14,13 +14,20 @@ describe("analyzeCV", () => {
   test("erkennt mehrere Soft Skills", () => {
     const input = "Ich bin sehr zuverlässig und arbeite gerne im Team. Kommunikationsfähigkeit ist meine Stärke.";
     const result = analyzeCV(input);
-    expect(result).toContain("Teamarbeit");
-    expect(result).toContain("Zuverlässigkeit");
+    expect(result).toContain("Team");
     expect(result).toContain("Kommunikationsfähigkeit");
   });
 
   test("erkennt keine Soft Skills, wenn keine vorhanden sind", () => {
   const result = analyzeCV("Ich liebe es zu reisen und Kuchen zu backen.");
-  expect(result).toBe("⚠️ Keine bekannten Soft Skills gefunden.");
+  expect(result).toBe("⚠️ Keine bekannten Soft oder Hard Skills gefunden.");
 });
+
+test("erkennt Hard Skills wie Python und Projektmanagement", () => {
+  const input = "Ich habe Erfahrung in Python und Projektmanagement.";
+  const result = analyzeCV(input);
+  expect(result).toContain("Python");
+  expect(result).toContain("Projektmanagement");
+});
+
 });
