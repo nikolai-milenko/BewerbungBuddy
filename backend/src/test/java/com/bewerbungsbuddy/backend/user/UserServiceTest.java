@@ -81,4 +81,12 @@ class UserServiceTest {
         assertNotNull(result);
         verify(userMapper).toResponseDto(user);
     }
+
+
+    @Test
+    void login_shouldThrow_whenUserNotFound() {
+        when(userRepository.findByEmail("notfound@example.com")).thenReturn(Optional.empty());
+
+        assertThrows(RuntimeException.class, () -> userService.login("notfound@example.com", "any"));
+    }
 }
