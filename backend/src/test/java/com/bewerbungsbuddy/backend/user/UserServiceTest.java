@@ -89,4 +89,16 @@ class UserServiceTest {
 
         assertThrows(RuntimeException.class, () -> userService.login("notfound@example.com", "any"));
     }
+
+    @Test
+    void login_shouldThrow_whenPasswordInvalid() {
+        User user = new User();
+        user.setPassword("encoded");
+
+        when(userRepository.findByEmail("test@example.com")).thenReturn(Optional.of(user));
+        when(passwordEncoder.matches("wrong", "encoded")).thenReturn(false);
+
+        assertThrows(RuntimeException.class, () -> userService.login("test@example.com", "wrong"));
+    }
+
 }
