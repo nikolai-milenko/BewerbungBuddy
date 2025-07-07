@@ -13,7 +13,7 @@ import java.util.List;
 @Builder
 @ToString
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 public class User {
     @Id
     @GeneratedValue(
@@ -30,27 +30,25 @@ public class User {
     @Column(name = "full_name", nullable = false)
     private String fullName;
 
-    @Column(name = "created_at",nullable = false, updatable = false)
+    @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
-    @Column(
-            name = "uploaded_at"
-    )
-    private LocalDateTime uploadedAt;
-
+    @Column(name = "updated_at")
+    private LocalDateTime updatedAt;
 
     @Column(name = "subscription_plan")
     @Enumerated(EnumType.STRING)
     private SubscriptionType subscriptionPlan;
 
     @PrePersist
-    public void onCreate() {
+    public void prePersist() {
         this.createdAt = LocalDateTime.now();
+        this.updatedAt = LocalDateTime.now();
     }
 
-    @PrePersist
-    public void prePersist() {
-        this.uploadedAt = LocalDateTime.now();
+    @PreUpdate
+    public void preUpdate() {
+        this.updatedAt = LocalDateTime.now();
     }
 
 
