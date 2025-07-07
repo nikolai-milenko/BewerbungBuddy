@@ -52,4 +52,14 @@ class UserServiceTest {
         assertNotNull(result);
         verify(userRepository).save(mappedUser);
     }
+
+    @Test
+    void register_shouldThrowException_whenEmailExists() {
+        UserRequestDto dto = new UserRequestDto("test@example.com", "password", "Test User", "FREE");
+
+        when(userRepository.existsByEmail(dto.email())).thenReturn(true);
+
+        RuntimeException ex = assertThrows(RuntimeException.class, () -> userService.register(dto));
+        assertEquals("Email is already in use", ex.getMessage());
+    }
 }
