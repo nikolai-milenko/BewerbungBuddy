@@ -111,3 +111,9 @@ footer {
   padding: 1rem;
   margin-top: 2rem;
 }
+/*CV Analysis page*/
+#pdfPreview {
+  margin-top: 1rem;
+  border-radius: 0.25rem;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
