@@ -7,6 +7,7 @@ import com.bewerbungsbuddy.backend.mapper.UserMapper;
 import com.bewerbungsbuddy.backend.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -14,7 +15,7 @@ import org.springframework.stereotype.Service;
 public class UserService {
     private final UserRepository userRepository;
     private final UserMapper userMapper;
-    private final BCryptPasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
 
     public UserResponseDto register(UserRequestDto dto) {
         if (userRepository.existsByEmail(dto.email())) {
