@@ -9,8 +9,10 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -18,24 +20,28 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.mockito.Mockito.when;
 
-@WebMvcTest(UserController.class)
+@WebMvcTest
 @AutoConfigureMockMvc(addFilters = false)
+@ContextConfiguration(classes = {
+        UserController.class,
+        UserControllerTest.MockConfig.class
+})
 class UserControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
 
-    @MockBean
-    private UserService userService;
-
     @Autowired
     private ObjectMapper objectMapper;
+
+    @Autowired
+    private UserService userService;
 
     @Test
     void register_shouldReturnOk() throws Exception {
         UserRequestDto request = new UserRequestDto("email@test.com", "pass", "Name", "FREE");
 
-        UserResponseDto response = new UserResponseDto(); // заполнить если добавишь поля
+        UserResponseDto response = new UserResponseDto();
 
         when(userService.register(Mockito.any())).thenReturn(response);
 
@@ -43,5 +49,14 @@ class UserControllerTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(request)))
                 .andExpect(status().isOk());
+    }
+
+
+    @Configuration
+    static class MockConfig {
+        @Bean
+        public UserService userService() {
+            return Mockito.mock(UserService.class);
+        }
     }
 }
