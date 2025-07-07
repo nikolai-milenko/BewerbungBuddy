@@ -62,4 +62,23 @@ class UserServiceTest {
         RuntimeException ex = assertThrows(RuntimeException.class, () -> userService.register(dto));
         assertEquals("Email is already in use", ex.getMessage());
     }
+
+    @Test
+    void login_shouldReturnDto_whenCredentialsValid() {
+        String email = "test@example.com";
+        String rawPassword = "password";
+
+        User user = new User();
+        user.setEmail(email);
+        user.setPassword("encodedPassword");
+
+        when(userRepository.findByEmail(email)).thenReturn(Optional.of(user));
+        when(passwordEncoder.matches(rawPassword, user.getPassword())).thenReturn(true);
+        when(userMapper.toResponseDto(user)).thenReturn(new UserResponseDto());
+
+        UserResponseDto result = userService.login(email, rawPassword);
+
+        assertNotNull(result);
+        verify(userMapper).toResponseDto(user);
+    }
 }
