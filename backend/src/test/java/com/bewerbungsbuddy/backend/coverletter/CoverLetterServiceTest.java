@@ -43,4 +43,17 @@ class CoverLetterServiceTest {
         assertEquals("gen", result.get(0).generatedText());
     }
 
+    @Test
+    void getById_shouldReturnDto_whenFound() {
+        CoverLetter coverLetter = new CoverLetter();
+        coverLetter.setId(1L);
+
+        when(repository.findById(1L)).thenReturn(Optional.of(coverLetter));
+        when(mapper.toResponseDto(coverLetter)).thenReturn(new CoverLetterResponseDto("x", "y"));
+
+        CoverLetterResponseDto result = service.getById(1L);
+
+        assertEquals("x", result.generatedText());
+    }
+
 }
