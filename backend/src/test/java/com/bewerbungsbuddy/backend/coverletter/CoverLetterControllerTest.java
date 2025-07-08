@@ -43,6 +43,16 @@ class CoverLetterControllerTest {
                 .andExpect(jsonPath("$[0].generatedText").value("Generated"));
     }
 
+    @Test
+    void getById_shouldReturnCoverLetter() throws Exception {
+        when(coverLetterService.getById(1L))
+                .thenReturn(new CoverLetterResponseDto("gen", "edit"));
+
+        mockMvc.perform(get("/api/cl/1"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.generatedText").value("gen"));
+    }
+
     @Configuration
     static class MockConfig {
         @Bean
