@@ -5,11 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Preise – BewerbungsBuddy</title>
 
-  <!-- Bootstrap & Your CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-
-  <link rel="stylesheet" href="../assets/style/style.css" />
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/style/team.css" />
+  
 </head>
 <body>
 
@@ -34,62 +36,178 @@
   </div>
 </nav>
 
-
-<<!-- Main Content -->
-<div class="container mt-5">
-  <h2 class="text-center mb-5">Unsere Preise</h2>
-
-  <div class="row justify-content-center">
-    <!-- Free Tier -->
-    <div class="col-md-4 mb-4">
-      <div class="card h-100 shadow-lg rounded-3 border-0 hover-shadow">
-        <div class="card-body text-center">
-          <h5 class="card-title fs-4 fw-semibold text-dark">Kostenlos</h5>
-          <p class="card-text text-muted">Analyse von Lebenslauf und Stellenanzeige inklusive generiertem Feedback.</p>
-          <p class="display-6 fw-bold text-dark">0€</p>
-          <button class="btn btn-outline-primary px-4 py-2 mt-4">Jetzt starten</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- Premium Tier -->
-    <div class="col-md-4 mb-4">
-      <div class="card h-100 shadow-lg rounded-3 border-0 hover-shadow border-primary">
-        <div class="card-body text-center">
-          <h5 class="card-title fs-4 fw-semibold text-primary">Premium</h5>
-          <p class="card-text text-muted">Motivationsschreiben automatisch erstellen & erweitertes Feedback erhalten.</p>
-          <p class="display-6 fw-bold text-primary">9,99€</p>
-          <button class="btn btn-primary px-4 py-2 mt-4">Premium kaufen</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- Enterprise Tier -->
-    <div class="col-md-4 mb-4">
-      <div class="card h-100 shadow-lg rounded-3 border-0 hover-shadow border-success">
-        <div class="card-body text-center">
-          <h5 class="card-title fs-4 fw-semibold text-success">Enterprise</h5>
-          <p class="card-text text-muted">Für große Unternehmen: maßgeschneiderte Lösungen, unbegrenzte Benutzer und dedizierter Support.</p>
-          <ul class="list-unstyled text-start">
-            <li><i class="bi bi-check-circle me-2 text-success"></i><strong>Skalierbarkeit</strong>: Anpassbar an Ihre Bedürfnisse</li>
-            <li><i class="bi bi-check-circle me-2 text-success"></i><strong>Individuelle Anpassungen</strong>: Integration mit bestehenden Systemen</li>
-            <li><i class="bi bi-check-circle me-2 text-success"></i><strong>24/7 Support</strong>: Priorisierter Support & dedizierte Betreuung</li>
-            <li><i class="bi bi-check-circle me-2 text-success"></i><strong>Höchste Sicherheit</strong>: Erfüllt alle Compliance-Anforderungen</li>
+  <!-- Pricing -->
+  <section id="pricing" class="py-5">
+    <div class="container">
+      <h2 class="text-center mb-5">Unsere Pakete</h2>
+      <div class="pricing-row">
+        <!-- Basic -->
+        <div class="pricing-card">
+          <div class="title">Basic</div>
+          <div class="price">0€ <span class="period">/ Monat</span></div>
+          <ul>
+            <li>Einmalige Lebenslaufanalyse</li>
+            <li>Standard-Anschreiben</li>
+            <li>E-Mail-Support</li>
           </ul>
-          <p class="display-6 fw-bold text-success">Preis auf Anfrage</p>
-          <button class="btn btn-outline-success px-4 py-2 mt-4">Kontakt aufnehmen</button>
+          <a href="#" class="btn btn-outline">Kostenlos starten</a>
+        </div>
+        <!-- Pro -->
+        <div class="pricing-card highlight">
+          <div class="title">Pro</div>
+          <div class="price">9,99€ <span class="period">/ Monat</span></div>
+          <ul>
+            <li>Unbegrenzte CV-Analysen</li>
+            <li>Premium-Anschreiben</li>
+            <li>Priorisierter Support</li>
+            <li>Job-Matching-Insights</li>
+          </ul>
+          <a href="#" class="btn btn-primary">Jetzt upgraden</a>
+        </div>
+        <!-- Premium -->
+        <div class="pricing-card">
+          <div class="title">Premium</div>
+          <div class="price">19,99€ <span class="period">/ Monat</span></div>
+          <ul>
+            <li>Alles aus Pro</li>
+            <li>1:1 Coaching</li>
+            <li>Lebenslauf-Designvorlagen</li>
+            <li>Telefon-Support</li>
+          </ul>
+          <a href="#" class="btn btn-primary">Vollversion sichern</a>
         </div>
       </div>
     </div>
-  </div>
-</div>
+  </section>
 
+  <!-- Zahlen / Fakten -->
+  <section id="facts" class="container py-5">
+    <h2 class="text-center mb-5">Unsere Erfolge in Zahlen</h2>
+
+    <!-- Крупные цифры -->
+    <div class="row text-center">
+      <div class="col-md-4 mb-4">
+        <div style="font-size: 3rem;">📄</div>
+        <div style="font-size: 2.5rem; font-weight: 700;">10.000+</div>
+        <div style="opacity: 0.85; font-size: 1.1rem;">Bewerbungen erstellt</div>
+      </div>
+
+      <div class="col-md-4 mb-4">
+        <div style="font-size: 3rem;">😊</div>
+        <div style="font-size: 2.5rem; font-weight: 700;">95%</div>
+        <div style="opacity: 0.85; font-size: 1.1rem;">Zufriedene Nutzer</div>
+      </div>
+
+      <div class="col-md-4 mb-4">
+        <div style="font-size: 3rem;">⏱️</div>
+        <div style="font-size: 2.5rem; font-weight: 700;">2 Tage</div>
+        <div style="opacity: 0.85; font-size: 1.1rem;">bis zur Einladung</div>
+      </div>
+    </div>
+
+    <!-- Круговые диаграммы -->
+    <div class="row justify-content-center mt-5 gap-4">
+      <!-- Diagram 1 -->
+      <div class="col-6 col-md-3 text-center" style="position: relative;">
+        <div style="width: 140px; height: 140px; margin: 0 auto; position: relative;">
+          <svg width="140" height="140">
+            <circle cx="70" cy="70" r="60" stroke="var(--border-muted)" stroke-width="10" fill="none" />
+            <circle cx="70" cy="70" r="60" stroke="var(--accent-blue)" stroke-width="10" fill="none"
+                    stroke-dasharray="377" stroke-dashoffset="37" stroke-linecap="round" transform="rotate(-90 70 70)" />
+          </svg>
+          <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 1.6rem; font-weight: 700;">90%</div>
+        </div>
+        <div class="mt-3" style="font-size: 1.1rem;">🎯 Erfolgsquote</div>
+      </div>
+
+      <!-- Diagram 2 -->
+      <div class="col-6 col-md-3 text-center" style="position: relative;">
+        <div style="width: 140px; height: 140px; margin: 0 auto; position: relative;">
+          <svg width="140" height="140">
+            <circle cx="70" cy="70" r="60" stroke="var(--border-muted)" stroke-width="10" fill="none" />
+            <circle cx="70" cy="70" r="60" stroke="var(--accent-blue)" stroke-width="10" fill="none"
+                    stroke-dasharray="377" stroke-dashoffset="113" stroke-linecap="round" transform="rotate(-90 70 70)" />
+          </svg>
+          <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 1.6rem; font-weight: 700;">70%</div>
+        </div>
+        <div class="mt-3" style="font-size: 1.1rem;">📉 Weniger Absagen</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action -->
+  <section id="cta" class="container text-center py-5">
+    <h2 class="mb-4" style="font-size: 2.2rem;">Bereit für deinen nächsten Karriereschritt? 🚀</h2>
+    <p class="mb-4" style="opacity: 0.85; font-size: 1.1rem;">
+      Starte jetzt mit BewerbungsBuddy – einfach, schnell und individuell.
+    </p>
+    <a href="#features" class="btn btn-primary btn-lg">Jetzt kostenlos starten</a>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="container py-5">
+    <h2 class="text-center mb-5">Häufige Fragen 🤔</h2>
+
+    <div class="accordion" id="faqAccordion">
+
+      <!-- Frage 1 -->
+      <div class="accordion-item" style="background: var(--highlight-gray); border: none;">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq1"
+                  style="background: var(--highlight-gray); color: var(--text-light);">
+            Wie funktioniert die Zahlung?
+          </button>
+        </h2>
+        <div id="faq1" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body" style="color: var(--text-light); opacity: 0.85;">
+            Die Zahlung erfolgt sicher über Kreditkarte oder PayPal. Du kannst dein Abo jederzeit kündigen.
+          </div>
+        </div>
+      </div>
+
+      <!-- Frage 2 -->
+      <div class="accordion-item" style="background: var(--highlight-gray); border: none;">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2"
+                  style="background: var(--highlight-gray); color: var(--text-light);">
+            Werden meine Daten gespeichert?
+          </button>
+        </h2>
+        <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body" style="color: var(--text-light); opacity: 0.85;">
+            Nein. Deine Daten bleiben auf deinem Gerät – wir speichern nichts in der Cloud.
+          </div>
+        </div>
+      </div>
+
+      <!-- Frage 3 -->
+      <div class="accordion-item" style="background: var(--highlight-gray); border: none;">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3"
+                  style="background: var(--highlight-gray); color: var(--text-light);">
+            Kann ich mein Abo kündigen?
+          </button>
+        </h2>
+        <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body" style="color: var(--text-light); opacity: 0.85;">
+            Ja, du kannst dein Abo jederzeit im Kundenbereich kündigen.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
   <!-- Footer -->
-  <footer class="text-center py-4 mt-5">
-    <p>&copy; 2025 BewerbungsBuddy</p>
+  <footer class="footer" style="background: var(--bg-dark); color: var(--text-light); opacity: 0.6;">
+    <div class="container text-center py-4">
+      <div class="mb-2">© 2025 BewerbungsBuddy. Alle Rechte vorbehalten.</div>
+      <div style="font-size: 0.9rem;">
+        <a href="#" style="color: var(--text-light); text-decoration: underline; opacity: 0.7; margin-right: 1rem;">Impressum</a>
+        <a href="#" style="color: var(--text-light); text-decoration: underline; opacity: 0.7;">Datenschutz</a>
+      </div>
+    </div>
   </footer>
 
-  <!-- JS -->
+  <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
 </html>
