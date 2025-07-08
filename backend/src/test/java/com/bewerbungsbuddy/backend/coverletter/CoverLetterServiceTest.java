@@ -56,4 +56,12 @@ class CoverLetterServiceTest {
         assertEquals("x", result.generatedText());
     }
 
+    @Test
+    void getById_shouldThrow_whenNotFound() {
+        when(repository.findById(1L)).thenReturn(Optional.empty());
+
+        RuntimeException ex = assertThrows(RuntimeException.class, () -> service.getById(1L));
+        assertTrue(ex.getMessage().contains("CoverLetter not found"));
+    }
+
 }
