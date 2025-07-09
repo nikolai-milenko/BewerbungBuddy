@@ -1,9 +1,13 @@
-function showSpinner() {
-    document.getElementById('loading-spinner').style.display = 'block';
-    // Simulate a time-consuming process like a form submission or API request
-    setTimeout(function() {
-      document.getElementById('loading-spinner').style.display = 'none';
-      alert("Process Complete!");
-    }, 3000); // Replace with actual API call or action
+// Dark Mode Toggle Logic
+const darkModeToggle = document.getElementById('darkModeToggle');
+const body = document.body;
+
+darkModeToggle.addEventListener('click', () => {
+  body.classList.toggle('dark-mode');
+  // Change button text based on current mode
+  if (body.classList.contains('dark-mode')) {
+    darkModeToggle.textContent = "🌞"; // Change text to light mode when dark mode is on
+  } else {
+    darkModeToggle.textContent = "🌙"; // Change text to dark mode when light mode is on
   }
-  
+});

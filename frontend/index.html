@@ -13,35 +13,33 @@
 
 </head>
 <body>
-
   <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+  <nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container">
-      <a href="index.html" class="navbar-brand fw-bold text-decoration-none text-dark">
-        BewerbungsBuddy
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <a class="navbar-brand text-light" href="#">BewerbungsBuddy</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
+      <div class="collapse navbar-collapse" id="navMenu">
         <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="pages/cv-analysis.html">CV Analyse</a></li>
-          <li class="nav-item"><a class="nav-link" href="pages/letter-generation.html">Motivationsschreiben</a></li>
-          <li class="nav-item"><a class="nav-link" href="pages/pricing.html">Preise</a></li>
-          <li class="nav-item"><a class="nav-link" href="pages/team.html">Unser Team</a></li>
+          <li class="nav-item"><a class="nav-link text-light" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link text-light" href="../frontend/pages/cv-analysis.html">CV Analyse</a></li>
+          <li class="nav-item"><a class="nav-link text-light" href="../frontend/pages/letter-generation.html">Motivationsschreiben</a></li>
+          <li class="nav-item"><a class="nav-link text-light" href="../frontend/pages/pricing.html">Preise</a></li>
+          <li class="nav-item"><a class="nav-link text-light" href="../frontend/pages/team.html">Unser Team</a></li>
         </ul>
       </div>
     </div>
   </nav>
 
-  <!-- Hero Section -->
+  <!-- Hero -->
   <header class="hero container">
     <h1>BewerbungsBuddy</h1>
     <p>Dein smarter Begleiter für perfekte Bewerbungsunterlagen – schnell, sicher, individuell.</p>
     <a href="#features" class="btn btn-primary">Jetzt entdecken</a>
   </header>
 
-  <!-- Features Section -->
+  <!-- Features -->
   <section id="features" class="container">
     <h2 class="text-center mb-5">Funktionen</h2>
     <div class="row features text-center">
@@ -63,88 +61,279 @@
     </div>
   </section>
 
-  <!-- How It Works Section -->
+
+  <!-- How It Works -->
   <section id="how-it-works" class="container-fluid py-5" style="background: var(--highlight-gray);">
     <div class="container">
       <h2 class="text-center mb-5">So funktioniert's</h2>
       <div class="row justify-content-center align-items-center text-center">
+
         <!-- Step 1 -->
         <div class="col-md-3 mb-4">
           <div class="step-icon mb-3" style="font-size: 2.5rem;">🔍</div>
           <div class="step-number mb-2 fw-bold">Schritt 1</div>
           <div class="step-desc">Lade deinen Lebenslauf hoch und wähle die gewünschte Leistung.</div>
         </div>
+
         <!-- Arrow -->
         <div class="col-md-1 d-none d-md-block">
           <div style="font-size: 2rem;">➔</div>
         </div>
+
         <!-- Step 2 -->
         <div class="col-md-3 mb-4">
           <div class="step-icon mb-3" style="font-size: 2.5rem;">⚙️</div>
           <div class="step-number mb-2 fw-bold">Schritt 2</div>
           <div class="step-desc">Unsere KI analysiert dein Profil und erstellt individuelle Vorschläge.</div>
         </div>
+
         <!-- Arrow -->
         <div class="col-md-1 d-none d-md-block">
           <div style="font-size: 2rem;">➔</div>
         </div>
+
         <!-- Step 3 -->
         <div class="col-md-3 mb-4">
           <div class="step-icon mb-3" style="font-size: 2.5rem;">✅</div>
           <div class="step-number mb-2 fw-bold">Schritt 3</div>
           <div class="step-desc">Lade deine optimierten Bewerbungsunterlagen herunter und bewirb dich sofort.</div>
         </div>
+
       </div>
     </div>
   </section>
+
+
 
   <!-- Testimonials Carousel -->
   <section id="testimonials" class="container py-5">
     <h2 class="text-center mb-5">Kundenstimmen</h2>
     <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
       <div class="carousel-inner">
+
         <div class="carousel-item active">
           <div class="p-4 rounded text-center">
             <p class="mb-4" style="font-size: 1.4rem; opacity: 0.9;">
-              🤩 „Dank BewerbungsBuddy habe ich endlich einen professionellen Lebenslauf.<br>Der Prozess war super einfach und schnell!”
+              🤩 „Dank BewerbungsBuddy habe ich endlich einen professionellen Lebenslauf.<br>
+              Der Prozess war super einfach und schnell!”
             </p>
             <div class="fw-semibold" style="opacity: 0.7;">– Lisa M., Studentin</div>
           </div>
         </div>
+
         <div class="carousel-item">
           <div class="p-4 rounded text-center">
             <p class="mb-4" style="font-size: 1.4rem; opacity: 0.9;">
-              🚀 „Das Anschreiben wurde perfekt auf die Stelle angepasst.<br>Ich habe direkt eine Einladung zum Gespräch bekommen!”
+              🚀 „Das Anschreiben wurde perfekt auf die Stelle angepasst.<br>
+              Ich habe direkt eine Einladung zum Gespräch bekommen!”
             </p>
             <div class="fw-semibold" style="opacity: 0.7;">– Jonas K., Berufseinsteiger</div>
           </div>
         </div>
+
         <div class="carousel-item">
           <div class="p-4 rounded text-center">
             <p class="mb-4" style="font-size: 1.4rem; opacity: 0.9;">
-              💼 „Ein tolles Tool, um Bewerbungsunterlagen schnell und professionell zu erstellen.<br>Absolute Empfehlung für alle Jobsuchenden!”
+              💼 „Ein tolles Tool, um Bewerbungsunterlagen schnell und professionell zu erstellen.<br>
+              Absolute Empfehlung für alle Jobsuchenden!”
             </p>
             <div class="fw-semibold" style="opacity: 0.7;">– Sarah T., Marketing Managerin</div>
           </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+      <!-- Arrows -->
+      <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true" style="filter: invert(1);"></span>
+        <span class="visually-hidden">Vorherige</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true" style="filter: invert(1);"></span>
+        <span class="visually-hidden">Nächste</span>
+      </button>
+
+    </div>
+  </section>
+
+
+  <!-- Pricing -->
+  <section id="pricing" class="py-5">
+    <div class="container">
+      <h2 class="text-center mb-5">Unsere Pakete</h2>
+      <div class="pricing-row">
+        <!-- Basic -->
+        <div class="pricing-card">
+          <div class="title">Basic</div>
+          <div class="price">0€ <span class="period">/ Monat</span></div>
+          <ul>
+            <li>Einmalige Lebenslaufanalyse</li>
+            <li>Standard-Anschreiben</li>
+            <li>E-Mail-Support</li>
+          </ul>
+          <a href="#" class="btn btn-outline">Kostenlos starten</a>
+        </div>
+        <!-- Pro -->
+        <div class="pricing-card highlight">
+          <div class="title">Pro</div>
+          <div class="price">9,99€ <span class="period">/ Monat</span></div>
+          <ul>
+            <li>Unbegrenzte CV-Analysen</li>
+            <li>Premium-Anschreiben</li>
+            <li>Priorisierter Support</li>
+            <li>Job-Matching-Insights</li>
+          </ul>
+          <a href="#" class="btn btn-primary">Jetzt upgraden</a>
+        </div>
+        <!-- Premium -->
+        <div class="pricing-card">
+          <div class="title">Premium</div>
+          <div class="price">19,99€ <span class="period">/ Monat</span></div>
+          <ul>
+            <li>Alles aus Pro</li>
+            <li>1:1 Coaching</li>
+            <li>Lebenslauf-Designvorlagen</li>
+            <li>Telefon-Support</li>
+          </ul>
+          <a href="#" class="btn btn-primary">Vollversion sichern</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Arrows for Carousel -->
-  <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev" aria-label="Vorherige">
-    <span class="carousel-control-prev-icon" aria-hidden="true" style="filter: invert(1);"></span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next" aria-label="Nächste">
-    <span class="carousel-control-next-icon" aria-hidden="true" style="filter: invert(1);"></span>
-  </button>
+  <!-- Zahlen / Fakten -->
+  <section id="facts" class="container py-5">
+    <h2 class="text-center mb-5">Unsere Erfolge in Zahlen</h2>
 
+    <!-- Крупные цифры -->
+    <div class="row text-center">
+      <div class="col-md-4 mb-4">
+        <div style="font-size: 3rem;">📄</div>
+        <div style="font-size: 2.5rem; font-weight: 700;">10.000+</div>
+        <div style="opacity: 0.85; font-size: 1.1rem;">Bewerbungen erstellt</div>
+      </div>
+
+      <div class="col-md-4 mb-4">
+        <div style="font-size: 3rem;">😊</div>
+        <div style="font-size: 2.5rem; font-weight: 700;">95%</div>
+        <div style="opacity: 0.85; font-size: 1.1rem;">Zufriedene Nutzer</div>
+      </div>
+
+      <div class="col-md-4 mb-4">
+        <div style="font-size: 3rem;">⏱️</div>
+        <div style="font-size: 2.5rem; font-weight: 700;">2 Tage</div>
+        <div style="opacity: 0.85; font-size: 1.1rem;">bis zur Einladung</div>
+      </div>
+    </div>
+
+    <!-- Круговые диаграммы -->
+    <div class="row justify-content-center mt-5 gap-4">
+      <!-- Diagram 1 -->
+      <div class="col-6 col-md-3 text-center" style="position: relative;">
+        <div style="width: 140px; height: 140px; margin: 0 auto; position: relative;">
+          <svg width="140" height="140">
+            <circle cx="70" cy="70" r="60" stroke="var(--border-muted)" stroke-width="10" fill="none" />
+            <circle cx="70" cy="70" r="60" stroke="var(--accent-blue)" stroke-width="10" fill="none"
+                    stroke-dasharray="377" stroke-dashoffset="37" stroke-linecap="round" transform="rotate(-90 70 70)" />
+          </svg>
+          <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 1.6rem; font-weight: 700;">90%</div>
+        </div>
+        <div class="mt-3" style="font-size: 1.1rem;">🎯 Erfolgsquote</div>
+      </div>
+
+      <!-- Diagram 2 -->
+      <div class="col-6 col-md-3 text-center" style="position: relative;">
+        <div style="width: 140px; height: 140px; margin: 0 auto; position: relative;">
+          <svg width="140" height="140">
+            <circle cx="70" cy="70" r="60" stroke="var(--border-muted)" stroke-width="10" fill="none" />
+            <circle cx="70" cy="70" r="60" stroke="var(--accent-blue)" stroke-width="10" fill="none"
+                    stroke-dasharray="377" stroke-dashoffset="113" stroke-linecap="round" transform="rotate(-90 70 70)" />
+          </svg>
+          <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 1.6rem; font-weight: 700;">70%</div>
+        </div>
+        <div class="mt-3" style="font-size: 1.1rem;">📉 Weniger Absagen</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action -->
+  <section id="cta" class="container text-center py-5">
+    <h2 class="mb-4" style="font-size: 2.2rem;">Bereit für deinen nächsten Karriereschritt? 🚀</h2>
+    <p class="mb-4" style="opacity: 0.85; font-size: 1.1rem;">
+      Starte jetzt mit BewerbungsBuddy – einfach, schnell und individuell.
+    </p>
+    <a href="#features" class="btn btn-primary btn-lg">Jetzt kostenlos starten</a>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="container py-5">
+    <h2 class="text-center mb-5">Häufige Fragen 🤔</h2>
+
+    <div class="accordion" id="faqAccordion">
+
+      <!-- Frage 1 -->
+      <div class="accordion-item" style="background: var(--highlight-gray); border: none;">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq1"
+                  style="background: var(--highlight-gray); color: var(--text-light);">
+            Wie funktioniert die Zahlung?
+          </button>
+        </h2>
+        <div id="faq1" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body" style="color: var(--text-light); opacity: 0.85;">
+            Die Zahlung erfolgt sicher über Kreditkarte oder PayPal. Du kannst dein Abo jederzeit kündigen.
+          </div>
+        </div>
+      </div>
+
+      <!-- Frage 2 -->
+      <div class="accordion-item" style="background: var(--highlight-gray); border: none;">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2"
+                  style="background: var(--highlight-gray); color: var(--text-light);">
+            Werden meine Daten gespeichert?
+          </button>
+        </h2>
+        <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body" style="color: var(--text-light); opacity: 0.85;">
+            Nein. Deine Daten bleiben auf deinem Gerät – wir speichern nichts in der Cloud.
+          </div>
+        </div>
+      </div>
+
+      <!-- Frage 3 -->
+      <div class="accordion-item" style="background: var(--highlight-gray); border: none;">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3"
+                  style="background: var(--highlight-gray); color: var(--text-light);">
+            Kann ich mein Abo kündigen?
+          </button>
+        </h2>
+        <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body" style="color: var(--text-light); opacity: 0.85;">
+            Ja, du kannst dein Abo jederzeit im Kundenbereich kündigen.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+   
   <!-- Footer -->
-  <footer class="text-center py-4 mt-5">
-    <p>&copy; 2025 BewerbungsBuddy</p>
+  <footer class="footer" style="background: var(--bg-dark); color: var(--text-light); opacity: 0.6;">
+    <div class="container text-center py-4">
+      <div class="mb-2">© 2025 BewerbungsBuddy. Alle Rechte vorbehalten.</div>
+      <div style="font-size: 0.9rem;">
+        <a href="#" style="color: var(--text-light); text-decoration: underline; opacity: 0.7; margin-right: 1rem;">Impressum</a>
+        <a href="#" style="color: var(--text-light); text-decoration: underline; opacity: 0.7;">Datenschutz</a>
+      </div>
+    </div>
   </footer>
 
-  <!-- Scripts -->
+  <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

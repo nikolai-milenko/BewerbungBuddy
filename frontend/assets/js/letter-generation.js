@@ -1,37 +1,38 @@
-document.addEventListener('DOMContentLoaded', function () {
-    const uploadInput = document.getElementById('letterUpload');
-    const fileNameDisplay = document.getElementById('letterFileNameDisplay');
-    const previewContainer = document.getElementById('letterPreviewContainer');
-  
-    uploadInput.addEventListener('change', function () {
-      const file = uploadInput.files[0];
-  
-      if (!file) return;
-  
-      if (
-        file.type === 'application/pdf' ||
-        file.type === 'image/jpeg' ||
-        file.type === 'image/png'
-      ) {
-        fileNameDisplay.textContent = `📎 Datei ausgewählt: ${file.name}`;
-      } else {
-        fileNameDisplay.textContent = '❌ Nur PDF oder Bilddateien (JPEG, PNG) werden unterstützt.';
-        previewContainer.innerHTML = '';
-        return;
-      }
-  
-      const reader = new FileReader();
-      reader.onload = function (e) {
-        const fileURL = e.target.result;
-  
-        if (file.type === 'application/pdf') {
-          previewContainer.innerHTML = `<iframe src="${fileURL}" width="100%" height="600px" style="border:none;"></iframe>`;
-        } else if (file.type.startsWith('image/')) {
-          previewContainer.innerHTML = `<img src="${fileURL}" class="img-fluid rounded border" alt="Vorschau">`;
-        }
-      };
-  
-      reader.readAsDataURL(file);
-    });
+
+  // File Upload Logic - Display the file name after selection
+  document.getElementById('letterUpload').addEventListener('change', function(event) {
+    const fileName = event.target.files[0]?.name || 'Kein Datei ausgewählt';
+    document.getElementById('letterFileNameDisplay').textContent = `Ausgewählte Datei: ${fileName}`;
   });
-  
+
+  // Generate Cover Letter Function
+  function generateCoverLetter() {
+    const jobDescription = document.getElementById('letterJobDesc').value;
+    const previewContainer = document.getElementById('letterPreviewContainer');
+    
+    if (jobDescription.trim() === "") {
+      previewContainer.innerHTML = "<p class='text-danger'>Bitte geben Sie eine Stellenbeschreibung ein.</p>";
+    } else {
+      previewContainer.innerHTML = `
+        <h4>Vorschau des Motivationsschreibens:</h4>
+        <p>Sehr geehrte Damen und Herren,</p>
+        <p>Mit großem Interesse habe ich Ihre Stellenanzeige für die Position gelesen. Die beschriebenen Anforderungen und Aufgaben entsprechen exakt meinen Fähigkeiten und Erfahrungen...</p>
+        <p><strong>Stellenbeschreibung:</strong> ${jobDescription}</p>
+        <p>Ich freue mich auf die Möglichkeit, mich persönlich bei Ihnen vorzustellen.</p>
+        <p>Mit freundlichen Grüßen, <br> Ihr Bewerber</p>
+      `;
+    }
+  }
+
+  // Dark Mode Toggle Logic
+  const darkModeToggle = document.getElementById('darkModeToggle');
+  const body = document.getElementById('body');
+
+  darkModeToggle.addEventListener('click', () => {
+    body.classList.toggle('dark-mode');
+    if (body.classList.contains('dark-mode')) {
+      darkModeToggle.textContent = "🌙"; // Toggle text to "light mode" when dark mode is on
+    } else {
+      darkModeToggle.textContent = "🌞"; // Toggle text to "dark mode" when dark mode is off
+    }
+  });
