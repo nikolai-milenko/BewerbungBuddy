@@ -20,7 +20,7 @@ public class ChatGptService {
     @Value("${openai.api-key}")
     private String apiKey;
 
-    private final RestTemplate restTemplate = new RestTemplate();
+    private final RestTemplate restTemplate;
     private final ObjectMapper objectMapper = new ObjectMapper();
     private final GptRequestLogRepository logRepository;
 
