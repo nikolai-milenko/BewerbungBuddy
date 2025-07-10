@@ -2,6 +2,7 @@ package com.bewerbungsbuddy.backend.service;
 
 import com.bewerbungsbuddy.backend.dto.UserRequestDto;
 import com.bewerbungsbuddy.backend.dto.UserResponseDto;
+import com.bewerbungsbuddy.backend.entity.SubscriptionType;
 import com.bewerbungsbuddy.backend.entity.User;
 import com.bewerbungsbuddy.backend.mapper.UserMapper;
 import com.bewerbungsbuddy.backend.repository.UserRepository;
@@ -17,6 +18,10 @@ public class UserService {
     private final UserMapper userMapper;
     private final PasswordEncoder passwordEncoder;
 
+    public User getById(long id) {
+        return userRepository.getOne(id);
+    }
+
     public UserResponseDto register(UserRequestDto dto) {
         if (userRepository.existsByEmail(dto.email())) {
             throw new RuntimeException("Email is already in use");
@@ -24,6 +29,9 @@ public class UserService {
 
         User user = userMapper.toEntity(dto);
         user.setPassword(passwordEncoder.encode(dto.password()));
+        user.setSubscriptionPlan(SubscriptionType.valueOf(dto.subscriptionPlan())); // String → Enum
+        user.setCreatedAt(java.time.LocalDateTime.now());
+        user.setUpdatedAt(java.time.LocalDateTime.now());
 
         User saved = userRepository.save(user);
         return userMapper.toResponseDto(saved);
