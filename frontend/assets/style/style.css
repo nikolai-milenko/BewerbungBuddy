@@ -138,3 +138,166 @@
     }
   }
 }
+footer .overlay {
+  padding: 4em 3em;
+  background: rgba(10, 10, 10, 0.9);
+  color: white;
+}
+
+footer .top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;     /* center horizontally */
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+footer .top .logo h3 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--main);
+  text-align: center;
+}
+
+.footer-links {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  justify-content: center;  /* center link blocks */
+}
+
+.footer-links .links {
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  gap: 0.5rem;
+  min-width: 160px;
+}
+
+.footer-links .links h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  align-items: center; 
+  text-align: left;
+}
+
+.footer-links .links a {
+  color: #ccc;
+  font-size: 1rem;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.footer-links .links a:hover {
+  color: #fff;
+}
+
+/* Responsive stack */
+@media (max-width: 768px) {
+  .footer-links {
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+  }
+
+  .footer-links .links {
+    align-items: center;
+    text-align: center;
+  }
+}
+
+    /* Clients section */
+    .clients {
+      background: #060606;
+      width: 100%;
+      margin: 30px 0;
+      color: #ffffff;
+    }
+    
+    .clients .container {
+      max-width: 1050px;
+      margin: 10px auto;
+      padding: 70px 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .clients .head {
+      margin-bottom: 40px;
+      text-align: center;
+    }
+    
+    .clients .head h3 {
+      color: #fcf7f7;
+      font-size: 34px;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+    
+    .clients .head .divider {
+      width: 90px;
+      height: 2px;
+      background: #f2f3f6;
+      margin: 0 auto;
+    }
+    
+    .clients .row {
+      display: flex;
+      flex-wrap: wrap;
+      width: 100%;
+      margin-top: 40px;
+      align-items: center;
+      justify-content: start;
+      gap: 24px;
+    }
+    
+    .clients .box {
+      overflow: hidden;
+      width: 100%;
+      max-width: 320px;
+      padding: 40px 30px;
+      border: 1px solid #ccc;
+      border-radius: 2px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: background 0.5s ease, box-shadow 0.5s ease;
+      background: #121212;
+      text-align: center;
+    }
+    
+    .clients .box img {
+      width: 70px;
+      height: 70px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-bottom: 35px;
+    }
+    
+    .clients .box p {
+      color: #ffffff;
+      line-height: 150%;
+      font-size: 16px;
+      text-align: center;
+      margin-bottom: 24px;
+    }
+    
+    .clients .box h3 {
+      color: #faf7f7;
+      font-weight: 600;
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+    
+    .clients .box:hover {
+      background-color: var(--main);
+      box-shadow: 0 4px 6px rgba(2, 87, 234, 0.908);
+    }
+    
+    .clients .box:hover p,
+    .clients .box:hover h3 {
+      color: #0a84ff;
+    }
+    
