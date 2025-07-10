@@ -44,23 +44,25 @@ public class ChatGptService {
 
         HttpEntity<Map<String, Object>> request = new HttpEntity<>(requestBody, headers);
 
-        ResponseEntity<ChatCompletionResponseDto> response =
-                restTemplate.exchange(url, HttpMethod.POST, request, ChatCompletionResponseDto.class);
-
-        String responseContent = extractContent(response);
-        String cleanContent = cleanJson(responseContent);
-
-        logRepository.save(GptRequestLog.builder()
-                .type(RequestType.CV_ANALYSIS)
-                .requestPayload(safeJson(requestBody))
-                .responsePayload(safeJson(response.getBody()))
-                .build()
-        );
-
         try {
+            ResponseEntity<ChatCompletionResponseDto> response =
+                    restTemplate.exchange(url, HttpMethod.POST, request, ChatCompletionResponseDto.class);
+            if (!response.getStatusCode().is2xxSuccessful()) {
+                throw new RuntimeException("Fehler vom GPT-API: " + response.getStatusCode());
+            }
+
+            String responseContent = extractContent(response);
+            String cleanContent = cleanJson(responseContent);
+
+            logRepository.save(GptRequestLog.builder()
+                    .type(RequestType.CV_ANALYSIS)
+                    .requestPayload(safeJson(requestBody))
+                    .responsePayload(safeJson(response.getBody()))
+                    .build()
+            );
             return objectMapper.readValue(cleanContent, Map.class);
+
         } catch (Exception e) {
-            System.out.println(responseContent);
             throw new RuntimeException("Fehler beim Parsen der GPT-Antwort: " + e.getMessage());
         }
     }
