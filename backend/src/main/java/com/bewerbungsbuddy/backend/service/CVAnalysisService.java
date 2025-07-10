@@ -36,7 +36,8 @@ public class CVAnalysisService {
 
         Map<String, Object> gptResult = chatGptService.analyzeCv(
                 cvDocument.getParsedText(),
-                jobAdvertisement.getRawText()
+                jobAdvertisement.getRawText(),
+                "gpt-4.1mini"
         );
 
         CVAnalysis analysis = CVAnalysis.builder()

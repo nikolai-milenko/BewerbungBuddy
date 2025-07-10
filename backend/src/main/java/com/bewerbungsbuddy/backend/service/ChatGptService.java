@@ -24,7 +24,7 @@ public class ChatGptService {
     private final ObjectMapper objectMapper = new ObjectMapper();
     private final GptRequestLogRepository logRepository;
 
-    public Map<String, Object> analyzeCv(String cvText, String jobDescription) {
+    public Map<String, Object> analyzeCv(String cvText, String jobDescription, String model) {
         String url = "https://api.openai.com/v1/chat/completions";
         String prompt = buildPrompt(cvText, jobDescription);
 
@@ -33,7 +33,7 @@ public class ChatGptService {
         headers.setContentType(MediaType.APPLICATION_JSON);
 
         Map<String, Object> requestBody = Map.of(
-                "model", "gpt-4.1mini",
+                "model", model,
                 "temperature", 0.3,
                 "messages", List.of(
                         Map.of("role", "system", "content", "Du bist ein erfahrener HR-Analyst."),
