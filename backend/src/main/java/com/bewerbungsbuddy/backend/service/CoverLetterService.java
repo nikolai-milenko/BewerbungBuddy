@@ -3,8 +3,11 @@ package com.bewerbungsbuddy.backend.service;
 import com.bewerbungsbuddy.backend.dto.CoverLetterResponseDto;
 import com.bewerbungsbuddy.backend.dto.CoverLetterRequestDto;
 import com.bewerbungsbuddy.backend.entity.CoverLetter;
+import com.bewerbungsbuddy.backend.repository.CVDocumentRepository;
 import com.bewerbungsbuddy.backend.repository.CoverLetterRepository;
 import com.bewerbungsbuddy.backend.mapper.CoverLetterMapper;
+import com.bewerbungsbuddy.backend.repository.JobAdvertisementRepository;
+import com.bewerbungsbuddy.backend.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +19,11 @@ public class CoverLetterService {
 
     private final CoverLetterRepository coverLetterRepository;
     private final CoverLetterMapper coverLetterMapper;
+    private final ChatGptService chatGptService;
+
+    private final UserRepository userRepository;
+    private final CVDocumentRepository cvDocumentRepository;
+    private final JobAdvertisementRepository jobAdvertisementRepository;
 
     public List<CoverLetterResponseDto> getAll() {
         return coverLetterRepository.findAll().stream()
@@ -29,8 +37,18 @@ public class CoverLetterService {
         return coverLetterMapper.toResponseDto(coverLetter);
     }
 
-    //TODO
     public CoverLetterResponseDto generate(CoverLetterRequestDto dto) {
-        return new CoverLetterResponseDto("","");
+        String generatedText = chatGptService.generateCoverLetter(dto.cvText(), dto.jobDescription());
+
+        CoverLetter coverLetter = coverLetterMapper.toEntity(
+                dto,
+                userRepository,
+                cvDocumentRepository,
+                jobAdvertisementRepository
+        );
+        coverLetter.setGeneratedText(generatedText);
+        coverLetter.setEditedText(generatedText);
+
+        return coverLetterMapper.toResponseDto(coverLetterRepository.save(coverLetter));
     }
 }
