@@ -2,7 +2,9 @@ package com.bewerbungsbuddy.backend.controller;
 
 import com.bewerbungsbuddy.backend.dto.JobAdvertisementRequestDto;
 import com.bewerbungsbuddy.backend.dto.JobAdvertisementResponseDto;
+import com.bewerbungsbuddy.backend.entity.User;
 import com.bewerbungsbuddy.backend.service.JobAdvertisementService;
+import com.bewerbungsbuddy.backend.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,15 +17,19 @@ import java.util.List;
 public class JobAdvertisementController {
 
     private final JobAdvertisementService jobAdvertisementService;
+    private final UserService userService;
 
     @PostMapping
     public ResponseEntity<JobAdvertisementResponseDto> create(@RequestBody JobAdvertisementRequestDto dto) {
-        JobAdvertisementResponseDto saved = jobAdvertisementService.save(dto);
+        // hardcode for now
+        User currentUser = userService.getById(1L);
+        JobAdvertisementResponseDto saved = jobAdvertisementService.save(dto, currentUser);
         return ResponseEntity.ok(saved);
     }
 
     @GetMapping
     public ResponseEntity<List<JobAdvertisementResponseDto>> findAll() {
+        // hardcode for now
         return ResponseEntity.ok(jobAdvertisementService.findAll());
     }
 
@@ -40,3 +46,4 @@ public class JobAdvertisementController {
         return ResponseEntity.noContent().build();
     }
 }
+
