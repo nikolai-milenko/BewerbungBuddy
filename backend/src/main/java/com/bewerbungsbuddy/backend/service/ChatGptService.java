@@ -22,12 +22,29 @@ public class ChatGptService {
     private String apiKey;
 
     private final RestTemplate restTemplate;
-    private final ObjectMapper objectMapper = new ObjectMapper();
+    private final ObjectMapper objectMapper;
     private final GptRequestLogRepository logRepository;
 
     public Map<String, Object> analyzeCv(String cvText, String jobDescription, String model) {
+        String prompt = buildAnalysisPrompt(cvText, jobDescription);
+        return callGpt(prompt, model, RequestType.CV_ANALYSIS, true);
+    }
+
+    public Map<String, Object> analyzeCv(String cvText, String jobDescription) {
+        return analyzeCv(cvText, jobDescription, "gpt-4.1mini");
+    }
+
+    public String generateCoverLetter(String cvText, String jobDescription, String model) {
+        String prompt = buildCoverLetterPrompt(cvText, jobDescription);
+        return (String) callGpt(prompt, model, RequestType.COVER_LETTER, false).get("generatedText");
+    }
+
+    public String generateCoverLetter(String cvText, String jobDescription) {
+        return generateCoverLetter(cvText, jobDescription, "gpt-4.1mini");
+    }
+
+    private Map<String, Object> callGpt(String prompt, String model, RequestType type, boolean expectJson) {
         String url = "https://api.openai.com/v1/chat/completions";
-        String prompt = buildPrompt(cvText, jobDescription);
 
         HttpHeaders headers = new HttpHeaders();
         headers.setBearerAuth(apiKey);
@@ -45,29 +62,39 @@ public class ChatGptService {
         HttpEntity<Map<String, Object>> request = new HttpEntity<>(requestBody, headers);
 
         try {
-            ResponseEntity<ChatCompletionResponseDto> response =
-                    restTemplate.exchange(url, HttpMethod.POST, request, ChatCompletionResponseDto.class);
+            ResponseEntity<ChatCompletionResponseDto> response = restTemplate.exchange(
+                    url,
+                    HttpMethod.POST,
+                    request,
+                    ChatCompletionResponseDto.class
+            );
+
             if (!response.getStatusCode().is2xxSuccessful()) {
-                throw new RuntimeException("Fehler vom GPT-API: " + response.getStatusCode());
+                throw new RuntimeException("GPT API returned error: " + response.getStatusCode());
             }
 
-            String responseContent = extractContent(response);
-            String cleanContent = cleanJson(responseContent);
+            String content = extractContent(response);
+            String cleanedContent = expectJson ? cleanJson(content) : content;
 
             logRepository.save(GptRequestLog.builder()
-                    .type(RequestType.CV_ANALYSIS)
+                    .type(type)
                     .requestPayload(safeJson(requestBody))
                     .responsePayload(safeJson(response.getBody()))
                     .build()
             );
-            return objectMapper.readValue(cleanContent, Map.class);
+
+            if (expectJson) {
+                return objectMapper.readValue(cleanedContent, Map.class);
+            } else {
+                return Map.of("generatedText", cleanedContent);
+            }
 
         } catch (Exception e) {
-            throw new RuntimeException("Fehler beim Parsen der GPT-Antwort: " + e.getMessage());
+            throw new RuntimeException("Fehler bei der Anfrage an GPT-API: " + e.getMessage(), e);
         }
     }
 
-    private String buildPrompt(String cvText, String jobDescription) {
+    private String buildAnalysisPrompt(String cvText, String jobDescription) {
         return "Vergleiche den folgenden Lebenslauf (CV) mit der untenstehenden Stellenanzeige. " +
                 "Gib die Antwort ausschließlich im JSON-Format mit diesen Feldern zurück:\n" +
                 "- matchScore: Prozentzahl (z.B. \"75 %\"), wie gut der CV zur Stellenanzeige passt.\n" +
@@ -75,6 +102,16 @@ public class ChatGptService {
                 "- weaknesses: Liste der Schwächen oder fehlenden Qualifikationen.\n" +
                 "- recommendations: Liste der Empfehlungen.\n\n" +
                 "Antworte ausschließlich als JSON, ohne zusätzliche Kommentare oder Erklärungen.\n\n" +
+                "Lebenslauf:\n" +
+                cvText + "\n\n" +
+                "Stellenanzeige:\n" +
+                jobDescription;
+    }
+
+    private String buildCoverLetterPrompt(String cvText, String jobDescription) {
+        return "Verfasse ein professionelles Motivationsschreiben basierend auf dem folgenden Lebenslauf (CV) " +
+                "und der Stellenanzeige. Verwende eine freundliche, aber professionelle Sprache auf Deutsch.\n\n" +
+                "Antworte ausschließlich mit dem vollständigen Motivationsschreiben als Fließtext, ohne JSON, ohne Kommentare.\n\n" +
                 "Lebenslauf:\n" +
                 cvText + "\n\n" +
                 "Stellenanzeige:\n" +
@@ -96,14 +133,15 @@ public class ChatGptService {
     }
 
     private String cleanJson(String rawResponse) {
-        if (rawResponse.startsWith("```")) {
-            return rawResponse.replaceAll("(?s)```.*?\\n", "")
-                    .replaceAll("\\n```$", "")
-                    .trim();
-        }
-        return rawResponse.trim();
-    }
+        String cleaned = rawResponse.strip();
 
+        if (cleaned.startsWith("```")) {
+            cleaned = cleaned.replaceAll("^```(json)?\\s*", "");
+            cleaned = cleaned.replaceAll("\\s*```$", "");
+        }
+
+        return cleaned.strip();
+    }
 
     private String safeJson(Object obj) {
         try {
