@@ -10,27 +10,33 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/style/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
 
 </head>
 <body>
   <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-dark">
-    <div class="container">
-      <a class="navbar-brand text-light" href="#">BewerbungsBuddy</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navMenu">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link text-light" href="index.html">Home</a></li>
-          <li class="nav-item"><a class="nav-link text-light" href="pages/cv-analysis.html">CV Analyse</a></li>
-          <li class="nav-item"><a class="nav-link text-light" href="pages/letter-generation.html">Motivationsschreiben</a></li>
-          <li class="nav-item"><a class="nav-link text-light" href="pages/pricing.html">Preise</a></li>
-          <li class="nav-item"><a class="nav-link text-light" href="pages/team.html">Unsere Team</a></li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+<nav class="nav">
+  <!-- Logo -->
+  <a href="index.html" class="logo">
+    <img src="/assets/images/logo.png" alt="Logo" />
+  </a>
+
+  <!-- Search -->
+  <div class="input-field">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <input type="text" placeholder="Type Something" class="search-input" />
+  </div>
+
+  <!-- Navigation Links -->
+  <div class="links">
+    <a href="index.html" class="link">Home</a>
+    <a href="pages/cv-analysis.html" class="link">CV Analyse</a>
+    <a href="pages/letter-generation.html" class="link">Motivationsschreiben</a>
+    <a href="pages/pricing.html" class="link">Preise</a>
+    <a href="pages/team.html" class="link">Unser Team</a>
+  </div>
+</nav>
 
   <!-- Hero -->
   <header class="hero container">
