@@ -1,5 +1,6 @@
 package com.bewerbungsbuddy.backend.service;
 
+import com.bewerbungsbuddy.backend.dto.ChatCompletionResponseDto;
 import com.bewerbungsbuddy.backend.entity.GptRequestLog;
 import com.bewerbungsbuddy.backend.entity.RequestType;
 import com.bewerbungsbuddy.backend.repository.GptRequestLogRepository;
@@ -43,7 +44,9 @@ public class ChatGptService {
 
         HttpEntity<Map<String, Object>> request = new HttpEntity<>(requestBody, headers);
 
-        ResponseEntity<Map> response = restTemplate.postForEntity(url, request, Map.class);
+        ResponseEntity<ChatCompletionResponseDto> response =
+                restTemplate.exchange(url, HttpMethod.POST, request, ChatCompletionResponseDto.class);
+
         String responseContent = extractContent(response);
         String cleanContent = cleanJson(responseContent);
 
@@ -76,14 +79,18 @@ public class ChatGptService {
                 jobDescription;
     }
 
-    @SuppressWarnings("unchecked")
-    private String extractContent(ResponseEntity<Map> response) {
-        List<Map<String, Object>> choices = (List<Map<String, Object>>) response.getBody().get("choices");
-        if (choices == null || choices.isEmpty()) {
+    private String extractContent(ResponseEntity<ChatCompletionResponseDto> response) {
+        var body = response.getBody();
+        if (body == null || body.choices() == null || body.choices().isEmpty()) {
             throw new RuntimeException("GPT hat keine Antwort geliefert.");
         }
-        Map<String, Object> message = (Map<String, Object>) choices.getFirst().get("message");
-        return (String) message.get("content");
+
+        var message = body.choices().getFirst().message();
+        if (message == null || message.content() == null) {
+            throw new RuntimeException("Antwort ohne Inhalt erhalten.");
+        }
+
+        return message.content();
     }
 
     private String cleanJson(String rawResponse) {
