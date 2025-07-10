@@ -44,6 +44,14 @@ public class CVDocument {
     @OneToMany(mappedBy = "cvDocument", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<CVAnalysis> analyses;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
+
+    @ToString.Exclude
+    @OneToMany(mappedBy = "cvDocument", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<CoverLetter> coverLetters;
+
     @PrePersist
     public void prePersist() {
         this.uploadedAt = LocalDateTime.now();

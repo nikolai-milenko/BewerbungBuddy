@@ -2,6 +2,7 @@ package com.bewerbungsbuddy.backend.service;
 
 import com.bewerbungsbuddy.backend.dto.CVDocumentResponseDto;
 import com.bewerbungsbuddy.backend.entity.CVDocument;
+import com.bewerbungsbuddy.backend.entity.User;
 import com.bewerbungsbuddy.backend.mapper.CVDocumentMapper;
 import com.bewerbungsbuddy.backend.repository.CVDocumentRepository;
 import jakarta.persistence.EntityNotFoundException;
@@ -30,17 +31,19 @@ public class CVDocumentService {
                 .orElseThrow(() -> new EntityNotFoundException("CVDocument not found with id " + id));
     }
 
-    public CVDocumentResponseDto saveFromFile(MultipartFile file) {
+    public CVDocumentResponseDto saveFromFile(MultipartFile file, User user) {
         String filename = file.getOriginalFilename();
         String parsedText = parseFile(file);
 
         CVDocument entity = CVDocument.builder()
                 .filename(filename)
                 .parsedText(parsedText)
+                .user(user)
                 .build();
 
         return mapper.toResponseDto(repository.save(entity));
     }
+
 
     private String parseFile(MultipartFile file) {
         // TODO: add PDF parsing

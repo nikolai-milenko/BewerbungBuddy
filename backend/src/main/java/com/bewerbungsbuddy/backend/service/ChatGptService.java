@@ -31,7 +31,7 @@ public class ChatGptService {
     }
 
     public Map<String, Object> analyzeCv(String cvText, String jobDescription) {
-        return analyzeCv(cvText, jobDescription, "gpt-4.1mini");
+        return analyzeCv(cvText, jobDescription, "gpt-4.1-mini");
     }
 
     public String generateCoverLetter(String cvText, String jobDescription, String model) {
@@ -40,7 +40,7 @@ public class ChatGptService {
     }
 
     public String generateCoverLetter(String cvText, String jobDescription) {
-        return generateCoverLetter(cvText, jobDescription, "gpt-4.1mini");
+        return generateCoverLetter(cvText, jobDescription, "gpt-4.1-mini");
     }
 
     private Map<String, Object> callGpt(String prompt, String model, RequestType type, boolean expectJson) {
