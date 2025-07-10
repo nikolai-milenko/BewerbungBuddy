@@ -18,7 +18,6 @@ public class JobAdvertisement {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Lob
     @Column(
             name = "raw_text",
             nullable = false,
