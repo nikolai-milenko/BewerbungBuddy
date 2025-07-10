@@ -9,7 +9,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Map;
@@ -39,6 +41,7 @@ public class ChatGptService {
         return (String) callGpt(prompt, model, RequestType.COVER_LETTER, false).get("generatedText");
     }
 
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
     public String generateCoverLetter(String cvText, String jobDescription) {
         return generateCoverLetter(cvText, jobDescription, "gpt-4.1-mini");
     }
