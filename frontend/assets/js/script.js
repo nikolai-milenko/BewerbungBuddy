@@ -11,3 +11,29 @@ darkModeToggle.addEventListener('click', () => {
     darkModeToggle.textContent = "🌙"; // Change text to dark mode when light mode is on
   }
 });
+document.getElementById('letterUpload').addEventListener('change', function(event) {
+  const file = event.target.files[0];
+  const fileNameDisplay = document.getElementById('letterFileNameDisplay');
+  const imagePreview = document.getElementById('letterImagePreview');
+
+  if (file) {
+    fileNameDisplay.textContent = `Ausgewählte Datei: ${file.name}`;
+
+    if (file.type.startsWith('image/')) {
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        imagePreview.src = e.target.result;
+        imagePreview.classList.remove('d-none');
+      };
+      reader.readAsDataURL(file);
+    } else {
+      // Hide image preview if the file is not an image
+      imagePreview.classList.add('d-none');
+      imagePreview.src = '';
+    }
+  } else {
+    fileNameDisplay.textContent = 'Kein Datei ausgewählt';
+    imagePreview.classList.add('d-none');
+    imagePreview.src = '';
+  }
+});

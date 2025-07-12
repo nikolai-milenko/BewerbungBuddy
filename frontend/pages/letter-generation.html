@@ -43,8 +43,10 @@
     <div class="row">
       <div class="col-md-6">
         <label for="letterUpload" class="form-label">Lebenslauf hochladen (PDF oder Bild)</label>
-        <input type="file" class="form-control" id="letterUpload" accept="application/pdf,image/jpeg,image/png">
-        <p id="letterFileNameDisplay" class="mt-2 text-muted"></p>
+        <input type="file" class="form-control" id="cvUpload" accept="application/pdf,image/jpeg,image/png">
+        <p id="fileNameDisplay" class="mt-2 text-muted"></p>
+
+       
 
         <label for="letterJobDesc" class="form-label mt-4">Stellenbeschreibung</label>
         <textarea class="form-control" id="letterJobDesc" rows="6" placeholder="Fügen Sie hier die Stellenanzeige ein..."></textarea>
@@ -53,8 +55,10 @@
       </div>
 
       <div class="col-md-6">
-        <div id="letterPreviewContainer" class="border rounded p-3 bg-white shadow-sm mt-4 mt-md-0">
+        <div id="previewContainer" class="border rounded p-3 bg-white shadow-sm mt-4 mt-md-0">
           <p class="text-muted">📄 Vorschau wird hier angezeigt...</p>
+        </div>
+        
         </div>
       </div>
     </div>
@@ -71,6 +75,9 @@
   </footer>
 
   <!-- Scripts -->
+  <script src="../assets/js/letter-generation.js"></script>
   <script src="../assets/js/script.js"></script>
+ 
+  <script src="../assets/js/test.js"></script>
 </body>
 </html>

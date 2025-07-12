@@ -1,38 +1,42 @@
+document.addEventListener('DOMContentLoaded', function () {
+  const cvUpload = document.getElementById('cvUpload');
+  const fileNameDisplay = document.getElementById('fileNameDisplay');
+  const previewContainer = document.getElementById('previewContainer');
 
-  // File Upload Logic - Display the file name after selection
-  document.getElementById('letterUpload').addEventListener('change', function(event) {
-    const fileName = event.target.files[0]?.name || 'Kein Datei ausgewählt';
-    document.getElementById('letterFileNameDisplay').textContent = `Ausgewählte Datei: ${fileName}`;
-  });
+  cvUpload.addEventListener('change', function () {
+    const file = cvUpload.files[0];
 
-  // Generate Cover Letter Function
-  function generateCoverLetter() {
-    const jobDescription = document.getElementById('letterJobDesc').value;
-    const previewContainer = document.getElementById('letterPreviewContainer');
-    
-    if (jobDescription.trim() === "") {
-      previewContainer.innerHTML = "<p class='text-danger'>Bitte geben Sie eine Stellenbeschreibung ein.</p>";
+    if (!file) return;
+
+    // Validate file type
+    if (
+      file.type === 'application/pdf' ||
+      file.type === 'image/jpeg' ||
+      file.type === 'image/png'
+    ) {
+      fileNameDisplay.textContent = `📎 Datei ausgewählt: ${file.name}`;
     } else {
-      previewContainer.innerHTML = `
-        <h4>Vorschau des Motivationsschreibens:</h4>
-        <p>Sehr geehrte Damen und Herren,</p>
-        <p>Mit großem Interesse habe ich Ihre Stellenanzeige für die Position gelesen. Die beschriebenen Anforderungen und Aufgaben entsprechen exakt meinen Fähigkeiten und Erfahrungen...</p>
-        <p><strong>Stellenbeschreibung:</strong> ${jobDescription}</p>
-        <p>Ich freue mich auf die Möglichkeit, mich persönlich bei Ihnen vorzustellen.</p>
-        <p>Mit freundlichen Grüßen, <br> Ihr Bewerber</p>
-      `;
+      fileNameDisplay.textContent = '❌ Nur PDF oder Bilddateien (JPEG, PNG) werden unterstützt.';
+      previewContainer.innerHTML = '';
+      return;
     }
-  }
 
-  // Dark Mode Toggle Logic
-  const darkModeToggle = document.getElementById('darkModeToggle');
-  const body = document.getElementById('body');
+    // Generate preview
+    const reader = new FileReader();
+    reader.onload = function (e) {
+      const fileURL = e.target.result;
 
-  darkModeToggle.addEventListener('click', () => {
-    body.classList.toggle('dark-mode');
-    if (body.classList.contains('dark-mode')) {
-      darkModeToggle.textContent = "🌙"; // Toggle text to "light mode" when dark mode is on
-    } else {
-      darkModeToggle.textContent = "🌞"; // Toggle text to "dark mode" when dark mode is off
-    }
+      if (file.type === 'application/pdf') {
+        previewContainer.innerHTML = `
+          <iframe src="${fileURL}" width="100%" height="600px" style="border:none;" class="rounded"></iframe>
+        `;
+      } else if (file.type.startsWith('image/')) {
+        previewContainer.innerHTML = `
+          <img src="${fileURL}" class="img-fluid rounded border shadow-sm" alt="Vorschau">
+        `;
+      }
+    };
+
+    reader.readAsDataURL(file);
   });
+});
