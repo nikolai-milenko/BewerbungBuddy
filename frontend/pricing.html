@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Preise – BewerbungsBuddy</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./css/pricing.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="./css/landing.css" />
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="nav">
+    <div class="container d-flex align-items-center justify-content-between flex-wrap gap-3">
+      <a href="index.html" class="logo d-flex align-items-center text-decoration-none">
+        <h4 class="logo-text">
+          <span class="logo-gray">bewerbung</span><span class="logo-highlight">buddy</span>
+        </h4>
+      </a>
+
+      <button class="burger" id="burgerBtn" aria-label="Menü öffnen">
+        <span></span><span></span><span></span>
+      </button>
+
+      <div class="links" id="navLinks">
+        <div class="dropdown-custom">
+          <a href="#" class="link" id="toolsLink"><span>Tools ✨</span></a>
+          <div class="dropdown-menu-custom" id="toolsMenu">
+            <a href="cvAnalyse.html" class="dropdown-item-custom">CV analysieren</a>
+            <a href="letter-generation.html" class="dropdown-item-custom">Motivationsschreiben generieren</a>
+          </div>
+        </div>
+        <a href="pricing.html" class="link">Preise</a>
+        <a href="our-team.html" class="link">Unser Team</a>
+      </div>
+    </div>
+  </nav>
+
+
+  <header class="hero">
+    <div class="container">
+      <h1>Ein Plan. Ein Schritt näher zum Job.</h1>
+    </div>
+  </header>
+
+  <section id="pricing" class="container text-center py-5">
+    <h1 class="fw-bold mb-5" style="opacity: 0.75;">Alle Abos im Überblick</h1>
+    <div class="pricing-row fade-in">
+      <!-- Basic -->
+      <div class="pricing-card">
+        <div class="title">Basic</div>
+        <div class="price">0€ <span class="period">/ Monat</span></div>
+        <ul>
+          <li>Einmalige Lebenslaufanalyse</li>
+          <li>
+            Standard-Anschreiben
+            <small>Basierend auf Stellenanzeige</small>
+          </li>
+          <li>
+            E-Mail-Support
+            <small>Antwort innerhalb 48h</small>
+          </li>
+        </ul>
+        <a href="signup.html" class="btn btn-outline">Kostenlos starten</a>
+      </div>
+
+      <!-- Pro -->
+      <div class="pricing-card highlight">
+        <div class="title">Pro</div>
+        <div class="price">9,99€ <span class="period">/ Monat</span></div>
+        <ul>
+          <li>Unbegrenzte CV-Analysen</li>
+          <li>
+            Premium-Anschreiben
+            <small>KI-Optimierung</small>
+            <small>Individuelle Einleitung</small>
+          </li>
+          <li>
+            Job-Matching-Insights
+            <small>GPT-gestützte Bewertung</small>
+            <small>Visualisierung der Passgenauigkeit</small>
+          </li>
+          <li>
+            Priorisierter Support
+            <small>Antwort innerhalb 24h</small>
+          </li>
+        </ul>
+        <a href="checkout.html?plan=pro" class="btn btn-primary">Jetzt upgraden</a>
+      </div>
+
+      <!-- Premium -->
+      <div class="pricing-card">
+        <div class="title">Premium</div>
+        <div class="price">19,99€ <span class="period">/ Monat</span></div>
+        <ul>
+          <li>Alles aus Pro</li>
+          <li>
+            1:1 Coaching
+            <small>Persönliche Beratung</small>
+            <small>Vorbereitungsgespräch</small>
+          </li>
+          <li>
+            Lebenslauf-Designvorlagen
+            <small>Über 50 professionelle Templates</small>
+          </li>
+          <li>
+            Telefon-Support
+            <small>Mo–Fr, 10–18 Uhr</small>
+          </li>
+        </ul>
+        <a href="checkout.html?plan=premium" class="btn btn-primary">Vollversion sichern</a>
+      </div>
+    </div>
+
+    <h2 class="fw-semibold display-6 mt-5 mb-4 fade-in" style="opacity: 0.7;">
+      Für alle, die es ganz genau wissen wollen.
+    </h2>
+
+    <div class="pricing-table-wrapper table-responsive">
+    <!-- Desktop Table -->
+    <table class="pricing-table">
+      <thead>
+        <tr>
+          <th>Funktionen</th>
+          <th>Kostenlos</th>
+          <th>Pro</th>
+          <th>Premium</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Lebenslauf-Upload <small>Formate: PDF, DOCX</small></td>
+          <td class="text-success">✅</td>
+          <td class="text-success">✅</td>
+          <td class="text-success">✅</td>
+        </tr>
+        <tr>
+          <td>CV-Analysen</td>
+          <td>2 / Monat</td>
+          <td>Unbegrenzt</td>
+          <td>Unbegrenzt</td>
+        </tr>
+        <tr>
+          <td>Motivationsschreiben <small>Generierung</small></td>
+          <td>–</td>
+          <td class="text-success">✅</td>
+          <td class="text-success">✅</td>
+        </tr>
+        <tr>
+          <td>Vorlagenauswahl <small>Designs</small></td>
+          <td>–</td>
+          <td>10</td>
+          <td>50+</td>
+        </tr>
+        <tr>
+          <td>PDF-Export <small>Wasserzeichen</small></td>
+          <td>–</td>
+          <td class="text-success">✅</td>
+          <td class="text-success">✅</td>
+        </tr>
+        <tr>
+          <td>Team-Konten <small>Benutzer</small></td>
+          <td>–</td>
+          <td>–</td>
+          <td class="text-success">✅</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Mobile Cards -->
+    <div class="pricing-tiers-mobile d-md-none" id="mobilePlanSelector">
+      <div class="tier active" data-plan="0">Basic</div>
+      <div class="tier" data-plan="1">Pro</div>
+      <div class="tier" data-plan="2">Premium</div>
+    </div>
+
+    <div class="pricing-cards-mobile d-md-none">
+      <div class="pricing-feature">
+        <h3>Lebenslauf-Upload</h3>
+        <small>Formate: PDF, DOCX</small>
+        <div class="pricing-options">
+          <div class="text-success option" data-index="0">✅</div>
+          <div class="text-success option" data-index="1">✅</div>
+          <div class="text-success option" data-index="2">✅</div>
+        </div>
+      </div>
+
+      <div class="pricing-feature">
+        <h3 class="mb-4">CV-Analysen</h3>
+        <div class="pricing-options">
+          <div class="option" data-index="0">2 / Monat</div>
+          <div class="option" data-index="1">Unbegrenzt</div>
+          <div class="option" data-index="2">Unbegrenzt</div>
+        </div>
+      </div>
+
+      <div class="pricing-feature">
+        <h3 class="mb-4">Motivationsschreiben generieren</h3>
+        <div class="pricing-options">
+          <div class="option" data-index="0">–</div>
+          <div class="text-success option" data-index="1">✅</div>
+          <div class="text-success option" data-index="2">✅</div>
+        </div>
+      </div>
+
+      <div class="pricing-feature">
+        <h3>Vorlagenauswahl</h3>
+        <small>Designs</small>
+        <div class="pricing-options">
+          <div class="option" data-index="0">–</div>
+          <div class="option" data-index="1">10</div>
+          <div class="option" data-index="2">50+</div>
+        </div>
+      </div>
+
+      <div class="pricing-feature">
+        <h3>PDF-Export</h3>
+        <small>Wasserzeichen</small>
+        <div class="pricing-options">
+          <div class="text-success option" data-index="0">✅</div>
+          <div class="option" data-index="1">-</div>
+          <div class="option" data-index="2">-</div>
+        </div>
+      </div>
+
+      <div class="pricing-feature">
+        <h3 class="mb-4">Team-Konten</h3>
+        <div class="pricing-options">
+          <div class="option" data-index="0">–</div>
+          <div class="option" data-index="1">–</div>
+          <div class="text-success option" data-index="2">✅</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer mb-2">
+    <div class="container text-center">
+      <h4 class="mb-3">BewerbungBuddy</h4>
+      <div class="footer-links d-flex justify-content-center gap-4 mb-3">
+        <a href="#" class="footer-link">Startseite</a>
+        <a href="#" class="footer-link">Preise</a>
+        <a href="#" class="footer-link">Kontakt</a>
+      </div>
+      <div class="small" style="opacity: 0.6;">
+        &copy; 2025 BewerbungBuddy. Alle Rechte vorbehalten.
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/navbar.js"></script>
+  <script src="js/scroll-animations.js"></script>
+  <script src="js/mobile_pricing_table.js"></script>
+</body>
+</html>
