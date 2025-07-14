@@ -3,55 +3,62 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>BewerbungsBuddy – Startseite</title>
+  <title>BewerbungBuddy – Startseite</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/style/style.css" />
+  <link rel="stylesheet" href="./css/landing.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-
-
 </head>
+
 <body>
   <!-- Navbar -->
-<nav class="nav">
-  <!-- Logo -->
-  <a href="index.html" class="logo">
-    <img src="/assets/images/logo.png" alt="Logo" />
-  </a>
+  <nav class="nav">
+    <div class="container d-flex align-items-center justify-content-between flex-wrap gap-3">
+      <a href="index.html" class="logo d-flex align-items-center text-decoration-none">
+        <h4 class="logo-text">
+          <span class="logo-gray">bewerbung</span><span class="logo-highlight">buddy</span>
+        </h4>
+      </a>
 
-  <!-- Search -->
-  <div class="input-field">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <input type="text" placeholder="Type Something" class="search-input" />
-  </div>
+      <button class="burger" id="burgerBtn" aria-label="Menü öffnen">
+        <span></span><span></span><span></span>
+      </button>
 
-  <!-- Navigation Links -->
-  <div class="links">
-    <a href="index.html" class="link">Home</a>
-    <a href="pages/cv-analysis.html" class="link">CV Analyse</a>
-    <a href="pages/letter-generation.html" class="link">Motivationsschreiben</a>
-    <a href="pages/pricing.html" class="link">Preise</a>
-    <a href="pages/team.html" class="link">Unser Team</a>
-  </div>
-</nav>
+      <div class="links" id="navLinks">
+        <div class="dropdown-custom">
+          <a href="#" class="link" id="toolsLink"><span>Tools ✨</span></a>
+          <div class="dropdown-menu-custom" id="toolsMenu">
+            <a href="cvAnalyse.html" class="dropdown-item-custom">CV analysieren</a>
+            <a href="letter-generation.html" class="dropdown-item-custom">Motivationsschreiben generieren</a>
+          </div>
+        </div>
+        <a href="pricing.html" class="link">Preise</a>
+        <a href="our-team.html" class="link">Unser Team</a>
+      </div>
+    </div>
+  </nav>
+
 
   <!-- Hero -->
-  <header class="hero container">
-    <h1>BewerbungsBuddy</h1>
-    <p>Dein smarter Begleiter für perfekte Bewerbungsunterlagen – schnell, sicher, individuell.</p>
-    <a href="#features" class="btn btn-primary">Jetzt entdecken</a>
+  <header class="hero">
+    <div class="container">
+      <h1>BewerbungBuddy</h1>
+      <p>Dein smarter Begleiter für perfekte Bewerbungsunterlagen – schnell, sicher, individuell.</p>
+      <a href="sign-up.html" class="btn btn-primary">Jetzt entdecken</a>
+    </div>
   </header>
 
+
   <!-- Features -->
-  <section id="features" class="container">
+  <section class="container fade-in">
     <h2 class="text-center mb-5">Funktionen</h2>
     <div class="row features text-center">
       <div class="col-md-4 mb-4">
-       <a href="pages/cv-analysis.html" ><div class="icon">📄</div></a> 
-        <h3 >CV-Analyse</h3>
+        <div class="icon">📄</div>
+        <h3>CV-Analyse</h3>
         <p>Erhalte sofortiges Feedback und Optimierungstipps für deinen Lebenslauf.</p>
       </div>
       <div class="col-md-4 mb-4">
@@ -62,7 +69,7 @@
       <div class="col-md-4 mb-4">
         <div class="icon">🔒</div>
         <h3>Datenschutz</h3>
-        <p>Alle Daten bleiben auf deinem Gerät – keine Speicherung in der Cloud.</p>
+        <p>Deine Daten werden sicher und verschlüsselt in der Cloud gespeichert – ausschließlich für dich zugänglich</p>
       </div>
     </div>
   </section>
@@ -109,65 +116,165 @@
     </div>
   </section>
 
+  <section class="py-5 section-features-1 fade-in" id="clients">
+    <div class="container">
 
- <!-- Clients Section -->
- <section class="clients" id="clients">
-  <div class="container">
-    <div class="head">
-      <h3>Kundenstimmen</h3>
-      <div class="divider"></div>
-    </div>
-
-    <div class="row">
-      <div class="box">
-        <img src="/assets/images/person1.png" alt="Person 1" />
-        <p>
-          🤩 „Dank BewerbungsBuddy habe ich endlich einen professionellen Lebenslauf.<br>
-          Der Prozess war super einfach und schnell!”
-        </p>
-        <h3>Lisa M.,</h3>
-        <h3>Studentin</h3>
+      <div class="text-center mb-5">
+        <div class="h2 mb-1"><span>Zufriedene Nutzer</span></div>
+        <div class="h2">sind unser größter Erfolg</div>
       </div>
-      <div class="box">
-        <img src="/assets/images/person2.png" alt="Person 2" />
-        <p>
-          🚀 „Das Anschreiben wurde perfekt auf die Stelle angepasst.<br>
-          Ich habe direkt eine Einladung zum Gespräch bekommen!”
-        </p>
-        <h3>Jonas K.</h3>
-        <h3>Berufseinsteiger</h3>
+
+      <div class="row g-4 justify-content-center mt-5 pb-5 px-3">
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4">
+            <div class="p-3 rounded-4 review-card">
+              <p class="mb-4 review-card-text">Die Lebenslaufanalyse war super präzise – und mein Anschreiben war sofort überzeugend!»</p>
+              <div class="d-flex align-items-center justify-content-between">
+                <div class="d-flex align-items-center">
+                  <img src="https://img.freepik.com/fotos-premium/eine-froehliche-einjaehrige-frau-sieht-gluecklich-und-zuversichtlich-aus-und-sitzt-in-einem-weissen-wohnzimmer_1095814-9625.jpg?ga=GA1.1.307353417.1746692297&semt=ais_hybrid&w=740" alt="Sophie Klein" class="rounded-circle" style="width: 32px; height: 32px; object-fit: cover;">
+                  <div class="ms-2">
+                    <div class="fw-semibold ">Laura Möller</div>
+                    <div style="font-size: 0.7rem; color: var(--text-light); font-weight: 600;">Feedback aus dem Nutzerportal</div>
+                  </div>
+                </div>
+                <div class="text-warning fs-5">
+                  ★★★★★
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4">
+            <div class="p-3 rounded-4 review-card">
+              <p class="mb-4 review-card-text">«Das Tool hat mir geholfen, meine Unterlagen deutlich zu verbessern. Einfach und effektiv.»</p>
+              <div class="d-flex align-items-center justify-content-between">
+                <div class="d-flex align-items-center">
+                  <img src="https://img.freepik.com/fotos-kostenlos/junger-baertiger-mann-mit-gestreiftem-hemd_273609-5677.jpg?ga=GA1.1.307353417.1746692297&semt=ais_hybrid&w=740" alt="Sophie Klein" class="rounded-circle" style="width: 32px; height: 32px; object-fit: cover;">
+                  <div class="ms-2">
+                    <div class="fw-semibold">Felix Schröder</div>
+                    <div style="font-size: 0.7rem; color: var(--text-light); font-weight: 600;">Kundenfeedback</div>
+                  </div>
+                </div>
+                <div class="text-warning fs-5">
+                  ★★★★★
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4">
+            <div class="p-3 rounded-4 review-card">
+              <p class="mb-4 review-card-text">«In wenigen Minuten hatte ich ein professionelles Anschreiben. Richtig gut gemacht!»</p>
+              <div class="d-flex align-items-center justify-content-between">
+                <div class="d-flex align-items-center">
+                  <img src="https://img.freepik.com/fotos-premium/portraet-einer-schoenen-frau-steht-in-einem-beigen-leinenhemd-und-einer-weissen-hose_116578-1478.jpg?ga=GA1.1.307353417.1746692297&semt=ais_hybrid&w=740" alt="Sophie Klein" class="rounded-circle" style="width: 32px; height: 32px; object-fit: cover;">
+                  <div class="ms-2">
+                    <div class="fw-semibold">Anna Becker</div>
+                    <div style="font-size: 0.7rem; color: var(--text-light); font-weight: 600;">Feedback aus dem Nutzerportal</div>
+                  </div>
+                </div>
+                <div class="text-warning fs-5">
+                  ★★★★★
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4">
+            <div class="p-3 rounded-4 review-card">
+              <p class="mb-4 review-card-text">«Die Analyse hat viel Sinn gemacht und gute Tipps geliefert. Ein kleiner Bug war aber dabei.»</p>
+              <div class="d-flex align-items-center justify-content-between">
+                <div class="d-flex align-items-center">
+                  <img src="https://img.freepik.com/fotos-kostenlos/huebscher-baertiger-kerl-der-gegen-die-weisse-wand-aufwirft_273609-20597.jpg?ga=GA1.1.307353417.1746692297&semt=ais_hybrid&w=740" alt="Sophie Klein" class="rounded-circle" style="width: 32px; height: 32px; object-fit: cover;">
+                  <div class="ms-2">
+                    <div class="fw-semibold">Jonas Weber</div>
+                    <div style="font-size: 0.7rem; color: var(--text-light); font-weight: 600;">Direktes Nutzerfeedback</div>
+                  </div>
+                </div>
+                <div class="text-warning fs-5">
+                  ★★★★
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4">
+            <div class="p-3 rounded-4 review-card">
+              <p class="mb-4 review-card-text">«Ich war überrascht, wie individuell der Textgenerator funktioniert. Eine tolle Hilfe beim Bewerben!»</p>
+              <div class="d-flex align-items-center justify-content-between">
+                <div class="d-flex align-items-center">
+                  <img src="https://img.freepik.com/fotos-premium/europaeische-maedchenblondine-in-einem-weissen-t-shirt-und-jeans-sitzt-auf-einer-schaukel-auf-dem-territorium-einer-sommerterrasse-eines-cafes_511585-270.jpg?ga=GA1.1.307353417.1746692297&semt=ais_hybrid&w=740" alt="Sophie Klein" class="rounded-circle" style="width: 32px; height: 32px; object-fit: cover;">
+                  <div class="ms-2">
+                    <div class="fw-semibold">Mia Hoffmann</div>
+                    <div style="font-size: 0.7rem; color: var(--text-light); font-weight: 600;">Feedback aus dem Nutzerportal</div>
+                  </div>
+                </div>
+                <div class="text-warning fs-5">
+                  ★★★★★
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4">
+            <div class="p-3 rounded-4 review-card">
+              <p class="mb-4 review-card-text">«Sehr intuitives Design und tolle Vorschläge für meine Bewerbung – ich bin begeistert!»</p>
+              <div class="d-flex align-items-center justify-content-between">
+                <div class="d-flex align-items-center">
+                  <img src="https://img.freepik.com/fotos-kostenlos/selbstbewusster-baertiger-mann-mit-dunklem-haar-hat-ernsthaften-gesichtsausdruck-denkt-ueber-zukuenftige-arbeit-nach-gekleidet-in-modisches-hemd_273609-17204.jpg?ga=GA1.1.307353417.1746692297&semt=ais_hybrid&w=740" alt="Sophie Klein" class="rounded-circle" style="width: 32px; height: 32px; object-fit: cover;">
+                  <div class="ms-2">
+                    <div class="fw-semibold">Leon Schäfer</div>
+                    <div style="font-size: 0.7rem; color: var(--text-light); font-weight: 600;">Kundenfeedback</div>
+                  </div>
+                </div>
+                <div class="text-warning fs-5">
+                  ★★★★★
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4">
+            <div class="p-3 rounded-4 review-card">
+              <p class="mb-4 review-card-text">«Ich nutze BewerbungBuddy regelmäßig – besonders bei der Jobsuche in anderen Städten.»</p>
+              <div class="d-flex align-items-center justify-content-between">
+                <div class="d-flex align-items-center">
+                  <img src="https://imgs.search.brave.com/87YtMw9eSZ7Fj_21yk40KNG5nBowNGl4w88qz3lSfLg/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/Zm90b3MtcHJlbWl1/bS9laW5lLWZyYXUt/aW4tZWluZXItd2Vp/c3Nlbi1ibHVzZS1z/dGVodC1pbi1laW5l/ci1raXJzY2hibHVl/dGVfMjEwMzE1LTQ4/Ny5qcGc_c2VtdD1h/aXNfaHlicmlkJnc9/NzQw" alt="Sophie Klein" class="rounded-circle" style="width: 32px; height: 32px; object-fit: cover;">
+                  <div class="ms-2">
+                    <div class="fw-semibold">Sophie Klein</div>
+                    <div style="font-size: 0.7rem; color: var(--text-light); font-weight: 600;">Kundenfeedback</div>
+                  </div>
+                </div>
+                <div class="text-warning fs-5">
+                  ★★★★★
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4">
+            <div class="p-3 rounded-4 review-card">
+              <p class="mb-4 review-card-text">«Endlich ein Tool, das hält, was es verspricht. Ich hatte innerhalb von zwei Tagen Rückmeldungen!»</p>
+              <div class="d-flex align-items-center justify-content-between">
+                <div class="d-flex align-items-center">
+                  <img src="https://img.freepik.com/fotos-kostenlos/portrait-des-weissen-mannes-getrennt_53876-40306.jpg?ga=GA1.1.307353417.1746692297&semt=ais_hybrid&w=740" alt="Tim Neumann" class="rounded-circle" style="width: 32px; height: 32px; object-fit: cover;">
+                  <div class="ms-2">
+                    <div class="fw-semibold">Tim Neumann</div>
+                    <div style="font-size: 0.7rem; color: var(--text-light); font-weight: 600;">Online-Feedback</div>
+                  </div>
+                </div>
+                <div class="text-warning fs-5">
+                  ★★★★★
+                </div>
+              </div>
+            </div>
+          </div>
+
       </div>
-      <div class="box">
-        <img src="/assets/images/person3.png" alt="Person 3" />
-        <p>
-          💼 „Ein tolles Tool, um Bewerbungsunterlagen schnell und professionell zu erstellen.<br>
-          Absolute Empfehlung für alle Jobsuchenden!”
-        </p>
-        <h3>Iman Gadzhi</h3>
-        <h3>Marketing Managerin</h3>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-
-      <!-- Arrows -->
-      <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true" style="filter: invert(1);"></span>
-        <span class="visually-hidden">Vorherige</span>
-      </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true" style="filter: invert(1);"></span>
-        <span class="visually-hidden">Nächste</span>
-      </button>
-
     </div>
   </section>
 
-
   <!-- Pricing -->
-  <section id="pricing" class="py-5">
+  <section id="pricing" class="py-5 fade-in">
     <div class="container">
       <h2 class="text-center mb-5">Unsere Pakete</h2>
       <div class="pricing-row">
@@ -211,10 +318,9 @@
   </section>
 
   <!-- Zahlen / Fakten -->
-  <section id="facts" class="container py-5">
+  <section id="facts" class="container py-5 fade-in">
     <h2 class="text-center mb-5">Unsere Erfolge in Zahlen</h2>
 
-    <!-- Крупные цифры -->
     <div class="row text-center">
       <div class="col-md-4 mb-4">
         <div style="font-size: 3rem;">📄</div>
@@ -235,7 +341,6 @@
       </div>
     </div>
 
-    <!-- Круговые диаграммы -->
     <div class="row justify-content-center mt-5 gap-4">
       <!-- Diagram 1 -->
       <div class="col-6 col-md-3 text-center" style="position: relative;">
@@ -266,10 +371,10 @@
   </section>
 
   <!-- Call to Action -->
-  <section id="cta" class="container text-center py-5">
+  <section id="cta" class="container text-center py-5 fade-in">
     <h2 class="mb-4" style="font-size: 2.2rem;">Bereit für deinen nächsten Karriereschritt? 🚀</h2>
     <p class="mb-4" style="opacity: 0.85; font-size: 1.1rem;">
-      Starte jetzt mit BewerbungsBuddy – einfach, schnell und individuell.
+      Starte jetzt mit BewerbungBuddy – einfach, schnell und individuell.
     </p>
     <a href="#features" class="btn btn-primary btn-lg">Jetzt kostenlos starten</a>
   </section>
@@ -282,79 +387,175 @@
 
       <!-- Frage 1 -->
       <div class="accordion-item" style="background: var(--highlight-gray); border: none;">
-        <h2 class="accordion-header">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq1"
-                  style="background: var(--highlight-gray); color: var(--text-light);">
-            Wie funktioniert die Zahlung?
-          </button>
-        </h2>
-        <div id="faq1" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-          <div class="accordion-body" style="color: var(--text-light); opacity: 0.85;">
-            Die Zahlung erfolgt sicher über Kreditkarte oder PayPal. Du kannst dein Abo jederzeit kündigen.
-          </div>
+      <h2 class="accordion-header">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq1"
+                style="background: var(--highlight-gray); color: var(--text-light);">
+          Muss ich mich registrieren, um den Service zu nutzen?
+        </button>
+      </h2>
+      <div id="faq1" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+        <div class="accordion-body" style="color: var(--text-light); opacity: 0.85;">
+          Ja, du benötigst ein kostenloses Konto, um Dokumente hochzuladen und deine Ergebnisse zu speichern.
         </div>
       </div>
+    </div>
 
-      <!-- Frage 2 -->
-      <div class="accordion-item" style="background: var(--highlight-gray); border: none;">
-        <h2 class="accordion-header">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2"
-                  style="background: var(--highlight-gray); color: var(--text-light);">
-            Werden meine Daten gespeichert?
-          </button>
-        </h2>
-        <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-          <div class="accordion-body" style="color: var(--text-light); opacity: 0.85;">
-            Nein. Deine Daten bleiben auf deinem Gerät – wir speichern nichts in der Cloud.
-          </div>
+    <!-- Frage 2 -->
+    <div class="accordion-item" style="background: var(--highlight-gray); border: none;">
+      <h2 class="accordion-header">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2"
+                style="background: var(--highlight-gray); color: var(--text-light);">
+          Welche Dateiformate kann ich hochladen?
+        </button>
+      </h2>
+      <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+        <div class="accordion-body" style="color: var(--text-light); opacity: 0.85;">
+          Wir unterstützen PDF-Dateien für Lebensläufe und Motivationsschreiben. Weitere Formate folgen bald.
         </div>
       </div>
+    </div>
 
-      <!-- Frage 3 -->
-      <div class="accordion-item" style="background: var(--highlight-gray); border: none;">
-        <h2 class="accordion-header">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3"
-                  style="background: var(--highlight-gray); color: var(--text-light);">
-            Kann ich mein Abo kündigen?
-          </button>
-        </h2>
-        <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-          <div class="accordion-body" style="color: var(--text-light); opacity: 0.85;">
-            Ja, du kannst dein Abo jederzeit im Kundenbereich kündigen.
-          </div>
+    <!-- Frage 3 -->
+    <div class="accordion-item" style="background: var(--highlight-gray); border: none;">
+      <h2 class="accordion-header">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3"
+                style="background: var(--highlight-gray); color: var(--text-light);">
+          Was genau macht die CV-Analyse?
+        </button>
+      </h2>
+      <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+        <div class="accordion-body" style="color: var(--text-light); opacity: 0.85;">
+          Unsere KI überprüft deinen Lebenslauf auf Struktur, Inhalt, Sprache und gibt dir konkrete Verbesserungsvorschläge.
         </div>
       </div>
+    </div>
+
+    <!-- Frage 4 -->
+    <div class="accordion-item" style="background: var(--highlight-gray); border: none;">
+      <h2 class="accordion-header">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4"
+                style="background: var(--highlight-gray); color: var(--text-light);">
+          Wie wird das Motivationsschreiben erstellt?
+        </button>
+      </h2>
+      <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+        <div class="accordion-body" style="color: var(--text-light); opacity: 0.85;">
+          Anhand deiner Angaben zur Stelle und deinem Profil erzeugt das System ein maßgeschneidertes Anschreiben.
+        </div>
+      </div>
+    </div>
+
+    <!-- Frage 5 -->
+    <div class="accordion-item" style="background: var(--highlight-gray); border: none;">
+      <h2 class="accordion-header">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq5"
+                style="background: var(--highlight-gray); color: var(--text-light);">
+          Wie sicher sind meine Daten?
+        </button>
+      </h2>
+      <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+        <div class="accordion-body" style="color: var(--text-light); opacity: 0.85;">
+          Deine Daten werden DSGVO-konform in europäischen Rechenzentren verschlüsselt gespeichert.
+        </div>
+      </div>
+    </div>
+
+    <!-- Frage 6 -->
+    <div class="accordion-item" style="background: var(--highlight-gray); border: none;">
+      <h2 class="accordion-header">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq6"
+                style="background: var(--highlight-gray); color: var(--text-light);">
+          Gibt es einen kostenlosen Zugang?
+        </button>
+      </h2>
+      <div id="faq6" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+        <div class="accordion-body" style="color: var(--text-light); opacity: 0.85;">
+          Ja! Du kannst mit dem kostenlosen Basic-Plan sofort loslegen und erste Funktionen testen.
+        </div>
+      </div>
+    </div>
+
+    <!-- Frage 7 -->
+    <div class="accordion-item" style="background: var(--highlight-gray); border: none;">
+      <h2 class="accordion-header">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq7"
+                style="background: var(--highlight-gray); color: var(--text-light);">
+          Kann ich mein Abo jederzeit kündigen?
+        </button>
+      </h2>
+      <div id="faq7" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+        <div class="accordion-body" style="color: var(--text-light); opacity: 0.85;">
+          Natürlich. Du kannst dein Abonnement jederzeit in deinem Benutzerprofil beenden – ohne Fristen.
+        </div>
+      </div>
+    </div>
+
+    <!-- Frage 8 -->
+    <div class="accordion-item" style="background: var(--highlight-gray); border: none;">
+      <h2 class="accordion-header">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq8"
+                style="background: var(--highlight-gray); color: var(--text-light);">
+          Kann ich mein Anschreiben bearbeiten?
+        </button>
+      </h2>
+      <div id="faq8" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+        <div class="accordion-body" style="color: var(--text-light); opacity: 0.85;">
+          Ja, jedes automatisch generierte Schreiben kann manuell angepasst und heruntergeladen werden.
+        </div>
+      </div>
+    </div>
+
+    <!-- Frage 9 -->
+    <div class="accordion-item" style="background: var(--highlight-gray); border: none;">
+      <h2 class="accordion-header">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq9"
+                style="background: var(--highlight-gray); color: var(--text-light);">
+          Funktioniert das auch auf dem Handy?
+        </button>
+      </h2>
+      <div id="faq9" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+        <div class="accordion-body" style="color: var(--text-light); opacity: 0.85;">
+          Ja, die Plattform ist vollständig mobiloptimiert und funktioniert auf Smartphones und Tablets.
+        </div>
+      </div>
+    </div>
+
+    <!-- Frage 10 -->
+    <div class="accordion-item" style="background: var(--highlight-gray); border: none;">
+      <h2 class="accordion-header">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq10"
+                style="background: var(--highlight-gray); color: var(--text-light);">
+          Kann ich mehrere Bewerbungen speichern?
+        </button>
+      </h2>
+      <div id="faq10" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+        <div class="accordion-body" style="color: var(--text-light); opacity: 0.85;">
+          Ja, du kannst beliebig viele Lebensläufe und Anschreiben speichern, verwalten und erneut verwenden.
+        </div>
+      </div>
+    </div>
 
     </div>
   </section>
    
 
-  <footer class="footer" id="footer">
-    <div class="overlay">
-      <div class="top">
-        <div class="logo">
-          <h3>BewerbungsBuddy</h3>
-        </div>
-        <div class="footer-links">
-          <div class="links">
-            <h3>Navigation</h3>
-            <a href="index.html">Home</a>
-            <a href="pages/cv-analysis.html">CV Analyse</a>
-            <a href="pages/letter-generation.html">Motivationsschreiben</a>
-            <a href="pages/pricing.html">Preise</a>
-            <a href="pages/team.html">Unser Team</a>
-          </div>
-          <div class="links">
-            <h3>Nützliche Links</h3>
-            <a href="#">Impressum</a>
-            <a href="#">Datenschutz</a>
-          </div>
-        </div>
+  <footer class="footer mb-2">
+    <div class="container text-center">
+      <h4 class="mb-3">BewerbungBuddy</h4>
+      <div class="footer-links d-flex justify-content-center gap-4 mb-3">
+        <a href="index.html" class="footer-link">Startseite</a>
+        <a href="pricing.html" class="footer-link">Preise</a>
+        <a href="#" class="footer-link">Kontakt</a>
+      </div>
+      <div class="small" style="opacity: 0.6;">
+        &copy; 2025 BewerbungBuddy. Alle Rechte vorbehalten.
       </div>
     </div>
   </footer>
-  
+
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/navbar.js"></script>
+  <script src="js/scroll-animations.js"></script>
 </body>
 </html>
