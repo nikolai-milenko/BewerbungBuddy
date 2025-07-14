@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Unser Team – BewerbungsBuddy</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./css/our-team.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="./css/landing.css" />
+</head>
+
+<body>
+ <!-- Navbar -->
+ <nav class="nav">
+  <div class="container d-flex align-items-center justify-content-between flex-wrap gap-3">
+    <a href="index.html" class="logo d-flex align-items-center text-decoration-none">
+      <h4 class="logo-text">
+        <span class="logo-gray">bewerbung</span><span class="logo-highlight">buddy</span>
+      </h4>
+    </a>
+
+    <button class="burger" id="burgerBtn" aria-label="Menü öffnen">
+      <span></span><span></span><span></span>
+    </button>
+
+    <div class="links" id="navLinks">
+      <div class="dropdown-custom">
+        <a href="#" class="link" id="toolsLink"><span>Tools ✨</span></a>
+        <div class="dropdown-menu-custom" id="toolsMenu">
+          <a href="cvAnalyse.html" class="dropdown-item-custom">CV analysieren</a>
+          <a href="letter-generation.html" class="dropdown-item-custom">Motivationsschreiben generieren</a>
+        </div>
+      </div>
+      <a href="pricing.html" class="link">Preise</a>
+      <a href="our-team.html" class="link">Unser Team</a>
+    </div>
+  </div>
+</nav>
+
+
+  <!-- Hero -->
+  <header class="hero">
+    <div class="container">
+      <h1>Unser Team</h1>
+    </div>
+  </header>
+
+  <!-- Team Section -->
+  <section class="container py-5">
+    <div class="row text-center g-4 justify-content-center">
+
+      <!-- Nikolai -->
+      <div class="col-6 col-sm-6 col-md-4 col-lg-3">
+        <img src="./img/team_nikolai_comp.jpg" alt="Nikolai" class="img-fluid rounded shadow team-photo" />
+        <h5 class="fw-bold mt-3">Nikolai</h5>
+        <p class="text-white-50 small">Backend-Architekt & Server-Stratege</p>
+      </div>
+
+      <!-- Talita -->
+      <div class="col-6 col-sm-6 col-md-4 col-lg-3">
+        <img src="#" alt="Talita" class="img-fluid rounded shadow team-photo" />
+        <h5 class="fw-bold mt-3">Talita</h5>
+        <p class="text-white-50 small">Designerin & Frontend-Lead</p>
+      </div>
+
+      <!-- Artem -->
+      <div class="col-6 col-sm-6 col-md-4 col-lg-3">
+        <img src="#" alt="Artem" class="img-fluid rounded shadow team-photo" />
+        <h5 class="fw-bold mt-3">Artem</h5>
+        <p class="text-white-50 small">Backend-Developer & API-Builder</p>
+      </div>
+
+      <!-- Naiyar -->
+      <div class="col-6 col-sm-6 col-md-4 col-lg-3">
+        <img src="#" alt="Naiyar" class="img-fluid rounded shadow team-photo" />
+        <h5 class="fw-bold mt-3">Naiyar</h5>
+        <p class="text-white-50 small">Frontend-Feinschliff & Komponenten</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer mt-5">
+    <div class="container text-center">
+      <h4 class="mb-3">BewerbungsBuddy</h4>
+      <div class="footer-links d-flex justify-content-center gap-4 mb-3">
+        <a href="index.html" class="footer-link">Startseite</a>
+        <a href="pricing.html" class="footer-link">Preise</a>
+        <a href="#" class="footer-link">Kontakt</a>
+      </div>
+      <div class="small" style="opacity: 0.6;">
+        &copy; 2025 BewerbungsBuddy. Alle Rechte vorbehalten.
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/navbar.js"></script>
+  <script src="js/scroll-animations.js"></script>
+</body>
+</html>
