@@ -1,0 +1,11 @@
+@import url('./common.css');
+
+.hero {
+  min-height: auto;
+  padding: 4rem 1rem;
+}
+.team-photo {
+  width: 100%;
+  aspect-ratio: 240 / 310;
+  object-fit: cover;
+}
