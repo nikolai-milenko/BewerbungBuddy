@@ -55,7 +55,7 @@ public class ChatGptService {
 
         Map<String, Object> requestBody = Map.of(
                 "model", model,
-                "temperature", 0.3,
+                "temperature", type == RequestType.COVER_LETTER ? 0.7 : 0.3,
                 "messages", List.of(
                         Map.of("role", "system", "content", "Du bist ein erfahrener HR-Analyst."),
                         Map.of("role", "user", "content", prompt)
