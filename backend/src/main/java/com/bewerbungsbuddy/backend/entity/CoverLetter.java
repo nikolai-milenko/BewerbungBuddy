@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 @Builder
 @ToString
 @Entity
-@Table(name = "сoverLetter")
+@Table(name = "cover_letter")
 public class CoverLetter {
     @Id
     @GeneratedValue(
@@ -23,10 +23,10 @@ public class CoverLetter {
     @Column(name = "created_at",nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
-    @Column(name = "generated_text")
+    @Column(name = "generated_text", columnDefinition = "TEXT")
     private String generatedText;
 
-    @Column(name = "edited_text")
+    @Column(name = "edited_text", columnDefinition = "TEXT")
     private String editedText;
 
     @ManyToOne(fetch = FetchType.LAZY)

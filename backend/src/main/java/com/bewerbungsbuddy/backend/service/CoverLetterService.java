@@ -2,7 +2,9 @@ package com.bewerbungsbuddy.backend.service;
 
 import com.bewerbungsbuddy.backend.dto.CoverLetterResponseDto;
 import com.bewerbungsbuddy.backend.dto.CoverLetterRequestDto;
+import com.bewerbungsbuddy.backend.entity.CVDocument;
 import com.bewerbungsbuddy.backend.entity.CoverLetter;
+import com.bewerbungsbuddy.backend.entity.JobAdvertisement;
 import com.bewerbungsbuddy.backend.repository.CVDocumentRepository;
 import com.bewerbungsbuddy.backend.repository.CoverLetterRepository;
 import com.bewerbungsbuddy.backend.mapper.CoverLetterMapper;
@@ -10,6 +12,7 @@ import com.bewerbungsbuddy.backend.repository.JobAdvertisementRepository;
 import com.bewerbungsbuddy.backend.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -37,17 +40,21 @@ public class CoverLetterService {
         return coverLetterMapper.toResponseDto(coverLetter);
     }
 
-    public CoverLetterResponseDto generate(CoverLetterRequestDto dto) {
-        String generatedText = chatGptService.generateCoverLetter(dto.cvText(), dto.jobDescription());
+    @Transactional
+    public CoverLetterResponseDto generate(CoverLetterRequestDto requestDto) {
+        CVDocument cvDocument = cvDocumentRepository.findById(requestDto.cvDocumentId())
+                .orElseThrow(() -> new IllegalArgumentException("CVDocument not found with id: " + requestDto.cvDocumentId()));
 
-        CoverLetter coverLetter = coverLetterMapper.toEntity(
-                dto,
-                userRepository,
-                cvDocumentRepository,
-                jobAdvertisementRepository
-        );
-        coverLetter.setGeneratedText(generatedText);
-        coverLetter.setEditedText(generatedText);
+        JobAdvertisement jobAdvertisement = jobAdvertisementRepository.findById(requestDto.jobAdvertisementId())
+                .orElseThrow(() -> new IllegalArgumentException("JobAdvertisement not found with id: " + requestDto.jobAdvertisementId()));
+
+        String generatedText = chatGptService.generateCoverLetter(cvDocument.getParsedText(), jobAdvertisement.getRawText());
+        CoverLetter coverLetter = CoverLetter.builder()
+                .generatedText(generatedText)
+                .editedText(generatedText)
+                .cvDocument(cvDocument)
+                .jobAdvertisement(jobAdvertisement)
+                .build();
 
         return coverLetterMapper.toResponseDto(coverLetterRepository.save(coverLetter));
     }

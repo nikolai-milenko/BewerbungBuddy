@@ -17,12 +17,13 @@ import org.mapstruct.Named;
 @Mapper(componentModel = "spring")
 public interface CoverLetterMapper {
 
-    @Mapping(source = "userId", target = "user", qualifiedByName = "mapUser")
-    @Mapping(source = "cvDocumentId", target = "cvDocument", qualifiedByName = "mapCVDocument")
-    @Mapping(source = "jobAdvertisementId", target = "jobAdvertisement", qualifiedByName = "mapJobAdvertisement")
-    CoverLetter toEntity(CoverLetterRequestDto dto, @Context UserRepository userRepository,
-                         @Context CVDocumentRepository cvDocumentRepository,
-                         @Context JobAdvertisementRepository jobAdvertisementRepository);
+    // @Mapping(target = "user", expression = "java(mapUser(dto.userId(), userRepository))")
+    @Mapping(target = "cvDocument", expression = "java(mapCVDocument(dto.cvDocumentId(), cvDocumentRepository))")
+    @Mapping(target = "jobAdvertisement", expression = "java(mapJobAdvertisement(dto.jobAdvertisementId(), jobAdvertisementRepository))")
+    CoverLetter toEntity(CoverLetterRequestDto dto,
+                         // UserRepository userRepository,
+                         CVDocumentRepository cvDocumentRepository,
+                         JobAdvertisementRepository jobAdvertisementRepository);
 
     CoverLetterResponseDto toResponseDto(CoverLetter coverLetter);
 
