@@ -2,6 +2,7 @@ package com.bewerbungsbuddy.backend.controller;
 
 import com.bewerbungsbuddy.backend.dto.CVDocumentResponseDto;
 import com.bewerbungsbuddy.backend.entity.User;
+import com.bewerbungsbuddy.backend.repository.UserRepository;
 import com.bewerbungsbuddy.backend.service.CVDocumentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -17,15 +18,21 @@ import org.springframework.web.multipart.MultipartFile;
 public class CVDocumentController {
 
     private final CVDocumentService service;
+    private final UserRepository userRepository;
 
     @PostMapping("/upload")
     public ResponseEntity<CVDocumentResponseDto> upload(@RequestParam("file") MultipartFile file) {
-        // TODO: change to getting from SecurityContext
-        User user = new User();
-        user.setId(1L);  // hardcode for now
+        if (file.isEmpty() || !file.getOriginalFilename().endsWith(".pdf")) {
+            return ResponseEntity.badRequest().build();
+        }
+
+        User user = userRepository.findById(6L)
+                .orElseThrow(() -> {
+                    return new RuntimeException("Keine Benutzer gefunden");
+                });
 
         CVDocumentResponseDto dto = service.saveFromFile(file, user);
+
         return ResponseEntity.ok(dto);
     }
 }
-

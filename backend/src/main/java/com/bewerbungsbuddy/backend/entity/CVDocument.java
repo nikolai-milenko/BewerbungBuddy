@@ -37,7 +37,8 @@ public class CVDocument {
     @Column(
             name = "parsed_text",
             nullable = false,
-            updatable = false
+            updatable = false,
+            columnDefinition = "TEXT"
     )
     private String parsedText;
 

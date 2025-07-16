@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface CVDocumentRepository extends JpaRepository<CVDocument, Long> {
+    boolean getFirstById(Long id);
 }
