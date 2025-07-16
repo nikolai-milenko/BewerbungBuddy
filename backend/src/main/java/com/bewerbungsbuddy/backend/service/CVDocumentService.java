@@ -8,9 +8,13 @@ import com.bewerbungsbuddy.backend.repository.CVDocumentRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.text.PDFTextStripper;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import java.io.IOException;
+import java.io.InputStream;
 
 @Service
 @RequiredArgsConstructor
@@ -46,8 +50,20 @@ public class CVDocumentService {
 
 
     private String parseFile(MultipartFile file) {
-        // TODO: add PDF parsing
-        return "stub";
+        if (file == null || file.isEmpty()) {
+            return "";
+        }
+
+        try (InputStream inputStream = file.getInputStream();
+             PDDocument document = PDDocument.load(inputStream)) {
+
+            PDFTextStripper stripper = new PDFTextStripper();
+            return stripper.getText(document).trim();
+
+        } catch (IOException e) {
+            // empty for now
+            return "";
+        }
     }
 }
 
