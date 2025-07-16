@@ -22,7 +22,7 @@ public class JobAdvertisementController {
     @PostMapping
     public ResponseEntity<JobAdvertisementResponseDto> create(@RequestBody JobAdvertisementRequestDto dto) {
         // hardcode for now
-        User currentUser = userService.getById(1L);
+        User currentUser = userService.getById(6L);
         JobAdvertisementResponseDto saved = jobAdvertisementService.save(dto, currentUser);
         return ResponseEntity.ok(saved);
     }
