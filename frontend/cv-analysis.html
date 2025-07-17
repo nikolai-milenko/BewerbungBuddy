@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CV-Analyse – BewerbungBuddy</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="./css/cv-analysis.css"/>
+</head>
+
+<body>
+  <!-- Navbar -->
+  <nav class="nav">
+    <div class="container d-flex align-items-center justify-content-between flex-wrap gap-3">
+      <a href="index.html" class="logo d-flex align-items-center text-decoration-none">
+        <h4 class="logo-text">
+          <span class="logo-gray">bewerbung</span><span class="logo-highlight">buddy</span>
+        </h4>
+      </a>
+
+      <button class="burger" id="burgerBtn" aria-label="Menü öffnen">
+        <span></span><span></span><span></span>
+      </button>
+
+      <div class="links" id="navLinks">
+        <div class="dropdown-custom">
+          <a href="#" class="link active" id="toolsLink"><span>Tools ✨</span></a>
+          <div class="dropdown-menu-custom" id="toolsMenu">
+            <a href="cv-analysis.html" class="dropdown-item-custom">CV analysieren</a>
+            <a href="letter-generation.html" class="dropdown-item-custom">Motivationsschreiben generieren</a>
+          </div>
+        </div>
+        <a href="pricing.html" class="link">Preise</a>
+        <a href="our-team.html" class="link">Unser Team</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <header class="hero">
+    <div class="container">
+      <h1>Starte deine Analyse</h1>
+      <p>In vier Schritten zu besseren Bewerbungsunterlagen.</p>
+    </div>
+  </header>
+
+  <main class="container mt-4">
+    <div class="wizard-container">
+      <div class="wizard-progress">
+        <div id="wizardFillBar"></div>
+        <div class="circle" data-step="1" style="left: 0%;">1</div>
+        <div class="circle" data-step="2" style="left: 33%;">2</div>
+        <div class="circle" data-step="3" style="left: 66%;">3</div>
+        <div class="circle" data-step="4" style="left: 100%;">4</div>
+      </div>
+
+      <div id="wizardStep1" class="wizard-step">
+        <h4>1. Lebenslauf hochladen</h4>
+        <div class="row g-4 mt-2">
+          <div class="col-md-6">
+            <div id="pdfPreviewContainer" class="pdf-preview-box">
+              <div id="pdfPlaceholder" class="pdf-placeholder">
+                <i class="fas fa-file-pdf fa-3x mb-3"></i>
+                <p class="mb-0">Noch keine Datei hochgeladen</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 d-flex flex-column">
+            <label for="pdfUpload" class="form-label visually-hidden">PDF hochladen</label>
+            <div class="upload-box flex-grow-1 d-flex flex-column justify-content-center align-items-center text-center mb-3">
+              <i class="fas fa-upload fa-3x mb-3 "></i>
+              <p class="">PDF-Datei hierher ziehen oder klicken, um hochzuladen</p>
+              <input type="file" id="pdfUpload" accept="application/pdf" class="form-control visually-hidden">
+            </div>
+            <button class="btn btn-primary mt-3" id="step1NextBtn" onclick="goToStep(2)" disabled>Weiter</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="wizardStep2" class="wizard-step d-none">
+        <h4>2. Stellenanzeige einfügen</h4>
+        <textarea id="jobDescriptionInput" class="form-control mb-3" rows="10" placeholder="Stellenbeschreibung..."></textarea>
+        <div class="d-flex gap-2">
+          <button class="btn btn-secondary" onclick="goToStep(1)">Zurück</button>
+          <button class="btn btn-primary" id="step2NextBtn">Weiter</button>
+        </div>
+      </div>
+
+      <div id="wizardStep3" class="wizard-step d-none">
+        <h4>3. Analyse</h4>
+        <p>KI verarbeitet die Daten.</p>
+
+        <div class="d-flex justify-content-start align-items-center my-4" style="height: 30px;">
+          <div class="spinner-border" style="width: 1.3rem; height: 1.3rem;" role="status">
+          </div>
+          <div style="color:white; font-size: 1.1rem; margin-left: 10px;">Analyse läuft...</div>
+        </div>
+
+        <ul class="list-unstyled text-start mt-4" style="font-size: 1.1rem;">
+          <li>🔍 Lebenslauf wird analysiert</li>
+          <li>🧠 KI vergleicht deine Daten mit der Stellenanzeige</li>
+          <li>📝 Stärken & Schwächen werden ermittelt</li>
+        </ul>
+      </div>
+
+      <div id="wizardStep4" class="wizard-step d-none">
+        <h4>4. Fertig 🎉</h4>
+        <p>Hier sind die Ergebnisse deiner Analyse:</p>
+
+        <div class="row text-white d-flex align-items-center mb-4 mt-4" style="min-height:220px;">
+          <div class="col-md-4 d-flex justify-content-center align-items-center mb-3 mb-md-0" id="matchScoreContainer">
+            <div style="width: 210px; height: 210px; position: relative;">
+              <svg width="210" height="210">
+                <circle cx="105" cy="105" r="90" stroke="var(--border-muted)" stroke-width="16" fill="none" />
+                <circle id="matchScoreCircle" cx="105" cy="105" r="90"
+                  stroke="var(--accent-blue)" stroke-width="16" fill="none"
+                  stroke-dasharray="565.5" stroke-dashoffset="565.5"
+                  stroke-linecap="round" transform="rotate(-90 105 105)" />
+              </svg>
+              <div id="matchScoreText"
+                style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:2rem;font-weight:700;">–%</div>
+              <div class="mt-2 text-center" style="font-size:1.1rem;">🎯 Erfolgsquote</div>
+            </div>
+          </div>
+
+          <div class="col-md-8 d-flex align-items-center">
+            <div class="table-responsive w-100">
+              <table class="table table-bordered table-striped table-dark align-middle mb-0">
+                <thead>
+                  <tr>
+                    <th class="text-success text-center" style="width:50%">🟢 Stärken</th>
+                    <th class="text-danger text-center" style="width:50%">🔴 Schwächen</th>
+                  </tr>
+                </thead>
+                <tbody id="analysisTableBody"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <button class="btn btn-secondary mt-4" onclick="goToStep(2)">Zurück</button>
+    </div>
+  </main>
+
+  <footer class="pb-4" style="padding-top: 40px;">
+    <div class="container text-center small mt-4 pt-3">
+      &copy; 2025 BewerbungBuddy. Alle Rechte vorbehalten.
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/pdfjs-dist@3.10.111/build/pdf.min.js"></script>
+  <script src="./js/cv-analysis.js"></script>
+  <script src="./js/navbar.js"></script>
+  <script src="./js/scroll-animations.js"></script>
+</body>
+</html>
