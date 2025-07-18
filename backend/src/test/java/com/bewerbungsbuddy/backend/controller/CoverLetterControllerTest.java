@@ -109,4 +109,34 @@ class CoverLetterControllerTest {
 
         verify(coverLetterService).generate(any());
     }
+
+    @Test
+    @DisplayName("POST /api/cl - Sollte 404 zurückgeben, wenn CV nicht existiert")
+    void generate_shouldReturnNotFound_whenCvNotFound() throws Exception {
+        doThrow(new EntityNotFoundException("CVDocument not found"))
+                .when(coverLetterService).generate(any());
+
+        mockMvc.perform(post("/api/cl")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{\"cvDocumentId\":123,\"jobAdvertisementId\":456}"))
+                .andExpect(status().isNotFound())
+                .andExpect(content().string("CVDocument not found"));
+
+        verify(coverLetterService).generate(any());
+    }
+
+    @Test
+    @DisplayName("POST /api/cl - Sollte 500 zurückgeben, bei Serverfehlern")
+    void generate_shouldReturnInternalError_whenServiceFails() throws Exception {
+        doThrow(new RuntimeException("Service failure"))
+                .when(coverLetterService).generate(any());
+
+        mockMvc.perform(post("/api/cl")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{\"cvDocumentId\":1,\"jobAdvertisementId\":2}"))
+                .andExpect(status().isInternalServerError())
+                .andExpect(content().string("Service failure"));
+
+        verify(coverLetterService).generate(any());
+    }
 }
