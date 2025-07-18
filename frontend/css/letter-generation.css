@@ -9,6 +9,7 @@
   padding: 2rem 1rem;
 }
 
+
 .pdf-preview-box {
   background: #f4f4f4;
   border: 1px solid #ccc;
@@ -150,4 +151,10 @@
 .upload-box.dragover {
   border-color: var(--accent-blue);
   background-color: rgba(10, 132, 255, 0.05);
+}
+/* Make only this container go edge‑to‑edge */
+.container.full-width {
+  max-width: 100% !important;   /* override Bootstrap’s width caps */
+  padding-left: 0 !important;   /* remove left gutter */
+  padding-right: 0 !important;  /* remove right gutter */
 }
