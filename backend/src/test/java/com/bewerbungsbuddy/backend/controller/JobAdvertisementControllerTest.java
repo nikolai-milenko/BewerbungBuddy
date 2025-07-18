@@ -100,4 +100,36 @@ class JobAdvertisementControllerTest {
 
         verify(jobAdvertisementService).findAll();
     }
+
+    @Test
+    @DisplayName("GET /api/job-advertisements/{id} - sollte Inserat per ID zurückgeben")
+    void findById_shouldReturnDto() throws Exception {
+        JobAdvertisementResponseDto dto = new JobAdvertisementResponseDto(
+                300L,
+                "Rohtext 2",
+                "DevOps Engineer",
+                "Initech"
+        );
+        when(jobAdvertisementService.findById(300L)).thenReturn(Optional.of(dto));
+
+        mockMvc.perform(get("/api/job-advertisements/300"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id").value(300))
+                .andExpect(jsonPath("$.rawText").value("Rohtext 2"))
+                .andExpect(jsonPath("$.jobTitle").value("DevOps Engineer"))
+                .andExpect(jsonPath("$.companyName").value("Initech"));
+
+        verify(jobAdvertisementService).findById(300L);
+    }
+
+    @Test
+    @DisplayName("GET /api/job-advertisements/{id} - sollte 404 zurückgeben, wenn nicht gefunden")
+    void findById_shouldReturnNotFound() throws Exception {
+        when(jobAdvertisementService.findById(999L)).thenReturn(Optional.empty());
+
+        mockMvc.perform(get("/api/job-advertisements/999"))
+                .andExpect(status().isNotFound());
+
+        verify(jobAdvertisementService).findById(999L);
+    }
 }
