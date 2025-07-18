@@ -132,4 +132,13 @@ class JobAdvertisementControllerTest {
 
         verify(jobAdvertisementService).findById(999L);
     }
+
+    @Test
+    @DisplayName("DELETE /api/job-advertisements/{id} - sollte Inserat löschen")
+    void delete_shouldRemoveAndReturnNoContent() throws Exception {
+        mockMvc.perform(delete("/api/job-advertisements/555"))
+                .andExpect(status().isNoContent());
+
+        verify(jobAdvertisementService).deleteById(555L);
+    }
 }
