@@ -32,16 +32,6 @@ build-backend:
 test-backend:
   stage: test
   image: maven:3.9.5-eclipse-temurin-21-alpine
-  services:
-    - name: postgres:16
-      alias: db
-  variables:
-    POSTGRES_DB: bewerbungsbuddy
-    POSTGRES_USER: user
-    POSTGRES_PASSWORD: password
-    SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/bewerbungsbuddy
-    SPRING_DATASOURCE_USERNAME: user
-    SPRING_DATASOURCE_PASSWORD: password
   before_script:
     - cd backend
   script:
