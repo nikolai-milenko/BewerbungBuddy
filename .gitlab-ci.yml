@@ -5,7 +5,7 @@ stages:
 variables:
   DOCKER_DRIVER: overlay2
 
-# Backend Build & Test
+# FOR ALL BRANCHES EXCEPT MAIN
 build-backend:
   stage: build
   image: maven:3.9.5-eclipse-temurin-21-alpine
@@ -22,14 +22,27 @@ build-backend:
   before_script:
     - cd backend
   script:
-    - ./mvnw clean install
+    - ./mvnw clean install -DskipTests
   artifacts:
     when: on_success
     paths:
       - backend/target/*.jar
     expire_in: 1 week
+  except:
+    - main
 
-# Frontend Placeholder
+test-backend:
+  stage: test
+  image: maven:3.9.5-eclipse-temurin-21-alpine
+  before_script:
+    - cd backend
+  script:
+    - ./mvnw test
+  dependencies:
+    - build-backend
+  except:
+    - main
+
 build-frontend:
   stage: build
   image: alpine
@@ -37,3 +50,45 @@ build-frontend:
     - cd frontend || echo "frontend folder not found"
   script:
     - echo "No real frontend yet"
+  except:
+    - main
+
+# FOR MAIN BRANCH ONLY
+fullstack-build:
+  stage: build
+  image: maven:3.9.5-eclipse-temurin-21-alpine
+  services:
+    - name: postgres:16
+      alias: db
+  variables:
+    POSTGRES_DB: bewerbungsbuddy
+    POSTGRES_USER: user
+    POSTGRES_PASSWORD: password
+    SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/bewerbungsbuddy
+    SPRING_DATASOURCE_USERNAME: user
+    SPRING_DATASOURCE_PASSWORD: password
+  before_script:
+    - apk add --no-cache findutils sed # SED TO CHANGE LINKS IN HTML
+  script:
+    # HARDCODED STEPS FOR FULLSTACK BUILD
+    - echo "Building frontend..."
+    # COPY FRONTEND TO BACKEND
+    - rm -rf backend/src/main/resources/static || true
+    - mkdir -p backend/src/main/resources/static
+    - cp -r frontend/* backend/src/main/resources/static/
+    # CHANGE LINKS IN HTML FILES
+    - |
+      find backend/src/main/resources/static -type f -name "*.html" | while read file; do
+        echo "Rewriting links in $file"
+        sed -i -E 's/href="([a-zA-Z0-9_-]+)\.html"/href="\/\1"/g' "$file"
+      done
+    # BUILD BACKEND
+    - cd backend
+    - ./mvnw clean install -DskipTests
+  artifacts:
+    when: on_success
+    paths:
+      - backend/target/*.jar
+    expire_in: 1 week
+  only:
+    - main

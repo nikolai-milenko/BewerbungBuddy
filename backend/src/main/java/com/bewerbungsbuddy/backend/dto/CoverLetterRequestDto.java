@@ -1,4 +1,7 @@
 package com.bewerbungsbuddy.backend.dto;
 
-public record  CoverLetterRequestDto() {
-}
+public record CoverLetterRequestDto(
+        // Long userId,
+        Long cvDocumentId,
+        Long jobAdvertisementId
+) {}

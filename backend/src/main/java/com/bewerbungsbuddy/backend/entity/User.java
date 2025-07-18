@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -13,7 +14,7 @@ import java.util.List;
 @Builder
 @ToString
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 public class User {
     @Id
     @GeneratedValue(
@@ -30,35 +31,39 @@ public class User {
     @Column(name = "full_name", nullable = false)
     private String fullName;
 
-    @Column(name = "created_at",nullable = false, updatable = false)
+    @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
-    @Column(
-            name = "uploaded_at"
-    )
-    private LocalDateTime uploadedAt;
-
+    @Column(name = "updated_at")
+    private LocalDateTime updatedAt;
 
     @Column(name = "subscription_plan")
     @Enumerated(EnumType.STRING)
     private SubscriptionType subscriptionPlan;
 
-    @PrePersist
-    public void onCreate() {
-        this.createdAt = LocalDateTime.now();
-    }
+    @ToString.Exclude
+    @Builder.Default
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<CVDocument> cvDocuments = new ArrayList<>();
+
+    @ToString.Exclude
+    @Builder.Default
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<CoverLetter> coverLetters = new ArrayList<>();
+
+    @ToString.Exclude
+    @Builder.Default
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<JobAdvertisement> jobAdvertisements = new ArrayList<>();
 
     @PrePersist
     public void prePersist() {
-        this.uploadedAt = LocalDateTime.now();
+        this.createdAt = LocalDateTime.now();
+        this.updatedAt = LocalDateTime.now();
     }
 
-
-    // TODO: entity CVDocument
-    // @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    // private List<CVDocument> cvDocuments;
-
-    // TODO: entity CoverLetter
-    // @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    // private List<CoverLetter> coverLetters;
+    @PreUpdate
+    public void preUpdate() {
+        this.updatedAt = LocalDateTime.now();
+    }
 }

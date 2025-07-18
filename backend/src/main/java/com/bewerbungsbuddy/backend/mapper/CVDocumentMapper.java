@@ -6,8 +6,11 @@ import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
 public interface CVDocumentMapper {
-    // TODO: RequestDto -> Entity
+
+    // RequestDto -> Entity
+    CVDocument toEntity(com.bewerbungsbuddy.backend.dto.CVDocumentRequestDto dto);
 
     // Entity -> ResponseDto
     CVDocumentResponseDto toResponseDto(CVDocument cvDocument);
 }
+

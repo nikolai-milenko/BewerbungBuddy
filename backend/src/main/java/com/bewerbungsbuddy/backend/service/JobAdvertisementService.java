@@ -2,6 +2,7 @@ package com.bewerbungsbuddy.backend.service;
 
 import com.bewerbungsbuddy.backend.dto.JobAdvertisementRequestDto;
 import com.bewerbungsbuddy.backend.dto.JobAdvertisementResponseDto;
+import com.bewerbungsbuddy.backend.entity.User;
 import com.bewerbungsbuddy.backend.mapper.JobAdvertisementMapper;
 import com.bewerbungsbuddy.backend.entity.JobAdvertisement;
 import com.bewerbungsbuddy.backend.repository.JobAdvertisementRepository;
@@ -23,8 +24,9 @@ public class JobAdvertisementService {
         this.jobAdvertisementMapper = jobAdvertisementMapper;
     }
 
-    public JobAdvertisementResponseDto save(JobAdvertisementRequestDto requestDto) {
+    public JobAdvertisementResponseDto save(JobAdvertisementRequestDto requestDto, User user) {
         JobAdvertisement entity = jobAdvertisementMapper.toEntity(requestDto);
+        entity.setUser(user);
         JobAdvertisement saved = jobAdvertisementRepository.save(entity);
         return jobAdvertisementMapper.toDto(saved);
     }
@@ -42,5 +44,11 @@ public class JobAdvertisementService {
 
     public void deleteById(Long id) {
         jobAdvertisementRepository.deleteById(id);
+    }
+
+    public List<JobAdvertisementResponseDto> findAllByUser(User user) {
+        return jobAdvertisementRepository.findAllByUser(user).stream()
+                .map(jobAdvertisementMapper::toDto)
+                .collect(Collectors.toList());
     }
 }

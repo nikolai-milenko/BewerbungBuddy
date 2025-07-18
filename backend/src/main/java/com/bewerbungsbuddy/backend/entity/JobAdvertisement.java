@@ -18,7 +18,6 @@ public class JobAdvertisement {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Lob
     @Column(
             name = "raw_text",
             nullable = false,
@@ -40,4 +39,12 @@ public class JobAdvertisement {
 
     @OneToMany(mappedBy = "jobAdvertisement", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     private List<CVAnalysis> analyses;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
+
+    @ToString.Exclude
+    @OneToMany(mappedBy = "jobAdvertisement", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    private List<CoverLetter> coverLetters;
 }

@@ -11,7 +11,10 @@ public interface UserMapper {
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
+    @Mapping(target = "updatedAt", ignore = true)
+    @Mapping(target = "subscriptionPlan", expression = "java(com.bewerbungsbuddy.backend.entity.SubscriptionType.valueOf(dto.subscriptionPlan()))")
     User toEntity(UserRequestDto dto);
 
+    @Mapping(target = "subscriptionPlan", expression = "java(user.getSubscriptionPlan().name())")
     UserResponseDto toResponseDto(User user);
 }

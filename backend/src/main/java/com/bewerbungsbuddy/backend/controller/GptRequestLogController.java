@@ -23,7 +23,7 @@ public class GptRequestLogController {
     @PostMapping
     public ResponseEntity<Void> addLog(@RequestBody String requestPayload) {
         GptRequestLog log = GptRequestLog.builder()
-                .type(RequestType.ANALYSIS) // hardcode for now
+                .type(RequestType.CV_ANALYSIS) // hardcode for now
                 .requestPayload(requestPayload)
                 .responsePayload("stubbed response")
                 .build();
