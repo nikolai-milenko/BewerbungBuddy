@@ -64,4 +64,36 @@ class CVDocumentControllerTest {
 
         verify(cvDocumentService).saveFromFile(any(), any());
     }
+
+    @Test
+    @DisplayName("POST /api/cv/upload - sollte 400 bei leerer Datei")
+    void upload_shouldReturnBadRequest_whenEmpty() throws Exception {
+        MockMultipartFile emptyFile = new MockMultipartFile(
+                "file",
+                "",
+                MediaType.APPLICATION_PDF_VALUE,
+                new byte[0]
+        );
+
+        mockMvc.perform(multipart("/api/cv/upload").file(emptyFile))
+                .andExpect(status().isBadRequest());
+
+        verify(cvDocumentService, never()).saveFromFile(any(), any());
+    }
+
+    @Test
+    @DisplayName("POST /api/cv/upload - sollte 400 bei falschem Format")
+    void upload_shouldReturnBadRequest_whenNotPdf() throws Exception {
+        MockMultipartFile txtFile = new MockMultipartFile(
+                "file",
+                "test.txt",
+                MediaType.TEXT_PLAIN_VALUE,
+                "abc".getBytes()
+        );
+
+        mockMvc.perform(multipart("/api/cv/upload").file(txtFile))
+                .andExpect(status().isBadRequest());
+
+        verify(cvDocumentService, never()).saveFromFile(any(), any());
+    }
 }
