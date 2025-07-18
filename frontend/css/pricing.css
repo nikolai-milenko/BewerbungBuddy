@@ -94,11 +94,6 @@
   color: #666;
 }
 
-/* Hero override for subpages like pricing */
-.hero {
-  min-height: auto;
-  padding: 4rem 1rem;
-}
 
 .pricing-table-wrapper {
   background-color: #141414;
@@ -280,4 +275,11 @@ table.pricing-table {
     left: 100%;
     opacity: 0;
   }
+}
+.hero {
+  min-height: auto;    /* kein fester Käfig, wird durch Inhalt bestimmt */
+  padding: 2rem 1rem;  /* vertikaler Weißraum, horizontale “Gutter” */
+}
+.hero--compact {
+  padding: 1.5rem 1rem;   /* less vertical white‑space */
 }
