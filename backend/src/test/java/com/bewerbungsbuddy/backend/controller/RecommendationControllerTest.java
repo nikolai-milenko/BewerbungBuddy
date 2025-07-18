@@ -41,4 +41,21 @@ class RecommendationControllerTest {
 
         verify(recommendationService).addRecommendationToAnalysis(eq(5L), any());
     }
+
+    @Test
+    @DisplayName("GET /api/recommendations/{id} – sollte Liste zurückgeben")
+    void getRecommendations_shouldReturnList() throws Exception {
+        RecommendationResponseDto dto = new RecommendationResponseDto(
+                "Text der Empfehlung",
+                RecommendationCategory.ADD_KEYWORDS
+        );
+        when(recommendationService.getRecommendationsByAnalysisId(7L)).thenReturn(List.of(dto));
+
+        mockMvc.perform(get("/api/recommendations/7"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$[0].text").value("Text der Empfehlung"))
+                .andExpect(jsonPath("$[0].category").value("ADD_KEYWORDS"));
+
+        verify(recommendationService).getRecommendationsByAnalysisId(7L);
+    }
 }
