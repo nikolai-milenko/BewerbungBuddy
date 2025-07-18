@@ -10,6 +10,7 @@ import com.bewerbungsbuddy.backend.repository.CoverLetterRepository;
 import com.bewerbungsbuddy.backend.mapper.CoverLetterMapper;
 import com.bewerbungsbuddy.backend.repository.JobAdvertisementRepository;
 import com.bewerbungsbuddy.backend.repository.UserRepository;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -36,26 +37,31 @@ public class CoverLetterService {
 
     public CoverLetterResponseDto getById(Long id) {
         CoverLetter coverLetter = coverLetterRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("CoverLetter not found with id " + id));
+                .orElseThrow(() -> new EntityNotFoundException("CoverLetter not found with id " + id));
         return coverLetterMapper.toResponseDto(coverLetter);
     }
 
     @Transactional
     public CoverLetterResponseDto generate(CoverLetterRequestDto requestDto) {
-        CVDocument cvDocument = cvDocumentRepository.findById(requestDto.cvDocumentId())
-                .orElseThrow(() -> new IllegalArgumentException("CVDocument not found with id: " + requestDto.cvDocumentId()));
+        try {
+            CVDocument cvDocument = cvDocumentRepository.findById(requestDto.cvDocumentId())
+                    .orElseThrow(() -> new EntityNotFoundException("CVDocument not found"));
 
-        JobAdvertisement jobAdvertisement = jobAdvertisementRepository.findById(requestDto.jobAdvertisementId())
-                .orElseThrow(() -> new IllegalArgumentException("JobAdvertisement not found with id: " + requestDto.jobAdvertisementId()));
+            JobAdvertisement jobAdvertisement = jobAdvertisementRepository.findById(requestDto.jobAdvertisementId())
+                    .orElseThrow(() -> new EntityNotFoundException("JobAdvertisement not found"));
 
-        String generatedText = chatGptService.generateCoverLetter(cvDocument.getParsedText(), jobAdvertisement.getRawText());
-        CoverLetter coverLetter = CoverLetter.builder()
-                .generatedText(generatedText)
-                .editedText(generatedText)
-                .cvDocument(cvDocument)
-                .jobAdvertisement(jobAdvertisement)
-                .build();
+            String generatedText = chatGptService.generateCoverLetter(cvDocument.getParsedText(), jobAdvertisement.getRawText());
+            CoverLetter coverLetter = CoverLetter.builder()
+                    .generatedText(generatedText)
+                    .editedText(generatedText)
+                    .cvDocument(cvDocument)
+                    .jobAdvertisement(jobAdvertisement)
+                    .build();
 
-        return coverLetterMapper.toResponseDto(coverLetterRepository.save(coverLetter));
+            return coverLetterMapper.toResponseDto(coverLetterRepository.save(coverLetter));
+
+        } catch (Exception ex) {
+            throw new RuntimeException("Failed to generate cover letter: " + ex.getMessage());
+        }
     }
 }
