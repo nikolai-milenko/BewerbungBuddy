@@ -113,4 +113,24 @@ class CoverLetterRepositoryTest {
         assertThat(result).hasSize(1);
         assertThat(result.get(0).getJobAdvertisement().getId()).isEqualTo(job.getId());
     }
+    @Test
+    @DisplayName("findByUserId – sollte leere Liste zurückgeben wenn nichts gefunden")
+    void findByUserId_shouldReturnEmptyList() {
+        List<CoverLetter> result = coverLetterRepository.findByUserId(999L);
+        assertThat(result).isEmpty();
+    }
+
+    @Test
+    @DisplayName("findByCvDocumentId – sollte leere Liste zurückgeben wenn nichts gefunden")
+    void findByCvDocumentId_shouldReturnEmptyList() {
+        List<CoverLetter> result = coverLetterRepository.findByCvDocumentId(999L);
+        assertThat(result).isEmpty();
+    }
+
+    @Test
+    @DisplayName("findByJobAdvertisementId – sollte leere Liste zurückgeben wenn nichts gefunden")
+    void findByJobAdvertisementId_shouldReturnEmptyList() {
+        List<CoverLetter> result = coverLetterRepository.findByJobAdvertisementId(999L);
+        assertThat(result).isEmpty();
+    }
 }
