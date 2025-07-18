@@ -66,4 +66,38 @@ class JobAdvertisementControllerTest {
 
         verify(jobAdvertisementService).save(any(JobAdvertisementRequestDto.class), any(User.class));
     }
+
+    @Test
+    @DisplayName("GET /api/job-advertisements - sollte alle Inserate zurückgeben")
+    void findAll_shouldReturnList() throws Exception {
+        JobAdvertisementResponseDto dto = new JobAdvertisementResponseDto(
+                200L,
+                "Rohtext 1",
+                "Backend Engineer",
+                "Globex"
+        );
+        when(jobAdvertisementService.findAll()).thenReturn(List.of(dto));
+
+        mockMvc.perform(get("/api/job-advertisements"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$[0].id").value(200))
+                .andExpect(jsonPath("$[0].rawText").value("Rohtext 1"))
+                .andExpect(jsonPath("$[0].jobTitle").value("Backend Engineer"))
+                .andExpect(jsonPath("$[0].companyName").value("Globex"));
+
+        verify(jobAdvertisementService).findAll();
+    }
+
+    @Test
+    @DisplayName("GET /api/job-advertisements - sollte leere Liste zurückgeben")
+    void findAll_shouldReturnEmptyList() throws Exception {
+        when(jobAdvertisementService.findAll()).thenReturn(Collections.emptyList());
+
+        mockMvc.perform(get("/api/job-advertisements"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$").isArray())
+                .andExpect(jsonPath("$").isEmpty());
+
+        verify(jobAdvertisementService).findAll();
+    }
 }
