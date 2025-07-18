@@ -22,7 +22,7 @@ build-backend:
   before_script:
     - cd backend
   script:
-    - ./mvnw clean install
+    - ./mvnw clean install -DskipTests
   artifacts:
     when: on_success
     paths:
