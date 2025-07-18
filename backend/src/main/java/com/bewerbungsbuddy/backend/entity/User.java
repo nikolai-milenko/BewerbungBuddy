@@ -42,14 +42,17 @@ public class User {
     private SubscriptionType subscriptionPlan;
 
     @ToString.Exclude
+    @Builder.Default
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<CVDocument> cvDocuments = new ArrayList<>();
 
     @ToString.Exclude
+    @Builder.Default
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<CoverLetter> coverLetters = new ArrayList<>();
 
     @ToString.Exclude
+    @Builder.Default
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<JobAdvertisement> jobAdvertisements = new ArrayList<>();
 
