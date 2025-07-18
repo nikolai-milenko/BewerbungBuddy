@@ -31,12 +31,15 @@ public class CoverLetter {
     private String editedText;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "cv_document_id")
     private CVDocument cvDocument;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "job_advertisement_id")
     private JobAdvertisement jobAdvertisement;
 
     @PrePersist
