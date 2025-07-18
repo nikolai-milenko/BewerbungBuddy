@@ -82,4 +82,35 @@ class CoverLetterRepositoryTest {
         assertThat(result).hasSize(1);
         assertThat(result.get(0).getCvDocument().getId()).isEqualTo(cv.getId());
     }
+
+    @Test
+    @DisplayName("findByJobAdvertisementId – sollte Briefe für eine Jobanzeige liefern")
+    void findByJobAdvertisementId_shouldReturnLetters() {
+        User user = userRepository.save(User.builder()
+                .email("job@test.com")
+                .password("123")
+                .fullName("Job User")
+                .createdAt(LocalDateTime.now())
+                .build());
+
+        JobAdvertisement job = jobAdvertisementRepository.save(JobAdvertisement.builder()
+                .user(user)
+                .rawText("raw")
+                .jobTitle("Dev")
+                .companyName("ACME")
+                .build());
+
+        CoverLetter cl = CoverLetter.builder()
+                .user(user)
+                .jobAdvertisement(job)
+                .generatedText("gen3")
+                .editedText("edit3")
+                .build();
+        coverLetterRepository.save(cl);
+
+        List<CoverLetter> result = coverLetterRepository.findByJobAdvertisementId(job.getId());
+
+        assertThat(result).hasSize(1);
+        assertThat(result.get(0).getJobAdvertisement().getId()).isEqualTo(job.getId());
+    }
 }
