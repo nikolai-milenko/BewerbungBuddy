@@ -55,6 +55,32 @@ class CVAnalysisControllerTest {
         verify(cvAnalysisService).analyzeAndSave(any());
     }
 
+    @Test
+    @DisplayName("POST /api/cv-analysis - Sollte 400 zurückgeben, bei ungültigen Eingabedaten")
+    void analyze_shouldReturnBadRequest_whenInvalidInput() throws Exception {
+        mockMvc.perform(post("/api/cv-analysis")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{}"))
+                .andExpect(status().isBadRequest());
+
+        verify(cvAnalysisService, never()).analyzeAndSave(any());
+    }
+
+    @Test
+    @DisplayName("POST /api/cv-analysis - Sollte 404 zurückgeben, wenn CV nicht existiert")
+    void analyze_shouldReturnNotFound_whenCvNotFound() throws Exception {
+        doThrow(new EntityNotFoundException("CV-Dokument nicht gefunden"))
+                .when(cvAnalysisService).analyzeAndSave(any());
+
+        mockMvc.perform(post("/api/cv-analysis")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{\"cvDocumentId\":999,\"jobAdvertisementId\":2}"))
+                .andExpect(status().isNotFound())
+                .andExpect(content().string("CV-Dokument nicht gefunden"));
+
+        verify(cvAnalysisService).analyzeAndSave(any());
+    }
+
     // GET /api/cv-analysis/{id}
     @Test
     @DisplayName("GET /api/cv-analysis/{id} - Sollte CV-Analyse per ID zurückgeben")
@@ -75,6 +101,19 @@ class CVAnalysisControllerTest {
                 .andExpect(jsonPath("$.analysedAt").value("2023-10-06T10:15:00"));
 
         verify(cvAnalysisService).getById(1L);
+    }
+
+    @Test
+    @DisplayName("GET /api/cv-analysis/{id} - Sollte 404 zurückgeben, wenn ID nicht existiert")
+    void getById_shouldReturnNotFound_whenInvalidId() throws Exception {
+        when(cvAnalysisService.getById(999L))
+                .thenThrow(new EntityNotFoundException("Analyse nicht gefunden"));
+
+        mockMvc.perform(get("/api/cv-analysis/999"))
+                .andExpect(status().isNotFound())
+                .andExpect(content().string("Analyse nicht gefunden"));
+
+        verify(cvAnalysisService).getById(999L);
     }
 
     // GET /api/cv-analysis/cv/{cvDocumentId}
@@ -105,6 +144,19 @@ class CVAnalysisControllerTest {
         verify(cvAnalysisService).getAllByCvDocumentId(1L);
     }
 
+    @Test
+    @DisplayName("GET /api/cv-analysis/cv/{cvDocumentId} - Sollte leere Liste zurückgeben, wenn keine Analysen existieren")
+    void getAllByCvDocumentId_shouldReturnEmptyList_whenNoData() throws Exception {
+        when(cvAnalysisService.getAllByCvDocumentId(1L)).thenReturn(Collections.emptyList());
+
+        mockMvc.perform(get("/api/cv-analysis/cv/1"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$").isArray())
+                .andExpect(jsonPath("$").isEmpty());
+
+        verify(cvAnalysisService).getAllByCvDocumentId(1L);
+    }
+
     // GET /api/cv-analysis/job/{jobAdvertisementId}
     @Test
     @DisplayName("GET /api/cv-analysis/job/{jobAdvertisementId} - Sollte alle Analysen für Stellenanzeige zurückgeben")
@@ -124,6 +176,19 @@ class CVAnalysisControllerTest {
                 .andExpect(jsonPath("$[0].analysedAt").value("2023-10-07T16:45:00"));
 
         verify(cvAnalysisService).getAllByJobAdvertisementId(2L);
+    }
+
+    @Test
+    @DisplayName("GET /api/cv-analysis/job/{jobAdvertisementId} - Sollte 404 zurückgeben, wenn Stellenanzeige nicht existiert")
+    void getAllByJobAdvertisementId_shouldReturnNotFound_whenJobNotFound() throws Exception {
+        when(cvAnalysisService.getAllByJobAdvertisementId(999L))
+                .thenThrow(new EntityNotFoundException("Stellenanzeige nicht gefunden"));
+
+        mockMvc.perform(get("/api/cv-analysis/job/999"))
+                .andExpect(status().isNotFound())
+                .andExpect(content().string("Stellenanzeige nicht gefunden"));
+
+        verify(cvAnalysisService).getAllByJobAdvertisementId(999L);
     }
 
     // DELETE /api/cv-analysis/{id}
