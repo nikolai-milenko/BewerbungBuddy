@@ -58,4 +58,17 @@ class RecommendationControllerTest {
 
         verify(recommendationService).getRecommendationsByAnalysisId(7L);
     }
+
+    @Test
+    @DisplayName("GET /api/recommendations/{id} – sollte leere Liste zurückgeben")
+    void getRecommendations_shouldReturnEmpty() throws Exception {
+        when(recommendationService.getRecommendationsByAnalysisId(9L)).thenReturn(Collections.emptyList());
+
+        mockMvc.perform(get("/api/recommendations/9"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$").isArray())
+                .andExpect(jsonPath("$").isEmpty());
+
+        verify(recommendationService).getRecommendationsByAnalysisId(9L);
+    }
 }
