@@ -96,4 +96,26 @@ class CVDocumentControllerTest {
 
         verify(cvDocumentService, never()).saveFromFile(any(), any());
     }
+
+    @Test
+    @DisplayName("POST /api/cv/upload - sollte 500 wenn Service wirft Exception")
+    void upload_shouldReturnInternalError_whenServiceFails() throws Exception {
+        when(userRepository.findById(6L)).thenReturn(Optional.of(new User()));
+
+        when(cvDocumentService.saveFromFile(any(), any()))
+                .thenThrow(new RuntimeException("Keine Benutzer gefunden"));
+
+        MockMultipartFile file = new MockMultipartFile(
+                "file",
+                "lebenslauf.pdf",
+                MediaType.APPLICATION_PDF_VALUE,
+                "dummy".getBytes()
+        );
+
+        mockMvc.perform(multipart("/api/cv/upload").file(file))
+                .andExpect(status().isInternalServerError())
+                .andExpect(content().string("Keine Benutzer gefunden"));
+
+        verify(cvDocumentService).saveFromFile(any(), any());
+    }
 }
