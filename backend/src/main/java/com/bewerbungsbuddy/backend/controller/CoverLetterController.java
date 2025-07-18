@@ -3,10 +3,10 @@ package com.bewerbungsbuddy.backend.controller;
 import com.bewerbungsbuddy.backend.dto.CoverLetterRequestDto;
 import com.bewerbungsbuddy.backend.dto.CoverLetterResponseDto;
 import com.bewerbungsbuddy.backend.service.CoverLetterService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
-
+import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
@@ -14,7 +14,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CoverLetterController {
     private final CoverLetterService coverLetterService;
-
 
     @GetMapping
     public ResponseEntity<List<CoverLetterResponseDto>> getAll() {
@@ -27,7 +26,7 @@ public class CoverLetterController {
     }
 
     @PostMapping
-    public ResponseEntity<CoverLetterResponseDto> generate(@RequestBody CoverLetterRequestDto dto) {
+    public ResponseEntity<CoverLetterResponseDto> generate(@Valid @RequestBody CoverLetterRequestDto dto) {
         return ResponseEntity.ok(coverLetterService.generate(dto));
     }
 }
