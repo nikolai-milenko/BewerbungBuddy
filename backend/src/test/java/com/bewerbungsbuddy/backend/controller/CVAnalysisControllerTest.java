@@ -200,4 +200,30 @@ class CVAnalysisControllerTest {
 
         verify(cvAnalysisService).deleteById(1L);
     }
+
+    @Test
+    @DisplayName("DELETE /api/cv-analysis/{id} - Sollte 404 zurückgeben, wenn Analyse nicht existiert")
+    void deleteById_shouldReturnNotFound_whenInvalidId() throws Exception {
+        doThrow(new EntityNotFoundException("Analyse nicht gefunden"))
+                .when(cvAnalysisService).deleteById(999L);
+
+        mockMvc.perform(delete("/api/cv-analysis/999"))
+                .andExpect(status().isNotFound())
+                .andExpect(content().string("Analyse nicht gefunden"));
+
+        verify(cvAnalysisService).deleteById(999L);
+    }
+
+    @Test
+    @DisplayName("DELETE /api/cv-analysis/{id} - Sollte 500 zurückgeben, bei Serverfehlern")
+    void deleteById_shouldReturnInternalError_whenServiceFails() throws Exception {
+        doThrow(new RuntimeException("Datenbankfehler beim Löschen"))
+                .when(cvAnalysisService).deleteById(1L);
+
+        mockMvc.perform(delete("/api/cv-analysis/1"))
+                .andExpect(status().isInternalServerError())
+                .andExpect(content().string("Datenbankfehler beim Löschen"));
+
+        verify(cvAnalysisService).deleteById(1L);
+    }
 }
