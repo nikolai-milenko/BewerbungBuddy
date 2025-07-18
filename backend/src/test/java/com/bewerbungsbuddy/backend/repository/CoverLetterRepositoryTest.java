@@ -51,4 +51,35 @@ class CoverLetterRepositoryTest {
         assertThat(result).hasSize(1);
         assertThat(result.get(0).getUser().getId()).isEqualTo(user.getId());
     }
+
+    @Test
+    @DisplayName("findByCvDocumentId – sollte Briefe für ein CV liefern")
+    void findByCvDocumentId_shouldReturnLetters() {
+        User user = userRepository.save(User.builder()
+                .email("cv@test.com")
+                .password("123")
+                .fullName("Cv User")
+                .createdAt(LocalDateTime.now())
+                .build());
+
+        CVDocument cv = cvDocumentRepository.save(CVDocument.builder()
+                .user(user)
+                .filename("file.pdf")
+                .uploadedAt(LocalDateTime.now())
+                .parsedText("text")
+                .build());
+
+        CoverLetter cl = CoverLetter.builder()
+                .user(user)
+                .cvDocument(cv)
+                .generatedText("gen2")
+                .editedText("edit2")
+                .build();
+        coverLetterRepository.save(cl);
+
+        List<CoverLetter> result = coverLetterRepository.findByCvDocumentId(cv.getId());
+
+        assertThat(result).hasSize(1);
+        assertThat(result.get(0).getCvDocument().getId()).isEqualTo(cv.getId());
+    }
 }
