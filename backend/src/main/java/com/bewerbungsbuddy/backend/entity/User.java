@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -42,15 +43,15 @@ public class User {
 
     @ToString.Exclude
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<CVDocument> cvDocuments;
+    private List<CVDocument> cvDocuments = new ArrayList<>();
 
     @ToString.Exclude
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<CoverLetter> coverLetters;
+    private List<CoverLetter> coverLetters = new ArrayList<>();
 
     @ToString.Exclude
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<JobAdvertisement> jobAdvertisements;
+    private List<JobAdvertisement> jobAdvertisements = new ArrayList<>();
 
     @PrePersist
     public void prePersist() {
