@@ -77,6 +77,34 @@ class CVAnalysisControllerTest {
         verify(cvAnalysisService).getById(1L);
     }
 
+    // GET /api/cv-analysis/cv/{cvDocumentId}
+    @Test
+    @DisplayName("GET /api/cv-analysis/cv/{cvDocumentId} - Sollte alle Analysen für CV zurückgeben")
+    void getAllByCvDocumentId_shouldReturnAnalysesForCv() throws Exception {
+        CVAnalysisResponseDto dto1 = new CVAnalysisResponseDto(
+                8.0,
+                List.of("Java-Kenntnisse"),
+                List.of("Wenig Cloud-Erfahrung"),
+                LocalDateTime.parse("2023-10-04T09:00:00")
+        );
+        CVAnalysisResponseDto dto2 = new CVAnalysisResponseDto(
+                9.2,
+                List.of("Agile Methoden"),
+                List.of("Keine Führungserfahrung"),
+                LocalDateTime.parse("2023-10-05T11:30:00")
+        );
+        when(cvAnalysisService.getAllByCvDocumentId(1L)).thenReturn(List.of(dto1, dto2));
+
+        mockMvc.perform(get("/api/cv-analysis/cv/1"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$[0].matchScore").value(8.0))
+                .andExpect(jsonPath("$[1].matchScore").value(9.2))
+                .andExpect(jsonPath("$[0].strengths[0]").value("Java-Kenntnisse"))
+                .andExpect(jsonPath("$[1].weaknesses[0]").value("Keine Führungserfahrung"));
+
+        verify(cvAnalysisService).getAllByCvDocumentId(1L);
+    }
+
     // GET /api/cv-analysis/job/{jobAdvertisementId}
     @Test
     @DisplayName("GET /api/cv-analysis/job/{jobAdvertisementId} - Sollte alle Analysen für Stellenanzeige zurückgeben")
