@@ -81,4 +81,25 @@ public class JobAdvertisementServiceTest {
         assertEquals("Dev", result.get(0).jobTitle());
         verify(repository).findAll();
     }
+
+    @Test
+    void findById_shouldReturnDtoIfExists() {
+        JobAdvertisement entity = JobAdvertisement.builder()
+                .id(1L)
+                .rawText("raw")
+                .jobTitle("Dev")
+                .companyName("X")
+                .build();
+        JobAdvertisementResponseDto dto = new JobAdvertisementResponseDto(1L, "raw", "Dev", "X");
+
+        when(repository.findById(1L)).thenReturn(Optional.of(entity));
+        when(mapper.toDto(entity)).thenReturn(dto);
+
+        Optional<JobAdvertisementResponseDto> result = jobAdvertisementService.findById(1L);
+
+        assertTrue(result.isPresent());
+        assertEquals("Dev", result.get().jobTitle());
+        verify(repository).findById(1L);
+    }
+    
 }
