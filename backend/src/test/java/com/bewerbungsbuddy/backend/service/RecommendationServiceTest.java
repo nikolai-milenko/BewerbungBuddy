@@ -54,5 +54,19 @@ public class RecommendationServiceTest {
         assertEquals(analysis, recommendation.getCvAnalysis());
         verify(recommendationRepository).save(recommendation);
     }
+
+    @Test
+    void addRecommendationToAnalysis_shouldThrowIfAnalysisNotFound() {
+        when(cvAnalysisRepository.findById(999L)).thenReturn(Optional.empty());
+
+        Recommendation recommendation = Recommendation.builder()
+                .text("Test")
+                .category(RecommendationCategory.ADD_KEYWORDS)
+                .build();
+
+        assertThrows(IllegalArgumentException.class, () ->
+                recommendationService.addRecommendationToAnalysis(999L, recommendation));
+    }
+
     
 }
