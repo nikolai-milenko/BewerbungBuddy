@@ -44,7 +44,7 @@ class UserServiceTest {
         when(userMapper.toEntity(dto)).thenReturn(mappedUser);
         when(passwordEncoder.encode(dto.password())).thenReturn("encodedPass");
         when(userRepository.save(mappedUser)).thenReturn(savedUser);
-        when(userMapper.toResponseDto(savedUser)).thenReturn(new UserResponseDto());
+        when(userMapper.toResponseDto(savedUser)).thenReturn(new UserResponseDto(1L, "test@example.com", "Test User", "FREE"));
 
         UserResponseDto result = userService.register(dto);
 
@@ -73,7 +73,7 @@ class UserServiceTest {
 
         when(userRepository.findByEmail(email)).thenReturn(Optional.of(user));
         when(passwordEncoder.matches(rawPassword, user.getPassword())).thenReturn(true);
-        when(userMapper.toResponseDto(user)).thenReturn(new UserResponseDto());
+        when(userMapper.toResponseDto(user)).thenReturn(new UserResponseDto(1L, "test@example.com", "Test User", "FREE"));
 
         UserResponseDto result = userService.login(email, rawPassword);
 

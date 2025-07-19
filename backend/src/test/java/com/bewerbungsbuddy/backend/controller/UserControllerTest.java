@@ -40,7 +40,7 @@ class UserControllerTest {
     void register_shouldReturnOk() throws Exception {
         UserRequestDto request = new UserRequestDto("email@test.com", "pass", "Name", "FREE");
 
-        UserResponseDto response = new UserResponseDto();
+        UserResponseDto response = new UserResponseDto(1L, "test@example.com", "Test User", "FREE");
 
         when(userService.register(Mockito.any())).thenReturn(response);
 
