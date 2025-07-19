@@ -56,4 +56,19 @@ public class CVDocumentServiceTest {
         assertEquals("cv.pdf", result.get(0).filename());
         verify(repository).findAll();
     }
+
+    @Test
+    void getById_shouldReturnDto_whenFound() {
+        CVDocument doc = CVDocument.builder().id(1L).filename("cv.pdf").parsedText("Text").build();
+        CVDocumentResponseDto dto = new CVDocumentResponseDto(1L, "cv.pdf", null, "Text");
+
+        when(repository.findById(1L)).thenReturn(Optional.of(doc));
+        when(mapper.toResponseDto(doc)).thenReturn(dto);
+
+        CVDocumentResponseDto result = cvDocumentService.getById(1L);
+
+        assertEquals("cv.pdf", result.filename());
+        verify(repository).findById(1L);
+    }
+    
 }
