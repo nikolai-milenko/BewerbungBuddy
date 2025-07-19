@@ -70,5 +70,12 @@ public class CVDocumentServiceTest {
         assertEquals("cv.pdf", result.filename());
         verify(repository).findById(1L);
     }
+
+    @Test
+    void getById_shouldThrow_whenNotFound() {
+        when(repository.findById(999L)).thenReturn(Optional.empty());
+
+        assertThrows(EntityNotFoundException.class, () -> cvDocumentService.getById(999L));
+    }
     
 }
