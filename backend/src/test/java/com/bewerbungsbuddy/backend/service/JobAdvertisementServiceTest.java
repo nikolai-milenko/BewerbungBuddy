@@ -101,5 +101,15 @@ public class JobAdvertisementServiceTest {
         assertEquals("Dev", result.get().jobTitle());
         verify(repository).findById(1L);
     }
+
+    @Test
+    void findById_shouldReturnEmptyIfNotFound() {
+        when(repository.findById(999L)).thenReturn(Optional.empty());
+
+        Optional<JobAdvertisementResponseDto> result = jobAdvertisementService.findById(999L);
+
+        assertTrue(result.isEmpty());
+    }
+
     
 }
