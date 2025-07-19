@@ -68,5 +68,26 @@ public class RecommendationServiceTest {
                 recommendationService.addRecommendationToAnalysis(999L, recommendation));
     }
 
-    
+    @Test
+    void getRecommendationsByAnalysisId_shouldReturnListOfDtos() {
+        Long cvAnalysisId = 1L;
+
+        Recommendation rec1 = Recommendation.builder()
+                .text("Highlight achievements")
+                .category(RecommendationCategory.HIGHLIGHT_ACHIEVEMENTS)
+                .build();
+
+        RecommendationResponseDto dto1 = new RecommendationResponseDto("Highlight achievements", RecommendationCategory.HIGHLIGHT_ACHIEVEMENTS);
+
+        when(recommendationRepository.findAllByCvAnalysis_Id(cvAnalysisId)).thenReturn(List.of(rec1));
+        when(recommendationMapper.toResponseDto(rec1)).thenReturn(dto1);
+
+        List<RecommendationResponseDto> result = recommendationService.getRecommendationsByAnalysisId(cvAnalysisId);
+
+        assertEquals(1, result.size());
+        assertEquals("Highlight achievements", result.get(0).text());
+        verify(recommendationRepository).findAllByCvAnalysis_Id(cvAnalysisId);
+        verify(recommendationMapper).toResponseDto(rec1);
+    }
+
 }
