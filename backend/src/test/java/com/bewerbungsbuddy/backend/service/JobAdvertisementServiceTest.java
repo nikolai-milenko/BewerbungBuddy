@@ -111,5 +111,11 @@ public class JobAdvertisementServiceTest {
         assertTrue(result.isEmpty());
     }
 
+    @Test
+    void deleteById_shouldCallRepositoryDelete() {
+        jobAdvertisementService.deleteById(5L);
+        verify(repository).deleteById(5L);
+    }
+
     
 }
