@@ -62,5 +62,23 @@ public class JobAdvertisementServiceTest {
         verify(repository).save(entity);
     }
 
-    
+    @Test
+    void findAll_shouldReturnListOfDtos() {
+        JobAdvertisement entity = JobAdvertisement.builder()
+                .id(1L)
+                .rawText("raw")
+                .jobTitle("Dev")
+                .companyName("X")
+                .build();
+        JobAdvertisementResponseDto dto = new JobAdvertisementResponseDto(1L, "raw", "Dev", "X");
+
+        when(repository.findAll()).thenReturn(List.of(entity));
+        when(mapper.toDto(entity)).thenReturn(dto);
+
+        List<JobAdvertisementResponseDto> result = jobAdvertisementService.findAll();
+
+        assertEquals(1, result.size());
+        assertEquals("Dev", result.get(0).jobTitle());
+        verify(repository).findAll();
+    }
 }
