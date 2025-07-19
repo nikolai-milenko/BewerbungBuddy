@@ -1,10 +1,9 @@
-package com.bewerbungsbuddy.backend.coverletter;
+package com.bewerbungsbuddy.backend.service;
 
 import com.bewerbungsbuddy.backend.dto.CoverLetterResponseDto;
 import com.bewerbungsbuddy.backend.entity.CoverLetter;
 import com.bewerbungsbuddy.backend.mapper.CoverLetterMapper;
 import com.bewerbungsbuddy.backend.repository.CoverLetterRepository;
-import com.bewerbungsbuddy.backend.service.CoverLetterService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.*;

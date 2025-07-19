@@ -1,6 +1,5 @@
-package com.bewerbungsbuddy.backend.user;
+package com.bewerbungsbuddy.backend.controller;
 
-import com.bewerbungsbuddy.backend.controller.UserController;
 import com.bewerbungsbuddy.backend.dto.UserRequestDto;
 import com.bewerbungsbuddy.backend.dto.UserResponseDto;
 import com.bewerbungsbuddy.backend.service.UserService;

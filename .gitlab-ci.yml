@@ -76,13 +76,12 @@ fullstack-build:
     - rm -rf backend/src/main/resources/static || true
     - mkdir -p backend/src/main/resources/static
     - |
-  if [ "$(ls -A frontend | grep -v '^\.\.*$')" ]; then
-    echo "Copying frontend files..."
-    cp -r frontend/* backend/src/main/resources/static/
-  else
-    echo "No visible frontend files, skipping copy"
-  fi
-
+      if [ "$(ls -A frontend | grep -v '^\.\.*$')" ]; then
+        echo "Copying frontend files..."
+        cp -r frontend/* backend/src/main/resources/static/
+      else
+        echo "No visible frontend files, skipping copy"
+      fi
     # CHANGE LINKS IN HTML FILES
     - |
       find backend/src/main/resources/static -type f -name "*.html" | while read file; do

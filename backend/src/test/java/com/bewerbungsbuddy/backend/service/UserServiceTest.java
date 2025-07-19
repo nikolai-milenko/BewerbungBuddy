@@ -1,11 +1,10 @@
-package com.bewerbungsbuddy.backend.user;
+package com.bewerbungsbuddy.backend.service;
 
 import com.bewerbungsbuddy.backend.dto.UserRequestDto;
 import com.bewerbungsbuddy.backend.dto.UserResponseDto;
 import com.bewerbungsbuddy.backend.entity.User;
 import com.bewerbungsbuddy.backend.mapper.UserMapper;
 import com.bewerbungsbuddy.backend.repository.UserRepository;
-import com.bewerbungsbuddy.backend.service.UserService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.*;
