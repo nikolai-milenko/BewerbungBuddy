@@ -77,5 +77,29 @@ public class CVDocumentServiceTest {
 
         assertThrows(EntityNotFoundException.class, () -> cvDocumentService.getById(999L));
     }
+
+    @Test
+    void saveFromFile_shouldParseAndSave() {
+        // Arrange
+        String content = "PDF text content";
+        MultipartFile file = new MockMultipartFile("file", "cv.pdf", "application/pdf", content.getBytes());
+        User user = new User();
+        user.setId(42L);
+
+        CVDocument saved = CVDocument.builder().id(10L).filename("cv.pdf").parsedText("").user(user).build();
+        CVDocumentResponseDto dto = new CVDocumentResponseDto(10L, "cv.pdf", null, "");
+
+        when(repository.save(any())).thenReturn(saved);
+        when(mapper.toResponseDto(saved)).thenReturn(dto);
+
+        // Act
+        CVDocumentResponseDto result = cvDocumentService.saveFromFile(file, user);
+
+        // Assert
+        assertNotNull(result);
+        assertEquals("cv.pdf", result.filename());
+        verify(repository).save(any());
+        verify(mapper).toResponseDto(saved);
+    }
     
 }
