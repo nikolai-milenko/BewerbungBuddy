@@ -101,5 +101,21 @@ public class CVDocumentServiceTest {
         verify(repository).save(any());
         verify(mapper).toResponseDto(saved);
     }
-    
+
+    @Test
+    void saveFromFile_shouldHandleEmptyFile() {
+        MultipartFile file = new MockMultipartFile("file", "empty.pdf", "application/pdf", new byte[0]);
+        User user = new User();
+
+        CVDocument saved = CVDocument.builder().id(5L).filename("empty.pdf").parsedText("").user(user).build();
+        CVDocumentResponseDto dto = new CVDocumentResponseDto(5L, "empty.pdf", null, "");
+
+        when(repository.save(any())).thenReturn(saved);
+        when(mapper.toResponseDto(saved)).thenReturn(dto);
+
+        CVDocumentResponseDto result = cvDocumentService.saveFromFile(file, user);
+
+        assertEquals("empty.pdf", result.filename());
+        assertEquals("", result.parsedText());
+    }
 }
