@@ -117,5 +117,26 @@ public class JobAdvertisementServiceTest {
         verify(repository).deleteById(5L);
     }
 
-    
+    @Test
+    void findAllByUser_shouldReturnListOfDtos() {
+        User user = new User();
+        JobAdvertisement entity = JobAdvertisement.builder()
+                .id(1L)
+                .rawText("text")
+                .jobTitle("Title")
+                .companyName("Comp")
+                .user(user)
+                .build();
+        JobAdvertisementResponseDto dto = new JobAdvertisementResponseDto(1L, "text", "Title", "Comp");
+
+        when(repository.findAllByUser(user)).thenReturn(List.of(entity));
+        when(mapper.toDto(entity)).thenReturn(dto);
+
+        List<JobAdvertisementResponseDto> result = jobAdvertisementService.findAllByUser(user);
+
+        assertEquals(1, result.size());
+        assertEquals("Title", result.get(0).jobTitle());
+        verify(repository).findAllByUser(user);
+    }
+
 }
