@@ -3,6 +3,7 @@ package com.bewerbungsbuddy.backend.controller;
 import com.bewerbungsbuddy.backend.dto.CVAnalysisRequestDto;
 import com.bewerbungsbuddy.backend.dto.CVAnalysisResponseDto;
 import com.bewerbungsbuddy.backend.service.CVAnalysisService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +18,7 @@ public class CVAnalysisController {
     private final CVAnalysisService cvAnalysisService;
 
     @PostMapping
-    public ResponseEntity<CVAnalysisResponseDto> analyze(@RequestBody CVAnalysisRequestDto requestDto) {
+    public ResponseEntity<CVAnalysisResponseDto> analyze(@Valid @RequestBody CVAnalysisRequestDto requestDto) {
         return ResponseEntity.ok(cvAnalysisService.analyzeAndSave(requestDto));
     }
 
