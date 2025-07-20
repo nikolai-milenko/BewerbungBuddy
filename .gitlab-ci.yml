@@ -98,3 +98,26 @@ fullstack-build:
     expire_in: 1 week
   only:
     - main
+
+release:
+  stage: deploy
+  image: curlimages/curl:latest
+  script:
+    - VERSION="$(date +%Y%m%d%H%M)"   # или свой способ генерить версию
+    - git tag "$VERSION"
+    - git push origin "$VERSION"
+    - |
+      echo "Creating GitLab release for $VERSION"
+      curl --request POST --header "PRIVATE-TOKEN: $GITLAB_TOKEN" \
+        --header "Content-Type: application/json" \
+        --data "{
+          \"name\": \"Release $VERSION\",
+          \"tag_name\": \"$VERSION\",
+          \"description\": \"Auto-generated release from main\"
+        }" \
+        "https://gitlab.example.com/api/v4/projects/$CI_PROJECT_ID/releases"
+  needs:
+    - job: fullstack-build
+      artifacts: true
+  only:
+    - main
