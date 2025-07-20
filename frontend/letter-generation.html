@@ -74,11 +74,16 @@
             <div class="col-md-6 d-flex flex-column">
               <label for="pdfUpload" class="form-label visually-hidden">PDF hochladen</label>
               <div class="upload-box flex-grow-1 d-flex flex-column justify-content-center align-items-center text-center mb-3">
-                <i class="fas fa-upload fa-3x mb-3 "></i>
-                <p class="">PDF-Datei hierher ziehen oder klicken, um hochzuladen</p>
+                <i class="fas fa-upload fa-3x mb-3"></i>
+                <p>PDF-Datei hierher ziehen oder klicken, um hochzuladen</p>
                 <input type="file" id="pdfUpload" accept="application/pdf" class="form-control visually-hidden">
               </div>
-              <button class="btn btn-primary mt-3" id="step1NextBtn" onclick="goToStep(2)" disabled="">Weiter</button>
+            
+              <button class="btn btn-primary mt-3" id="step1NextBtn" onclick="goToStep(2)" disabled>Weiter</button>
+              <!-- Dev‑Bypass Button -->
+              <button class="btn btn-outline-secondary mt-2" id="skipUploadBtn">
+                DEV‑Bypass: Schritt überspringen
+              </button>
             </div>
           </div>
         </div>
