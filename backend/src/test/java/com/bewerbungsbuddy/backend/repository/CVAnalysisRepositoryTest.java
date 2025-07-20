@@ -66,5 +66,45 @@ public class CVAnalysisRepositoryTest {
         assertThat(result.get(0).getCvDocument().getId()).isEqualTo(cv.getId());
     }
 
+    @Test
+    @DisplayName("findAllByJobAdvertisement_Id — should return correct analyses")
+    void findAllByJobAdvertisementId_shouldReturnResults() {
+        User user = userRepository.save(User.builder()
+                .email("job@test.com")
+                .password("pass")
+                .fullName("Job User")
+                .createdAt(LocalDateTime.now())
+                .build());
 
+        CVDocument cv = cvDocumentRepository.save(CVDocument.builder()
+                .user(user)
+                .filename("cv2.pdf")
+                .parsedText("text")
+                .uploadedAt(LocalDateTime.now())
+                .build());
+
+        JobAdvertisement job = jobAdvertisementRepository.save(JobAdvertisement.builder()
+                .user(user)
+                .rawText("raw text")
+                .companyName("Biz")
+                .jobTitle("Dev")
+                .build());
+
+        CVAnalysis analysis = CVAnalysis.builder()
+                .cvDocument(cv)
+                .jobAdvertisement(job)
+                .matchScore(75.0)
+                .strengths(List.of())
+                .weaknesses(List.of())
+                .build();
+
+        cvAnalysisRepository.save(analysis);
+
+        List<CVAnalysis> result = cvAnalysisRepository.findAllByJobAdvertisement_Id(job.getId());
+
+        assertThat(result).hasSize(1);
+        assertThat(result.get(0).getJobAdvertisement().getId()).isEqualTo(job.getId());
+    }
+
+    
 }
