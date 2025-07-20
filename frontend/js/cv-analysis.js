@@ -269,3 +269,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 });
+document.addEventListener('DOMContentLoaded', () => {
+  const popoverTriggerList = Array.from(
+    document.querySelectorAll('[data-bs-toggle="popover"]')
+  );
+  popoverTriggerList.forEach(el => new bootstrap.Popover(el));
+});
