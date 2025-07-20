@@ -8,6 +8,11 @@
   align-items: stretch;
 }
 
+.hero {
+  min-height: auto;
+  padding: 4rem 1rem;
+}
+
 .pricing-card {
   background: var(--bg-dark);
   border: 1px solid var(--border-muted);
@@ -20,6 +25,8 @@
   min-height: 100%;
   transition: border-color 0.3s, transform 0.2s;
 }
+
+
 
 .pricing-card:hover {
   border-color: var(--accent-blue);
@@ -275,11 +282,4 @@ table.pricing-table {
     left: 100%;
     opacity: 0;
   }
-}
-.hero {
-  min-height: auto;    /* kein fester Käfig, wird durch Inhalt bestimmt */
-  padding: 2rem 1rem;  /* vertikaler Weißraum, horizontale “Gutter” */
-}
-.hero--compact {
-  padding: 1.5rem 1rem;   /* less vertical white‑space */
 }
