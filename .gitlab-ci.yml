@@ -102,7 +102,9 @@ fullstack-build:
 
 release:
   stage: deploy
-  image: curlimages/curl:latest
+  image: alpine/git
+  before_script:
+    - apk add --no-cache curl
   script:
     - VERSION="$(date +%Y%m%d%H%M)"   # или свой способ генерить версию
     - git tag "$VERSION"
