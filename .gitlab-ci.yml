@@ -77,7 +77,7 @@ fullstack-build:
     - rm -rf backend/src/main/resources/static || true
     - mkdir -p backend/src/main/resources/static
     - |
-      if [ "$(ls -A frontend | grep -v '^\.\.*$')" ]; then
+      if [ "$(ls -A frontend | grep -v '^\..*')" ]; then
         echo "Copying frontend files..."
         cp -r frontend/* backend/src/main/resources/static/
       else
