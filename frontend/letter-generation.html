@@ -87,14 +87,24 @@
             </div>
           </div>
         </div>
+        
+        
         <div id="wizardStep2" class="wizard-step d-none">
-          <h4>2. Stellenanzeige einfügen</h4>
-          <!-- Guideline Text -->
-          <div class="mb-3">
-            <small class="text-muted">
-              Bitte füge hier den vollständigen Ausschreibungstext ein – inklusive Aufgaben, Anforderungen und Unternehmensinfos. Je detaillierter, desto besser können wir dein Anschreiben darauf zuschneiden.
-            </small>
-          </div>
+          <h4 class="d-flex align-items-center">
+            2. Stellenanzeige einfügen
+            <i
+            class="fas fa-question-circle text-white ms-2"
+            role="button"
+            tabindex="0"
+            data-bs-toggle="popover"
+            data-bs-trigger="hover focus"
+            data-bs-placement="right"
+            data-bs-theme="dark"
+            data-bs-content="Berufsbezeichnung z.B. Lehrer, IT‑Manager oder Kommissar"
+          ></i>
+          
+          </h4>
+        
           <textarea
             id="jobDescriptionInput"
             class="form-control mb-3"
