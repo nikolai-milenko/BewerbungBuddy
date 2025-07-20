@@ -70,7 +70,7 @@ frontend/
 ├── css/
 ├── js/
 ├── img/
-
+```
 
 ## 🧪 Release & Installation
 
