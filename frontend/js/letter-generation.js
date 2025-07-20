@@ -248,22 +248,6 @@ if (skipBtn) {
     goToStep(2);
   });
 }
-// —————— DEVELOPMENT BYPASS ——————
-// Set to true to skip actual PDF upload and allow flow to continue without backend
-const DEV_SKIP_UPLOAD = true;
-
-if (DEV_SKIP_UPLOAD) {
-  window.uploadedCvId = 'DUMMY_CV_ID';
-  document.addEventListener('DOMContentLoaded', () => {
-    const nextBtn = document.getElementById('step1NextBtn');
-    if (nextBtn) {
-      nextBtn.disabled = false;
-      goToStep(2); // automatisch Schritt 2 anzeigen
-    }
-  });
-}
-// ——————————————————————————————
-
 document.addEventListener('DOMContentLoaded', () => {
   const popoverTriggerList = Array.from(
     document.querySelectorAll('[data-bs-toggle="popover"]')
