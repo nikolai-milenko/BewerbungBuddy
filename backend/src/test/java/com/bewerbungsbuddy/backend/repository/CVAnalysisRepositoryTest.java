@@ -147,5 +147,49 @@ public class CVAnalysisRepositoryTest {
         assertThat(result.get(0).getJobAdvertisement().getId()).isEqualTo(job.getId());
     }
 
-    
+    @Test
+    @DisplayName("findAllByMatchScoreGreaterThanEqual — should return filtered analyses")
+    void findAllByMatchScoreAboveThreshold_shouldReturnResults() {
+        User user = userRepository.save(User.builder()
+                .email("score@test.com")
+                .password("pass")
+                .fullName("Score User")
+                .createdAt(LocalDateTime.now())
+                .build());
+
+        CVDocument cv = cvDocumentRepository.save(CVDocument.builder()
+                .user(user)
+                .filename("cv-score.pdf")
+                .parsedText("text")
+                .uploadedAt(LocalDateTime.now())
+                .build());
+
+        JobAdvertisement job = jobAdvertisementRepository.save(JobAdvertisement.builder()
+                .user(user)
+                .rawText("text")
+                .companyName("Company")
+                .jobTitle("Position")
+                .build());
+
+        cvAnalysisRepository.save(CVAnalysis.builder()
+                .cvDocument(cv)
+                .jobAdvertisement(job)
+                .matchScore(90.0)
+                .strengths(List.of())
+                .weaknesses(List.of())
+                .build());
+
+        cvAnalysisRepository.save(CVAnalysis.builder()
+                .cvDocument(cv)
+                .jobAdvertisement(job)
+                .matchScore(60.0)
+                .strengths(List.of())
+                .weaknesses(List.of())
+                .build());
+
+        List<CVAnalysis> result = cvAnalysisRepository.findAllByMatchScoreGreaterThanEqual(80.0);
+
+        assertThat(result).hasSize(1);
+        assertThat(result.get(0).getMatchScore()).isGreaterThanOrEqualTo(80.0);
+    }
 }
