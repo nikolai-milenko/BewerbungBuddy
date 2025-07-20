@@ -49,7 +49,7 @@ Der Service kann über den folgenden Link getestet werden:
 
 ## 🛠️ Technologie-Stack
 
-- **Backend:** Java, Spring Boot, JPA, Maven  
+- **Backend:** Java21, Spring Boot, JPA, Maven  
 - **Frontend:** HTML, CSS, Javascript
 - **Datenbank:** PostgreSQL  
 - **CI/CD:** GitLab CI  
@@ -71,4 +71,19 @@ frontend/
 ├── js/
 ├── img/
 
+
+## 🧪 Release & Installation
+
+Die Anwendung wird bei jedem Commit auf `main` automatisch gebaut und als **Release** veröffentlicht.
+
+📥 **Letzte Version herunterladen:**
+👉 [Releases auf GitLab ansehen](https://git.ce.rwth-aachen.de/hs-fulda/bewerbungsbuddy/-/releases)
+
+💻 **Voraussetzung:**
+- Installierte **Java 21**
+
+🚀 **Starten der Anwendung:**
+
+```bash
+java -jar bewerbungsbuddy-VERSION.jar
 
