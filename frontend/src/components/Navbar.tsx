@@ -1,10 +1,6 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
 
 export default function Navbar() {
-  const [isToolsOpen, setIsToolsOpen] = useState(false);
-  const [isBurgerOpen, setIsBurgerOpen] = useState(false);
-
   return (
     <nav className="nav">
       <div className="container d-flex align-items-center justify-content-between flex-wrap gap-3">
@@ -15,39 +11,26 @@ export default function Navbar() {
           </h4>
         </Link>
 
-        {/* Burger */}
-        <button
-          className="burger"
-          aria-label="Menü öffnen"
-          onClick={() => setIsBurgerOpen(!isBurgerOpen)}
-        >
+        <button className="burger" aria-label="Menü öffnen">
           <span></span>
           <span></span>
           <span></span>
         </button>
 
-        {/* Links */}
-        <div className={`links ${isBurgerOpen ? "show" : ""}`}>
+        <div className="links">
           <div className="dropdown-custom">
-            <button
-              className={`link ${isToolsOpen ? "active" : ""}`}
-              onClick={() => setIsToolsOpen(!isToolsOpen)}
-            >
-              Tools ✨
-            </button>
-
-            {isToolsOpen && (
-              <div className="dropdown-menu-custom">
-                <Link to="/cv-analysis" className="dropdown-item-custom">
-                  CV analysieren
-                </Link>
-                <Link to="/letter-generation" className="dropdown-item-custom">
-                  Motivationsschreiben generieren
-                </Link>
-              </div>
-            )}
+            <a href="#" className="link active">
+              <span>Tools ✨</span>
+            </a>
+            <div className="dropdown-menu-custom">
+              <Link to="/cv-analysis" className="dropdown-item-custom">
+                CV analysieren
+              </Link>
+              <Link to="/letter-generation" className="dropdown-item-custom">
+                Motivationsschreiben generieren
+              </Link>
+            </div>
           </div>
-
           <Link to="/pricing" className="link">
             Preise
           </Link>
